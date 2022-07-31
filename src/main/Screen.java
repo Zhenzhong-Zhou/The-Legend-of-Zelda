@@ -1,5 +1,7 @@
 package main;
 
+import collisions.CollisionDetection;
+import entities.Player;
 import inputs.KeyboardHandler;
 import inputs.MouseHandler;
 import tiles.TileManager;
@@ -14,6 +16,8 @@ public class Screen extends JPanel {
     private final Game game;
     private final MouseHandler mouseHandler;
     private TileManager tileManager;
+    private Player player;
+    private CollisionDetection collisionDetection;
 
     public Screen(Game game) {
         initClasses();
@@ -30,7 +34,9 @@ public class Screen extends JPanel {
     }
 
     private void initClasses() {
+        player = new Player(100, 100, 4, this);
         tileManager = new TileManager(this);
+        collisionDetection = new CollisionDetection(this);
     }
 
     private void setScreenSize() {
@@ -49,5 +55,13 @@ public class Screen extends JPanel {
 
     public Game getGame() {
         return game;
+    }
+
+    public CollisionDetection getCollisionDetection() {
+        return collisionDetection;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

@@ -37,10 +37,12 @@ public class TileManager {
             // Wall
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/wall.png")));
+            tile[1].collision = true;
 
             // Water
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/water01.png")));
+            tile[2].collision = true;
 
             // Earth
             tile[3] = new Tile();
@@ -49,6 +51,7 @@ public class TileManager {
             // Tree
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/tree.png")));
+            tile[4].collision = true;
 
             // Road
             tile[5] = new Tile();
@@ -93,13 +96,13 @@ public class TileManager {
 
             int worldX = worldCol * TILE_SIZE;
             int worldY = worldRow * TILE_SIZE;
-            int screenX = worldX - screen.getGame().getPlayer().getWorldX() + screen.getGame().getPlayer().getScreenX();
-            int screenY = worldY - screen.getGame().getPlayer().getWorldY() + screen.getGame().getPlayer().getScreenY();
+            int screenX = worldX - screen.getPlayer().getWorldX() + screen.getPlayer().getScreenX();
+            int screenY = worldY - screen.getPlayer().getWorldY() + screen.getPlayer().getScreenY();
 
-            int left = screen.getGame().getPlayer().getWorldX() - screen.getGame().getPlayer().getScreenX();
-            int right = screen.getGame().getPlayer().getWorldX() + screen.getGame().getPlayer().getScreenX();
-            int up  = screen.getGame().getPlayer().getWorldY() - screen.getGame().getPlayer().getScreenY();
-            int down  = screen.getGame().getPlayer().getWorldY() + screen.getGame().getPlayer().getScreenY();
+            int left = screen.getPlayer().getWorldX() - screen.getPlayer().getScreenX();
+            int right = screen.getPlayer().getWorldX() + screen.getPlayer().getScreenX();
+            int up  = screen.getPlayer().getWorldY() - screen.getPlayer().getScreenY();
+            int down  = screen.getPlayer().getWorldY() + screen.getPlayer().getScreenY();
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
                 graphics2D.drawImage(tile[tileNum].image, screenX,screenY,TILE_SIZE, TILE_SIZE, null);

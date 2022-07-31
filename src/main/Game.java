@@ -10,7 +10,6 @@ public class Game implements Runnable {
     private final Window window;
     private final Screen screen;
     private Thread thread;
-    private Player player;
 
     public Game() {
         initClasses();
@@ -22,7 +21,6 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
-        player = new Player(100, 100, 4);
     }
 
     private void start() {
@@ -31,11 +29,11 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        player.update();
+        screen.getPlayer().update();
     }
 
     public void draw(Graphics2D graphics2D) {
-        player.draw(graphics2D);
+        screen.getPlayer().draw(graphics2D);
     }
 
     @Override
@@ -78,9 +76,5 @@ public class Game implements Runnable {
                 updates = 0;
             }
         }
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 }

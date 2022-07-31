@@ -1,5 +1,7 @@
 package entities;
 
+import main.Screen;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,13 +14,20 @@ import static utilities.Constants.ScreenConstants.*;
 public class Player extends Entity {
     private boolean up, left, down, right;
     private final int screenX, screenY;
+    private Screen screen;
 
-    public Player(int x, int y, int speed) {
+    public Player(int x, int y, int speed, Screen screen) {
         super(x, y, speed);
+        this.screen = screen;
         screenX = (SCREEN_WIDTH / 2) - (TILE_SIZE/2);
         screenY = (SCREEN_HEIGHT / 2) - (TILE_SIZE/2);
+        initHitbox();
         setDefaultValues();
         getPlayerImage();
+    }
+
+    private void initHitbox() {
+        hitbox = new Rectangle(8,16,32,32);
     }
 
     public void setDefaultValues() {
@@ -106,6 +115,10 @@ public class Player extends Entity {
             direction = DOWN;
             worldY += speed;
         }
+
+        collision = false;
+        screen.getCollisionDetection().detectTile(this);
+
         updateAnimations();
     }
 
