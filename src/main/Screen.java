@@ -1,6 +1,7 @@
 package main;
 
 import inputs.KeyboardHandler;
+import inputs.MouseHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,19 +11,21 @@ import static utilities.Constants.ScreenConstants.*;
 public class Screen extends JPanel implements Runnable {
     private Game game;
     private Thread thread;
-    private KeyboardHandler keyboardHandler = new KeyboardHandler();
+    private MouseHandler mouseHandler;
     private int playerX = 100;
     private int playerY = 100;
-    private int playerSpeed = 4;
+    private int xDelta=0,yDelta=0;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
     public Screen(Game game) {
+        mouseHandler = new MouseHandler(this);
         this.game = game;
         setScreenSize();
         setDoubleBuffered(true);
-        this.addKeyListener(keyboardHandler);
-//        addKeyListener(new KeyboardHandler(this));
+        addKeyListener(new KeyboardHandler(this));
+        addMouseListener(mouseHandler);
+        addMouseMotionListener(mouseHandler);
         setFocusable(true);
         requestFocus();
         start();
@@ -39,23 +42,21 @@ public class Screen extends JPanel implements Runnable {
         thread.start();
     }
 
+    public void changeXDelta(int value) {
+        this.xDelta += value;
+    }
+    public void changeYDelta(int value) {
+        this.yDelta +=value;
+    }
     public void update() {
-        if(keyboardHandler.isUp()) {
-            playerY -= playerSpeed;
-        } else if(keyboardHandler.isLeft()) {
-            playerX -= playerSpeed;
-        } else if(keyboardHandler.isDown()) {
-            playerY += playerSpeed;
-        } else if(keyboardHandler.isRight()) {
-            playerX += playerSpeed;
-        }
+
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.setColor(Color.BLUE);
-        graphics2D.fillRect(playerX, playerY, TILE_SIZE,TILE_SIZE);
+        graphics2D.fillRect(playerX+xDelta, playerY+yDelta, TILE_SIZE,TILE_SIZE);
         graphics2D.dispose();
     }
 
