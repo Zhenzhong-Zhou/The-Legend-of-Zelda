@@ -61,27 +61,42 @@ public class Screen extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        double drawInterval = 1000000000.0/FPS_SET;
-        double nextDrawTime = System.nanoTime() + drawInterval;
+        double timePerFrame = 1000000000.0 / FPS_SET;
+        double timePerUpdate = 1000000000.0 / UPS_SET;
+        long lastTime = System.nanoTime();
+
+        int frames = 0;
+        int updates = 0;
+        long lastCheck = System.currentTimeMillis();
+
+        double deltaUpdates = 0;
+        double deltaFrames = 0;
 
         while(thread != null) {
             long currentTime = System.nanoTime();
+            deltaUpdates += (currentTime - lastTime) / timePerUpdate;
+            deltaFrames += (currentTime - lastTime) / timePerFrame;
+
+            lastTime = currentTime;
             // UPDATE: update information such as character positions
-            update();
+            if(deltaUpdates >= 1) {
+                update();
+                updates++;
+                deltaUpdates--;
+            }
+
             // DRAW: draw the screen with the updated information
-            repaint();
+            if(deltaFrames >= 1) {
+                repaint();
+                frames++;
+                deltaFrames--;
+            }
 
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime / 1000000.0;
-
-                if(remainingTime < 0) {
-                    remainingTime = 0;
-                }
-                Thread.sleep((long) remainingTime);
-                nextDrawTime += drawInterval;
-            } catch(InterruptedException e) {
-                e.printStackTrace();
+            if(System.currentTimeMillis() - lastCheck >= 1000) {
+                lastCheck = System.currentTimeMillis();
+                System.out.println("FPS: " + frames + " | UPS: " + updates);
+                frames = 0;
+                updates = 0;
             }
         }
     }
