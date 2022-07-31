@@ -16,4 +16,14 @@ public class Constants {
         public static final int SCREEN_WIDTH = TILE_SIZE * MAX_SCREEN_COL;      // 960 pixels
         public static final int SCREEN_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;     // 720 pixels
     }
+
+    /**
+     *  Directions
+     **/
+    public static class Directions {
+        public static final String UP = "UP";
+        public static final String LEFT = "LEFT";
+        public static final String DOWN = "DOWN";
+        public static final String RIGHT = "RIGHT";
+    }
 }
