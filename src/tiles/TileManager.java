@@ -96,7 +96,14 @@ public class TileManager {
             int screenX = worldX - screen.getGame().getPlayer().getWorldX() + screen.getGame().getPlayer().getScreenX();
             int screenY = worldY - screen.getGame().getPlayer().getWorldY() + screen.getGame().getPlayer().getScreenY();
 
-            graphics2D.drawImage(tile[tileNum].image, screenX,screenY,TILE_SIZE, TILE_SIZE, null);
+            int left = screen.getGame().getPlayer().getWorldX() - screen.getGame().getPlayer().getScreenX();
+            int right = screen.getGame().getPlayer().getWorldX() + screen.getGame().getPlayer().getScreenX();
+            int up  = screen.getGame().getPlayer().getWorldY() - screen.getGame().getPlayer().getScreenY();
+            int down  = screen.getGame().getPlayer().getWorldY() + screen.getGame().getPlayer().getScreenY();
+
+            if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
+                graphics2D.drawImage(tile[tileNum].image, screenX,screenY,TILE_SIZE, TILE_SIZE, null);
+            }
             worldCol++;
 
             if(worldCol == MAX_WORLD_COL) {
