@@ -12,7 +12,6 @@ import static utilities.Constants.Directions.*;
 import static utilities.Constants.ScreenConstants.TILE_SIZE;
 
 public class Player extends Entity{
-    private Screen screen;
     private boolean up, left, down, right;
 
     public Player(int x, int y, int speed) {
@@ -37,7 +36,7 @@ public class Player extends Entity{
             down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_down_1.png")));
             down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_down_2.png")));
             right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_right_1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_right_1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/walk/boy_right_2.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -105,9 +104,12 @@ public class Player extends Entity{
             direction = DOWN;
             y += speed;
         }
+        updateAnimations();
+    }
 
+    private void updateAnimations() {
         spriteCounter++;
-        if(spriteCounter > 50) {
+        if(spriteCounter > 60) {
             if(spriteNum == 1) {
                 spriteNum = 2;
             } else if(spriteNum == 2) {
