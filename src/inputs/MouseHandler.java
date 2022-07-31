@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MouseHandler implements MouseListener, MouseMotionListener {
-    private Screen screen;
+    private final Screen screen;
 
     public MouseHandler(Screen screen) {
         this.screen = screen;

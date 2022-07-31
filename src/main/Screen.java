@@ -1,6 +1,5 @@
 package main;
 
-import entities.Player;
 import inputs.KeyboardHandler;
 import inputs.MouseHandler;
 import tiles.TileManager;
@@ -8,11 +7,12 @@ import tiles.TileManager;
 import javax.swing.*;
 import java.awt.*;
 
-import static utilities.Constants.ScreenConstants.*;
+import static utilities.Constants.ScreenConstants.SCREEN_HEIGHT;
+import static utilities.Constants.ScreenConstants.SCREEN_WIDTH;
 
-public class Screen extends JPanel  {
-    private Game game;
-    private MouseHandler mouseHandler;
+public class Screen extends JPanel {
+    private final Game game;
+    private final MouseHandler mouseHandler;
     private TileManager tileManager;
 
     public Screen(Game game) {

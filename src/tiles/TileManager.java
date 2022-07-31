@@ -10,8 +10,8 @@ import java.util.Objects;
 import static utilities.Constants.ScreenConstants.TILE_SIZE;
 
 public class TileManager {
-    private Screen screen;
-    private Tile[] tile;
+    private final Screen screen;
+    private final Tile[] tile;
 
     public TileManager(Screen screen) {
         this.screen = screen;
@@ -22,7 +22,7 @@ public class TileManager {
     private void importTileImage() {
         try {
             // Grass
-            System.out.println("Image loading started" );
+            System.out.println("Image loading started");
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("tiles/grass01.png")));
             System.out.println("Image loading started" + tile[0].image);
@@ -39,6 +39,6 @@ public class TileManager {
     }
 
     public void draw(Graphics2D graphics2D) {
-        graphics2D.drawImage(tile[0].image, 0,0,TILE_SIZE,TILE_SIZE, null);
+        graphics2D.drawImage(tile[0].image, 0, 0, TILE_SIZE, TILE_SIZE, null);
     }
 }

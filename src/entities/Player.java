@@ -1,7 +1,5 @@
 package entities;
 
-import main.Screen;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +9,7 @@ import java.util.Objects;
 import static utilities.Constants.Directions.*;
 import static utilities.Constants.ScreenConstants.TILE_SIZE;
 
-public class Player extends Entity{
+public class Player extends Entity {
     private boolean up, left, down, right;
 
     public Player(int x, int y, int speed) {
@@ -82,25 +80,26 @@ public class Player extends Entity{
                     image = right2;
                 }
             }
-            default -> {}
+            default -> {
+            }
         }
 
-        graphics2D.drawImage(image,x,y, TILE_SIZE, TILE_SIZE, null);
+        graphics2D.drawImage(image, x, y, TILE_SIZE, TILE_SIZE, null);
     }
 
     public void updatePosition() {
-        if (left && !right) {
+        if(left && ! right) {
             direction = LEFT;
             x -= speed;
-        } else if (right && !left) {
+        } else if(right && ! left) {
             direction = RIGHT;
             x += speed;
         }
 
-        if (up && !down) {
+        if(up && ! down) {
             direction = UP;
             y -= speed;
-        } else if (down && !up) {
+        } else if(down && ! up) {
             direction = DOWN;
             y += speed;
         }

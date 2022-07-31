@@ -5,12 +5,12 @@ import entities.Player;
 import java.awt.*;
 
 public class Game implements Runnable {
-    private Window window;
-    private Screen screen;
-    private Thread thread;
-    private Player player;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
+    private final Window window;
+    private final Screen screen;
+    private Thread thread;
+    private Player player;
 
     public Game() {
         initClasses();
