@@ -3,6 +3,7 @@ package main;
 import entities.Player;
 import inputs.KeyboardHandler;
 import inputs.MouseHandler;
+import tiles.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,11 +15,13 @@ public class Screen extends JPanel implements Runnable {
     private Thread thread;
     private MouseHandler mouseHandler;
     private Player player;
+    private TileManager tileManager;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
     public Screen(Game game) {
-        player = new Player(100, 100, 4);
+        initClasses();
+
         mouseHandler = new MouseHandler(this);
         this.game = game;
         setScreenSize();
@@ -29,6 +32,11 @@ public class Screen extends JPanel implements Runnable {
         setFocusable(true);
         requestFocus();
         start();
+    }
+
+    private void initClasses() {
+        player = new Player(100, 100, 4);
+        tileManager = new TileManager(this);
     }
 
     private void setScreenSize() {
@@ -49,6 +57,7 @@ public class Screen extends JPanel implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
+        tileManager.draw(graphics2D);
         player.draw(graphics2D);
         graphics2D.dispose();
     }
