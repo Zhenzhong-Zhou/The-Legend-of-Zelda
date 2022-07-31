@@ -7,21 +7,24 @@ import java.io.IOException;
 import java.util.Objects;
 
 import static utilities.Constants.Directions.*;
-import static utilities.Constants.ScreenConstants.TILE_SIZE;
+import static utilities.Constants.ScreenConstants.*;
 
 public class Player extends Entity {
     private boolean up, left, down, right;
+    private final int screenX, screenY;
 
     public Player(int x, int y, int speed) {
         super(x, y, speed);
+        screenX = (SCREEN_WIDTH / 2) - (TILE_SIZE/2);
+        screenY = (SCREEN_HEIGHT / 2) - (TILE_SIZE/2);
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
-        speed = 4;
+        worldX = 23 * TILE_SIZE;
+        worldY = 21 * TILE_SIZE;
+        speed = 1;
         direction = DOWN;
     }
 
@@ -84,24 +87,24 @@ public class Player extends Entity {
             }
         }
 
-        graphics2D.drawImage(image, x, y, TILE_SIZE, TILE_SIZE, null);
+        graphics2D.drawImage(image, screenX, screenY, TILE_SIZE, TILE_SIZE, null);
     }
 
     public void updatePosition() {
         if(left && ! right) {
             direction = LEFT;
-            x -= speed;
+            worldX -= speed;
         } else if(right && ! left) {
             direction = RIGHT;
-            x += speed;
+            worldX += speed;
         }
 
         if(up && ! down) {
             direction = UP;
-            y -= speed;
+            worldY -= speed;
         } else if(down && ! up) {
             direction = DOWN;
-            y += speed;
+            worldY += speed;
         }
         updateAnimations();
     }
@@ -148,5 +151,13 @@ public class Player extends Entity {
 
     public void setRight(boolean right) {
         this.right = right;
+    }
+
+    public int getScreenX() {
+        return screenX;
+    }
+
+    public int getScreenY() {
+        return screenY;
     }
 }

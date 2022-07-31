@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 import static utilities.Constants.ScreenConstants.*;
+import static utilities.Constants.WorldConstants.MAX_WORLD_COL;
+import static utilities.Constants.WorldConstants.MAX_WORLD_ROW;
 
 public class TileManager {
     private final Screen screen;
@@ -20,9 +22,9 @@ public class TileManager {
     public TileManager(Screen screen) {
         this.screen = screen;
         tile = new Tile[10];
-        levelTileNum = new int[MAX_SCREEN_COL][MAX_SCREEN_ROW];
+        levelTileNum = new int[MAX_WORLD_COL][MAX_WORLD_ROW];
         importTileImage();
-        loadMap("map/level01.txt");
+        loadMap("map/world01.txt");
     }
 
     private void importTileImage() {
@@ -39,6 +41,18 @@ public class TileManager {
             // Water
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/water01.png")));
+
+            // Earth
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/earth.png")));
+
+            // Tree
+            tile[4] = new Tile();
+            tile[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/tree.png")));
+
+            // Road
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/road00.png")));
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -51,15 +65,15 @@ public class TileManager {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
-            while(col < MAX_SCREEN_COL && row <MAX_SCREEN_ROW) {
+            while(col < MAX_WORLD_COL && row <MAX_WORLD_ROW) {
                 String line = reader.readLine();
-                while(col < MAX_SCREEN_COL) {
+                while(col < MAX_WORLD_COL) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     levelTileNum[col][row] = num;
                     col++;
                 }
-                if(col == MAX_SCREEN_COL) {
+                if(col == MAX_WORLD_COL) {
                     col = 0;
                     row++;
                 }
@@ -71,21 +85,23 @@ public class TileManager {
     }
 
     public void draw(Graphics2D graphics2D) {
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0 ;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while(col < MAX_SCREEN_COL && row < MAX_SCREEN_ROW) {
-            int tileNum = levelTileNum[col][row];
-            graphics2D.drawImage(tile[tileNum].image, x,y,TILE_SIZE, TILE_SIZE, null);
-            col++;
-            x+=TILE_SIZE;
-            if(col == MAX_SCREEN_COL) {
-                col =0 ;
-                x=0;
-                row++;
-                y+=TILE_SIZE;
+        while(worldCol < MAX_WORLD_COL && worldRow < MAX_WORLD_ROW) {
+            int tileNum = levelTileNum[worldCol][worldRow];
+
+            int worldX = worldCol * TILE_SIZE;
+            int worldY = worldRow * TILE_SIZE;
+            int screenX = worldX - screen.getGame().getPlayer().getWorldX() + screen.getGame().getPlayer().getScreenX();
+            int screenY = worldY - screen.getGame().getPlayer().getWorldY() + screen.getGame().getPlayer().getScreenY();
+
+            graphics2D.drawImage(tile[tileNum].image, screenX,screenY,TILE_SIZE, TILE_SIZE, null);
+            worldCol++;
+
+            if(worldCol == MAX_WORLD_COL) {
+                worldCol =0 ;
+                worldRow++;
             }
         }
     }
