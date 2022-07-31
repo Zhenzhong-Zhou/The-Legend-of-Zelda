@@ -1,5 +1,6 @@
 package main;
 
+import entities.Player;
 import inputs.KeyboardHandler;
 import inputs.MouseHandler;
 
@@ -12,13 +13,12 @@ public class Screen extends JPanel implements Runnable {
     private Game game;
     private Thread thread;
     private MouseHandler mouseHandler;
-    private int playerX = 100;
-    private int playerY = 100;
-    private int xDelta=0,yDelta=0;
+    private Player player;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
     public Screen(Game game) {
+        player = new Player(100, 100, 4);
         mouseHandler = new MouseHandler(this);
         this.game = game;
         setScreenSize();
@@ -42,21 +42,14 @@ public class Screen extends JPanel implements Runnable {
         thread.start();
     }
 
-    public void changeXDelta(int value) {
-        this.xDelta += value;
-    }
-    public void changeYDelta(int value) {
-        this.yDelta +=value;
-    }
     public void update() {
-
+        player.update();
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.setColor(Color.BLUE);
-        graphics2D.fillRect(playerX+xDelta, playerY+yDelta, TILE_SIZE,TILE_SIZE);
+        player.draw(graphics2D);
         graphics2D.dispose();
     }
 
@@ -100,5 +93,9 @@ public class Screen extends JPanel implements Runnable {
                 updates = 0;
             }
         }
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
