@@ -39,4 +39,13 @@ public class Constants {
         public static final int WORLD_WIDTH = TILE_SIZE * MAX_WORLD_COL;      // 2400 pixels
         public static final int WORLD_HEIGHT = TILE_SIZE * MAX_WORLD_ROW;     // 2400 pixels
     }
+
+    /**
+     * Object Names
+     **/
+    public static class ObjectNames {
+        public static final String KEY = "KEY";
+        public static final String DOOR = "DOOR";
+        public static final String CHEST = "CHEST";
+    }
 }
