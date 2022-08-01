@@ -31,8 +31,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = 23 * TILE_SIZE;
-        worldY = 21 * TILE_SIZE;
+        worldX = 27 * TILE_SIZE;
+        worldY = 22 * TILE_SIZE;
         speed = 1;
         direction = DOWN;
     }
