@@ -4,13 +4,14 @@ import collisions.CollisionDetection;
 import entities.Player;
 import inputs.KeyboardHandler;
 import inputs.MouseHandler;
+import objects.Object;
 import tiles.TileManager;
+import objects.ObjectManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static utilities.Constants.ScreenConstants.SCREEN_HEIGHT;
-import static utilities.Constants.ScreenConstants.SCREEN_WIDTH;
+import static utilities.Constants.ScreenConstants.*;
 
 public class Screen extends JPanel {
     private final Game game;
@@ -18,6 +19,8 @@ public class Screen extends JPanel {
     private TileManager tileManager;
     private Player player;
     private CollisionDetection collisionDetection;
+    private ObjectManager objectManager;
+    public Object[] objects;
 
     public Screen(Game game) {
         initClasses();
@@ -37,6 +40,12 @@ public class Screen extends JPanel {
         player = new Player(100, 100, 4, this);
         tileManager = new TileManager(this);
         collisionDetection = new CollisionDetection(this);
+        objectManager = new ObjectManager(this);
+        objects = new Object[10];
+    }
+
+    public void setupGame() {
+        objectManager.setObjects();
     }
 
     private void setScreenSize() {
@@ -48,8 +57,16 @@ public class Screen extends JPanel {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        tileManager.draw(graphics2D);
         game.draw(graphics2D);
+
+        // TILE
+        tileManager.draw(graphics2D);
+
+        // OBJECT
+        objectManager.draw(graphics2D);
+
+        // PLAYER
+        player.draw(graphics2D);
         graphics2D.dispose();
     }
 

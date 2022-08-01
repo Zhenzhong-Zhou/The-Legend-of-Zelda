@@ -1,5 +1,8 @@
 package main;
 
+import objects.Object;
+import objects.ObjectManager;
+
 import java.awt.*;
 
 public class Game implements Runnable {
@@ -8,18 +11,27 @@ public class Game implements Runnable {
     private final Window window;
     private final Screen screen;
     private Thread thread;
+//    private ObjectManager objectManager;
+//    public Object[] objects;
 
     public Game() {
         initClasses();
 
         screen = new Screen(this);
         window = new Window(screen);
+        screen.setupGame();
 
         start();
     }
 
     private void initClasses() {
+//        objectManager = new ObjectManager(screen);
+//        objects = new Object[10];
     }
+//
+//    private void setupGame() {
+//        objectManager.setObjects();
+//    }
 
     private void start() {
         thread = new Thread(this);
@@ -31,7 +43,7 @@ public class Game implements Runnable {
     }
 
     public void draw(Graphics2D graphics2D) {
-        screen.getPlayer().draw(graphics2D);
+//        screen.getPlayer().draw(graphics2D);
     }
 
     @Override
@@ -75,4 +87,8 @@ public class Game implements Runnable {
             }
         }
     }
+//
+//    public ObjectManager getObjectManager() {
+//        return objectManager;
+//    }
 }
