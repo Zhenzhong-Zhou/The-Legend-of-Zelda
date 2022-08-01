@@ -10,14 +10,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-import static utilities.Constants.ScreenConstants.*;
+import static utilities.Constants.ScreenConstants.TILE_SIZE;
 import static utilities.Constants.WorldConstants.MAX_WORLD_COL;
 import static utilities.Constants.WorldConstants.MAX_WORLD_ROW;
 
 public class TileManager {
     private final Screen screen;
     private final Tile[] tile;
-    private int levelTileNum[][];
+    private final int[][] levelTileNum;
 
     public TileManager(Screen screen) {
         this.screen = screen;
@@ -67,7 +67,7 @@ public class TileManager {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
-            while(col < MAX_WORLD_COL && row <MAX_WORLD_ROW) {
+            while(col < MAX_WORLD_COL && row < MAX_WORLD_ROW) {
                 String line = reader.readLine();
                 while(col < MAX_WORLD_COL) {
                     String[] numbers = line.split(" ");
@@ -100,16 +100,16 @@ public class TileManager {
 
             int left = screen.getPlayer().getWorldX() - screen.getPlayer().getScreenX();
             int right = screen.getPlayer().getWorldX() + screen.getPlayer().getScreenX();
-            int up  = screen.getPlayer().getWorldY() - screen.getPlayer().getScreenY();
-            int down  = screen.getPlayer().getWorldY() + screen.getPlayer().getScreenY();
+            int up = screen.getPlayer().getWorldY() - screen.getPlayer().getScreenY();
+            int down = screen.getPlayer().getWorldY() + screen.getPlayer().getScreenY();
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(tile[tileNum].image, screenX,screenY,TILE_SIZE, TILE_SIZE, null);
+                graphics2D.drawImage(tile[tileNum].image, screenX, screenY, TILE_SIZE, TILE_SIZE, null);
             }
             worldCol++;
 
             if(worldCol == MAX_WORLD_COL) {
-                worldCol =0 ;
+                worldCol = 0;
                 worldRow++;
             }
         }

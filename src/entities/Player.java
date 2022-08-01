@@ -4,7 +4,6 @@ import main.Screen;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -13,22 +12,22 @@ import static utilities.Constants.Directions.*;
 import static utilities.Constants.ScreenConstants.*;
 
 public class Player extends Entity {
-    private boolean up, left, down, right;
     private final int screenX, screenY;
-    private Screen screen;
+    private boolean up, left, down, right;
+    private final Screen screen;
 
     public Player(int x, int y, int speed, Screen screen) {
         super(x, y, speed);
         this.screen = screen;
-        screenX = (SCREEN_WIDTH / 2) - (TILE_SIZE/2);
-        screenY = (SCREEN_HEIGHT / 2) - (TILE_SIZE/2);
+        screenX = (SCREEN_WIDTH / 2) - (TILE_SIZE / 2);
+        screenY = (SCREEN_HEIGHT / 2) - (TILE_SIZE / 2);
         initHitbox();
         setDefaultValues();
         getPlayerImage();
     }
 
     private void initHitbox() {
-        hitbox = new Rectangle(8,16,32,32);
+        hitbox = new Rectangle(8, 16, 32, 32);
     }
 
     public void setDefaultValues() {
@@ -101,21 +100,17 @@ public class Player extends Entity {
     }
 
     public void updatePosition() {
-        if(left||right||up||down) {
+        if(left || right || up || down) {
             if(left && ! right) {
                 direction = LEFT;
-//            worldX -= speed;
             } else if(right && ! left) {
                 direction = RIGHT;
-//            worldX += speed;
             }
 
             if(up && ! down) {
                 direction = UP;
-//            worldY -= speed;
             } else if(down && ! up) {
                 direction = DOWN;
-//            worldY += speed;
             }
 
             // Check Tile Collision
@@ -124,11 +119,12 @@ public class Player extends Entity {
 
             if(! collision) {
                 switch(direction) {
-                    case UP ->  worldY -= speed;
-                    case LEFT ->  worldX -= speed;
+                    case UP -> worldY -= speed;
+                    case LEFT -> worldX -= speed;
                     case DOWN -> worldY += speed;
                     case RIGHT -> worldX += speed;
-                    default -> {}
+                    default -> {
+                    }
                 }
             }
 

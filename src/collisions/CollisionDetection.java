@@ -4,11 +4,10 @@ import entities.Entity;
 import main.Screen;
 
 import static utilities.Constants.Directions.*;
-import static utilities.Constants.ScreenConstants.ORIGINAL_TILE_SIZE;
 import static utilities.Constants.ScreenConstants.TILE_SIZE;
 
 public class CollisionDetection {
-    private Screen screen;
+    private final Screen screen;
 
     public CollisionDetection(Screen screen) {
         this.screen = screen;
@@ -60,7 +59,8 @@ public class CollisionDetection {
                     entity.setCollision(true);
                 }
             }
-            default -> {}
+            default -> {
+            }
         }
     }
 }
