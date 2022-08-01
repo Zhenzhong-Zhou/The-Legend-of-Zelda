@@ -64,4 +64,8 @@ public class Screen extends JPanel {
     public Player getPlayer() {
         return player;
     }
+
+    public TileManager getTileManager() {
+        return tileManager;
+    }
 }

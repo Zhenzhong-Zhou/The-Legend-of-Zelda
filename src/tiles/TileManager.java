@@ -30,10 +30,9 @@ public class TileManager {
     private void importTileImage() {
         try {
             // Grass
-            System.out.println("Image loading started");
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/grass01.png")));
-            System.out.println("Image loading started" + tile[0].image);
+
             // Wall
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/wall.png")));
@@ -114,5 +113,13 @@ public class TileManager {
                 worldRow++;
             }
         }
+    }
+
+    public Tile[] getTile() {
+        return tile;
+    }
+
+    public int[][] getLevelTileNum() {
+        return levelTileNum;
     }
 }

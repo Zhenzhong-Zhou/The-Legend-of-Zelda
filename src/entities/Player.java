@@ -4,6 +4,7 @@ import main.Screen;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -100,31 +101,44 @@ public class Player extends Entity {
     }
 
     public void updatePosition() {
-        if(left && ! right) {
-            direction = LEFT;
-            worldX -= speed;
-        } else if(right && ! left) {
-            direction = RIGHT;
-            worldX += speed;
+        if(left||right||up||down) {
+            if(left && ! right) {
+                direction = LEFT;
+//            worldX -= speed;
+            } else if(right && ! left) {
+                direction = RIGHT;
+//            worldX += speed;
+            }
+
+            if(up && ! down) {
+                direction = UP;
+//            worldY -= speed;
+            } else if(down && ! up) {
+                direction = DOWN;
+//            worldY += speed;
+            }
+
+            // Check Tile Collision
+            collision = false;
+            screen.getCollisionDetection().detectTile(this);
+
+            if(! collision) {
+                switch(direction) {
+                    case UP ->  worldY -= speed;
+                    case LEFT ->  worldX -= speed;
+                    case DOWN -> worldY += speed;
+                    case RIGHT -> worldX += speed;
+                    default -> {}
+                }
+            }
+
+            updateAnimations();
         }
-
-        if(up && ! down) {
-            direction = UP;
-            worldY -= speed;
-        } else if(down && ! up) {
-            direction = DOWN;
-            worldY += speed;
-        }
-
-        collision = false;
-        screen.getCollisionDetection().detectTile(this);
-
-        updateAnimations();
     }
 
     private void updateAnimations() {
         spriteCounter++;
-        if(spriteCounter > 60) {
+        if(spriteCounter > 20) {
             if(spriteNum == 1) {
                 spriteNum = 2;
             } else if(spriteNum == 2) {

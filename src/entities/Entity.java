@@ -25,4 +25,20 @@ public class Entity {
     public int getWorldY() {
         return worldY;
     }
+
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
 }
