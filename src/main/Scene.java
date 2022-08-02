@@ -18,4 +18,9 @@ public class Scene extends JPanel {
         setDoubleBuffered(true);
         System.out.println("Size: " + SCENE_WIDTH + ", " + SCENE_HEIGHT);
     }
+
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        graphics.dispose();
+    }
 }
