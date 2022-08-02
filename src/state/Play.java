@@ -1,6 +1,7 @@
 package state;
 
 import main.Game;
+import managers.LevelManager;
 import managers.TileManager;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import static state.GameState.MENU;
 
 public class Play extends State implements StateMethods{
     private TileManager tileManager;
+    private LevelManager levelManager;
 
     public Play(Game game) {
         super(game);
@@ -18,7 +20,8 @@ public class Play extends State implements StateMethods{
     }
 
     private void initClasses() {
-        tileManager = new TileManager(game);
+        tileManager = new TileManager();
+        levelManager = new LevelManager(game);
     }
 
     @Override
@@ -28,9 +31,10 @@ public class Play extends State implements StateMethods{
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.PINK);
-        graphics2D.fillRect(200, 200, 200, 200);
-        tileManager.draw(graphics2D);
+//        graphics2D.setColor(Color.PINK);
+//        graphics2D.fillRect(200, 200, 200, 200);
+//        tileManager.draw(graphics2D);
+        levelManager.draw(graphics2D);
     }
 
     @Override

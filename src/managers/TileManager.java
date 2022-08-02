@@ -14,13 +14,11 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LoadSave.*;
 
 public class TileManager {
-    private Game game;
-    public Tile GRASS;
+    public Tile GRASS, WATER, WALL;
     public ArrayList<Tile> tiles = new ArrayList<>();
 //    public Tile[] tile;
 
-    public TileManager(Game game) {
-        this.game = game;
+    public TileManager() {
 //        tile = new Tile[10];
         createTiles();
 //        getTileSprite();
@@ -28,6 +26,8 @@ public class TileManager {
 
     private void createTiles() {
         tiles.add(GRASS = new Tile(GetSpriteAtlas(GRASS_IMAGE)));
+        tiles.add(WATER = new Tile(GetSpriteAtlas(WATER_IMAGE)));
+        tiles.add(WALL = new Tile(GetSpriteAtlas(WALL_IMAGE)));
     }
 
     public BufferedImage getTile(int id) {
