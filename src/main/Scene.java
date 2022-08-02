@@ -11,8 +11,10 @@ import static utility.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel {
     private MouseInputs mouseInputs;
+    private Game game;
 
-    public Scene() {
+    public Scene(Game game) {
+        this.game = game;
         setSceneSize();
         initClasses();
     }
@@ -27,13 +29,19 @@ public class Scene extends JPanel {
 
     private void initClasses() {
         mouseInputs = new MouseInputs();
-        addKeyListener(new KeyInputs());
+        addKeyListener(new KeyInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
     }
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        game.draw(graphics2D);
         graphics.dispose();
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

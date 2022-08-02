@@ -1,9 +1,19 @@
 package input;
 
+import main.Scene;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static state.GameState.gameState;
+
 public class KeyInputs implements KeyListener {
+    private Scene scene;
+
+    public KeyInputs(Scene scene) {
+        this.scene = scene;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -11,11 +21,10 @@ public class KeyInputs implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_W -> System.out.println("UP");
-            case KeyEvent.VK_A -> System.out.println("LEFT");
-            case KeyEvent.VK_S -> System.out.println("DOWN");
-            case KeyEvent.VK_D -> System.out.println("RIGHT");
+        switch(gameState) {
+            case MENU -> scene.getGame().getMenu().keyPressed(e);
+            case PLAY -> scene.getGame().getPlay().keyPressed(e);
+            default -> {}
         }
     }
 
