@@ -1,6 +1,7 @@
 package main;
 
 import input.KeyInputs;
+import input.MouseInputs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,8 @@ import static utility.Constant.SceneConstant.SCENE_HEIGHT;
 import static utility.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel {
+    private MouseInputs mouseInputs;
+
     public Scene() {
         setSceneSize();
         initClasses();
@@ -23,7 +26,10 @@ public class Scene extends JPanel {
     }
 
     private void initClasses() {
+        mouseInputs = new MouseInputs();
         addKeyListener(new KeyInputs());
+        addMouseListener(mouseInputs);
+        addMouseMotionListener(mouseInputs);
     }
 
     public void paintComponent(Graphics graphics) {
