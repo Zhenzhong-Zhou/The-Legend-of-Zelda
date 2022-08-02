@@ -7,9 +7,9 @@ import java.io.InputStream;
 
 public class LoadSave {
     // TILES
-    public static final String GRASS = "tiles/grass01.png";
-    public static final String WALL = "tiles/wall.png";
-    public static final String WATER = "tiles/water01.png";
+    public static final String GRASS_IMAGE = "tiles/grass01.png";
+    public static final String WALL_IMAGE = "tiles/wall.png";
+    public static final String WATER_IMAGE = "tiles/water01.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;
