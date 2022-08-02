@@ -1,11 +1,9 @@
 package managers;
 
-import level.Level;
 import main.Game;
 
 import java.awt.*;
 
-import static utility.Constant.SceneConstant.ORIGINAL_TILES_SIZE;
 import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LevelBuilder.getLevelData;
 
@@ -24,7 +22,7 @@ public class LevelManager {
         for(int x = 0; x <level.length; x++) {
             for(int y = 0; y<level[x].length; y++) {
                 int id = level[x][y];
-                graphics2D.drawImage(tileManager.getTile(id), x*ORIGINAL_TILES_SIZE, y*ORIGINAL_TILES_SIZE, null);
+                graphics2D.drawImage(tileManager.getTile(id), x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE,null);
             }
         }
     }
