@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     private BufferedImage sprite;
-//    public BufferedImage image;
     private boolean collision = false;
 
     public Tile(BufferedImage sprite) {

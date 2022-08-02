@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 import static state.GameState.MENU;
 
 public class Play extends State implements StateMethods{
-    private TileManager tileManager;
     private LevelManager levelManager;
 
     public Play(Game game) {
@@ -20,7 +19,6 @@ public class Play extends State implements StateMethods{
     }
 
     private void initClasses() {
-        tileManager = new TileManager();
         levelManager = new LevelManager(game);
     }
 
@@ -31,9 +29,6 @@ public class Play extends State implements StateMethods{
 
     @Override
     public void draw(Graphics2D graphics2D) {
-//        graphics2D.setColor(Color.PINK);
-//        graphics2D.fillRect(200, 200, 200, 200);
-//        tileManager.draw(graphics2D);
         levelManager.draw(graphics2D);
     }
 
