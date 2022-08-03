@@ -20,12 +20,7 @@ public class LevelManager {
         level = getLevelData();
         tileManager = new TileManager();
         createDefaultLevel();
-//        loadDefaultLevel();
-    }
-
-    private void loadDefaultLevel() {
-//        level = GetLevelData("level");
-        System.out.println(Arrays.deepToString(level));
+        loadDefaultLevel();
     }
 
     private void createDefaultLevel() {
@@ -38,7 +33,18 @@ public class LevelManager {
                 array[i][j] = 0;
             }
         }
-        CreateLevel("level", array);
+        CreateLevel("default_level", array);
+    }
+//    private void createDefaultLevel() {
+//        int[] array = new int[400];
+//        for(int i =0; i < array.length; i++) {
+//            array[i] = 0;
+//        }
+//        CreateLevel("default_level", array);
+//    }
+    private void loadDefaultLevel() {
+//        level = GetLevelData("default_level");
+//        System.out.println(Arrays.deepToString(GetLevelData("default_level")));
     }
 
     public void draw(Graphics2D graphics2D) {
