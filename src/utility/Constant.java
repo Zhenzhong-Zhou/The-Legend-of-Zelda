@@ -27,6 +27,7 @@ public class Constant {
         public static final int SCENE_WIDTH = TILE_SIZE * MAX_SCREEN_COL;       // 768 pixels
         public static final int SCENE_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;      // 576 pixels
     }
+
     /**
      * DIRECTIONS
      */

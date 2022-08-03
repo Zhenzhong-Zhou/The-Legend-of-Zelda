@@ -2,11 +2,9 @@ package managers;
 
 import tile.Tile;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LoadSave.*;
 
 public class TileManager {

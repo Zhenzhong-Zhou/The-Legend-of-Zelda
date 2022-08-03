@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import static state.GameState.PLAY;
 
-public class Menu extends State implements StateMethods{
+public class Menu extends State implements StateMethods {
     public Menu(Game game) {
         super(game);
     }

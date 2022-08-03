@@ -3,8 +3,8 @@ package tile;
 import java.awt.image.BufferedImage;
 
 public class Tile {
-    private BufferedImage sprite;
-    private boolean collision = false;
+    private final BufferedImage sprite;
+    private final boolean collision = false;
 
     public Tile(BufferedImage sprite) {
         this.sprite = sprite;

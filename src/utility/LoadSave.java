@@ -33,7 +33,7 @@ public class LoadSave {
     public static void CreateLevel(String filename, int[][] idArray) {
         File levelFile = new File("res/" + filename + ".txt");
         try {
-            if(!levelFile.createNewFile()) {
+            if(! levelFile.createNewFile()) {
                 System.out.println("File: " + filename + " is already exists.");
             }
         } catch(IOException e) {
@@ -61,17 +61,17 @@ public class LoadSave {
         int[][] matrix = new int[50][50];
         try {
             Scanner scanner = new Scanner(file);
-            int col =0;
-            int row =0;
-            while(col< 50 && row<50) {
+            int col = 0;
+            int row = 0;
+            while(col < 50 && row < 50) {
                 String line = scanner.nextLine();
-                while(col<50) {
+                while(col < 50) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     matrix[col][row] = num;
                     col++;
                 }
-                if(col==50) {
+                if(col == 50) {
                     col = 0;
                     row++;
                 }

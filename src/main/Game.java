@@ -9,9 +9,9 @@ import static state.GameState.gameState;
 import static utility.Constant.GameConstant.FPS_SET;
 import static utility.Constant.GameConstant.UPS_SET;
 
-public class Game implements Runnable{
-    private Window window;
-    private Scene scene;
+public class Game implements Runnable {
+    private final Window window;
+    private final Scene scene;
     private Thread thread;
     private Menu menu;
     private Play play;
@@ -40,7 +40,8 @@ public class Game implements Runnable{
             case EDITOR -> System.out.println("Editor");
             case OPTIONS -> System.out.println("Options");
             case QUIT -> System.exit(0);
-            default -> {}
+            default -> {
+            }
         }
     }
 
@@ -51,7 +52,8 @@ public class Game implements Runnable{
             case EDITOR -> System.out.println("Editor");
             case OPTIONS -> System.out.println("Options");
             case QUIT -> System.exit(0);
-            default -> {}
+            default -> {
+            }
         }
     }
 

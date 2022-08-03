@@ -2,7 +2,6 @@ package state;
 
 import main.Game;
 import managers.LevelManager;
-import managers.TileManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -10,7 +9,7 @@ import java.awt.event.MouseEvent;
 
 import static state.GameState.MENU;
 
-public class Play extends State implements StateMethods{
+public class Play extends State implements StateMethods {
     private LevelManager levelManager;
 
     public Play(Game game) {
