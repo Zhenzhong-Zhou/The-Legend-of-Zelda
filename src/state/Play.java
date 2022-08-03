@@ -22,8 +22,8 @@ public class Play extends State implements StateMethods {
 
     private void initClasses() {
 //        player = new Player((int)(MAX_SCREEN_COL/2f),(int)(MAX_SCREEN_ROW/2f), 0.9f*SCALE, TILE_SIZE, TILE_SIZE);
-        player = new Player(200,200, 0.9f*SCALE, TILE_SIZE, TILE_SIZE);
         levelManager = new LevelManager(game);
+        player = new Player(200,200, 0.9f*SCALE, TILE_SIZE, TILE_SIZE);
     }
 
     @Override
