@@ -8,6 +8,8 @@ public abstract class Entity {
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
     // TODO: once have pathfinding may cause problem because of String not Integer
     protected String direction;
+    protected int spriteCounter = 0;
+    protected int spriteNum = 1;
 
     public Entity(float x, float y, float speed, int width, int height) {
         this.x = x;
