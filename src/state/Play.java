@@ -1,7 +1,7 @@
 package state;
 
 import main.Game;
-import managers.LevelManager;
+import manager.LevelManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
