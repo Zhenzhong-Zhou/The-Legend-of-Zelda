@@ -1,5 +1,6 @@
 package state;
 
+import entity.Player;
 import main.Game;
 import manager.LevelManager;
 
@@ -8,8 +9,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static state.GameState.MENU;
+import static utility.Constant.SceneConstant.*;
 
 public class Play extends State implements StateMethods {
+    private Player player;
     private LevelManager levelManager;
 
     public Play(Game game) {
@@ -18,17 +21,20 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
+//        player = new Player((int)(MAX_SCREEN_COL/2f),(int)(MAX_SCREEN_ROW/2f), 0.9f*SCALE, TILE_SIZE, TILE_SIZE);
+        player = new Player(200,200, 0.9f*SCALE, TILE_SIZE, TILE_SIZE);
         levelManager = new LevelManager(game);
     }
 
     @Override
     public void update() {
-
+        player.update();
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         levelManager.draw(graphics2D);
+        player.draw(graphics2D);
     }
 
     @Override
@@ -59,10 +65,10 @@ public class Play extends State implements StateMethods {
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_W -> System.out.println("UP");
-            case KeyEvent.VK_A -> System.out.println("LEFT");
-            case KeyEvent.VK_S -> System.out.println("DOWN");
-            case KeyEvent.VK_D -> System.out.println("RIGHT");
+            case KeyEvent.VK_W -> player.setUp(true);
+            case KeyEvent.VK_A -> player.setLeft(true);
+            case KeyEvent.VK_S -> player.setDown(true);
+            case KeyEvent.VK_D -> player.setRight(true);
         }
         if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             GameState.gameState = MENU;
@@ -71,6 +77,11 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_W -> player.setUp(false);
+            case KeyEvent.VK_A -> player.setLeft(false);
+            case KeyEvent.VK_S -> player.setDown(false);
+            case KeyEvent.VK_D -> player.setRight(false);
+        }
     }
 }
