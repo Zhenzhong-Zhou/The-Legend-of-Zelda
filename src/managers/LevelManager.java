@@ -3,7 +3,6 @@ package managers;
 import main.Game;
 
 import java.awt.*;
-import java.util.Arrays;
 
 import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LevelBuilder.getLevelData;
@@ -35,16 +34,9 @@ public class LevelManager {
         }
         CreateLevel("default_level", array);
     }
-//    private void createDefaultLevel() {
-//        int[] array = new int[400];
-//        for(int i =0; i < array.length; i++) {
-//            array[i] = 0;
-//        }
-//        CreateLevel("default_level", array);
-//    }
+
     private void loadDefaultLevel() {
-//        level = GetLevelData("default_level");
-//        System.out.println(Arrays.deepToString(GetLevelData("default_level")));
+        level = GetLevelData("default_level");
     }
 
     public void draw(Graphics2D graphics2D) {
