@@ -32,16 +32,13 @@ public class LoadSave {
 
     public static void CreateLevel(String filename, int[][] idArray) {
         File levelFile = new File("res/" + filename + ".txt");
-        if(levelFile.exists()) {
-            System.out.println("File: " + filename + " is already exists.");
-        } else {
-            try {
-               levelFile.createNewFile();
-            } catch(IOException e) {
-                e.printStackTrace();
+        try {
+            if(!levelFile.createNewFile()) {
+                System.out.println("File: " + filename + " is already exists.");
             }
+        } catch(IOException e) {
+            e.printStackTrace();
         }
-
         WriteToFile(levelFile, idArray);
     }
 
