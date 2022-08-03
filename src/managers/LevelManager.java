@@ -3,9 +3,12 @@ package managers;
 import main.Game;
 
 import java.awt.*;
+import java.util.Arrays;
 
 import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LevelBuilder.getLevelData;
+import static utility.LoadSave.CreateLevel;
+import static utility.LoadSave.GetLevelData;
 
 public class LevelManager {
     private Game game;
@@ -16,6 +19,26 @@ public class LevelManager {
         this.game = game;
         level = getLevelData();
         tileManager = new TileManager();
+        createDefaultLevel();
+//        loadDefaultLevel();
+    }
+
+    private void loadDefaultLevel() {
+//        level = GetLevelData("level");
+        System.out.println(Arrays.deepToString(level));
+    }
+
+    private void createDefaultLevel() {
+        int cols = 50;
+        int rows = 50;
+        int[][] array = new int[cols][rows];
+
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                array[i][j] = 0;
+            }
+        }
+        CreateLevel("level", array);
     }
 
     public void draw(Graphics2D graphics2D) {
