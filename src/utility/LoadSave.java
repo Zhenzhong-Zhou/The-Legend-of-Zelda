@@ -3,10 +3,7 @@ package utility;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import static utility.Utilities.ArrayListTo2Dint;
 
 public class LoadSave {
     // TILES
@@ -51,11 +48,9 @@ public class LoadSave {
     private static void WriteToFile(File file, int[][] idArray) {
         try {
             PrintWriter printWriter = new PrintWriter(file);
-            for(int x = 0; x<idArray.length; x++) {
-                for(int y = 0; y<idArray[x].length; y++) {
-                    if(y<idArray[x].length) {
-                        printWriter.print(idArray[x][y] + " ");
-                    }
+            for(int[] ints : idArray) {
+                for(int anInt : ints) {
+                    printWriter.print(anInt + " ");
                 }
                 printWriter.append("\n");
             }
