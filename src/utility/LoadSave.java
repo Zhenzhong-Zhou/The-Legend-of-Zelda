@@ -53,8 +53,9 @@ public class LoadSave {
             } catch(IOException e) {
                 e.printStackTrace();
             }
+
+            WriteToFile(levelFile, idArray);
         }
-        WriteToFile(levelFile, idArray);
     }
 
     private static void WriteToFile(File file, int[][] idArray) {
