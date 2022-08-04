@@ -24,6 +24,10 @@ public abstract class Entity {
         this.height = height;
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
     public float getWorldX() {
         return worldX;
     }
@@ -34,5 +38,13 @@ public abstract class Entity {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 }

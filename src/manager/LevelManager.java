@@ -77,4 +77,12 @@ public class LevelManager {
             }
         }
     }
+
+    public int[][] getTileId() {
+        return level;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
+    }
 }

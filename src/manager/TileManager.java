@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import static utility.LoadSave.*;
 
 public class TileManager {
-    public Tile GRASS, WATER, WALL, EARTH, TREE, ROAD;
-    public ArrayList<Tile> tiles = new ArrayList<>();
+    private Tile GRASS, WATER, WALL, EARTH, TREE, ROAD;
+    private ArrayList<Tile> tiles = new ArrayList<>();
 
     public TileManager() {
         createTiles();
@@ -28,27 +28,7 @@ public class TileManager {
         return tiles.get(id).getSprite();
     }
 
-    public Tile getGRASS() {
-        return GRASS;
-    }
-
-    public Tile getWATER() {
-        return WATER;
-    }
-
-    public Tile getWALL() {
-        return WALL;
-    }
-
-    public Tile getEARTH() {
-        return EARTH;
-    }
-
-    public Tile getTREE() {
-        return TREE;
-    }
-
-    public Tile getROAD() {
-        return ROAD;
+    public ArrayList<Tile> getTiles() {
+        return tiles;
     }
 }

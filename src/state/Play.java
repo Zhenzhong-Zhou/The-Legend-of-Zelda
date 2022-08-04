@@ -1,5 +1,6 @@
 package state;
 
+import collision.CollisionDetection;
 import entity.Player;
 import main.Game;
 import manager.LevelManager;
@@ -16,6 +17,7 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private CollisionDetection collisionDetection;
 
     public Play(Game game) {
         super(game);
@@ -23,8 +25,9 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
+        collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(game);
-        player = new Player(200, 200, 0.9f * SCALE, TILE_SIZE, TILE_SIZE);
+        player = new Player(200, 200, 0.9f * SCALE, TILE_SIZE, TILE_SIZE, this);
     }
 
     @Override
@@ -88,5 +91,13 @@ public class Play extends State implements StateMethods {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
+
+    public CollisionDetection getCollisionDetection() {
+        return collisionDetection;
     }
 }

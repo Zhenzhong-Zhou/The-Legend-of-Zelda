@@ -1,5 +1,8 @@
 package entity;
 
+import collision.CollisionDetection;
+import state.Play;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -11,12 +14,16 @@ import static utility.LoadSave.*;
 public class Player extends Entity {
     private boolean up, left, down, right;
     private final float screenX, screenY;
+    private CollisionDetection collisionDetection;
+    private Play play;
 
-    public Player(float worldX, float worldY, float speed, int width, int height) {
+    public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
+        this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
         hitbox = new Rectangle(8,16,32,32);
+        collisionDetection = new CollisionDetection(play);
         setDefaultValues();
         getPlayerImage();
     }
@@ -47,22 +54,20 @@ public class Player extends Entity {
     public void updatePositions() {
         if(! left && ! right && ! up && ! down) return;
 
-        if(left) {
-            direction = LEFT;
-            worldX -= speed;
-        }
-        if(right) {
-            direction = RIGHT;
-            worldX += speed;
-        }
+        if(up) direction = UP;
+        if(left) direction = LEFT;
+        if(down) direction = DOWN;
+        if(right) direction = RIGHT;
 
-        if(up) {
-            direction = UP;
-            worldY -= speed;
-        }
-        if(down) {
-            direction = DOWN;
-            worldY += speed;
+        collision = false;
+        collisionDetection.checkTile(this);
+        if(! collision) {
+            switch(direction) {
+                case UP -> worldY -= speed;
+                case LEFT -> worldX -= speed;
+                case DOWN -> worldY += speed;
+                case RIGHT -> worldX += speed;
+            }
         }
     }
 
