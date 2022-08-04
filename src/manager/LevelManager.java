@@ -11,8 +11,8 @@ import static utility.LoadSave.GetLevelData;
 
 public class LevelManager {
     private final Game game;
-    private int[][] level;
     private final TileManager tileManager;
+    private int[][] level;
 
     public LevelManager(Game game) {
         this.game = game;

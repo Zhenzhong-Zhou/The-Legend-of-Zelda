@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 
 import static utility.Constant.DirectionConstant.*;
 import static utility.Constant.SceneConstant.*;
-import static utility.Constant.SceneConstant.SCALE;
 import static utility.LoadSave.*;
 
 public class Player extends Entity {
@@ -18,9 +17,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = (int)(SCENE_WIDTH/2f);
-        y = (int)(SCENE_HEIGHT/2f);
-        speed = 0.3f*SCALE;
+        x = (int) (SCENE_WIDTH / 2f);
+        y = (int) (SCENE_HEIGHT / 2f);
+        speed = 0.3f * SCALE;
         direction = DOWN;
     }
 
@@ -41,7 +40,7 @@ public class Player extends Entity {
     }
 
     public void updatePositions() {
-        if(!left && !right&&!up&&!down) return;
+        if(! left && ! right && ! up && ! down) return;
 
         if(left) {
             direction = LEFT;
@@ -64,13 +63,13 @@ public class Player extends Entity {
 
     public void updateAnimation() {
         spriteCounter++;
-        if(spriteCounter  >= animationSpeed) {
+        if(spriteCounter >= animationSpeed) {
             if(spriteNum == 1) {
-                spriteNum =2;
+                spriteNum = 2;
             } else if(spriteNum == 2) {
-                spriteNum=1;
+                spriteNum = 1;
             }
-            spriteCounter =0;
+            spriteCounter = 0;
         }
     }
 
@@ -102,7 +101,7 @@ public class Player extends Entity {
                     image = down2;
                 }
             }
-            case RIGHT ->  {
+            case RIGHT -> {
                 if(spriteNum == 1) {
                     image = right1;
                 }
@@ -110,7 +109,8 @@ public class Player extends Entity {
                     image = right2;
                 }
             }
-            default -> {}
+            default -> {
+            }
         }
         graphics2D.drawImage(image, (int) x, (int) y, TILE_SIZE, TILE_SIZE, null);
     }
