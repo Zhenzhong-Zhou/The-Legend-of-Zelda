@@ -9,16 +9,19 @@ import static utility.LoadSave.*;
 
 public class Player extends Entity {
     private boolean up, left, down, right;
+    private final float screenX, screenY;
 
-    public Player(float x, float y, float speed, int width, int height) {
-        super(x, y, speed, width, height);
+    public Player(float worldX, float worldY, float speed, int width, int height) {
+        super(worldX, worldY, speed, width, height);
+        screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
+        screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
-        x = (int) (SCENE_WIDTH / 2f);
-        y = (int) (SCENE_HEIGHT / 2f);
+        worldX = 23 * TILE_SIZE;
+        worldY = 21* TILE_SIZE;
         speed = 0.2f * SCALE;
         direction = DOWN;
     }
@@ -44,20 +47,20 @@ public class Player extends Entity {
 
         if(left) {
             direction = LEFT;
-            x -= speed;
+            worldX -= speed;
         }
         if(right) {
             direction = RIGHT;
-            x += speed;
+            worldX += speed;
         }
 
         if(up) {
             direction = UP;
-            y -= speed;
+            worldY -= speed;
         }
         if(down) {
             direction = DOWN;
-            y += speed;
+            worldY += speed;
         }
     }
 
@@ -112,7 +115,7 @@ public class Player extends Entity {
             default -> {
             }
         }
-        graphics2D.drawImage(image, (int) x, (int) y, TILE_SIZE, TILE_SIZE, null);
+        graphics2D.drawImage(image, (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
     }
 
     public boolean isUp() {
