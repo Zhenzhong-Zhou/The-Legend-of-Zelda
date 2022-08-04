@@ -8,7 +8,7 @@ import static utility.Constant.SceneConstant.*;
 import static utility.Constant.SceneConstant.SCALE;
 import static utility.LoadSave.*;
 
-public class Player extends Entity{
+public class Player extends Entity {
     private boolean up, left, down, right;
 
     public Player(float x, float y, float speed, int width, int height) {

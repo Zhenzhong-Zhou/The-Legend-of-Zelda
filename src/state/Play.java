@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static state.GameState.MENU;
+import static state.GameState.gameState;
 import static utility.Constant.SceneConstant.*;
 
 public class Play extends State implements StateMethods {
@@ -71,7 +72,7 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_D -> player.setRight(true);
         }
         if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            GameState.gameState = MENU;
+            gameState = MENU;
         }
     }
 

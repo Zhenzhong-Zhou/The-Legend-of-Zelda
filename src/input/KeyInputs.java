@@ -31,6 +31,11 @@ public class KeyInputs implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getGame().getMenu().keyPressed(e);
+            case PLAY -> scene.getGame().getPlay().keyPressed(e);
+            default -> {
+            }
+        }
     }
 }
