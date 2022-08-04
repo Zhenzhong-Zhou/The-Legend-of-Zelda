@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 
+import static utility.Constant.WorldConstant.MAX_WORLD_COL;
+import static utility.Constant.WorldConstant.MAX_WORLD_ROW;
+
 public class LoadSave {
     // PLAYER WALK
     public static final String UP_1_IMAGE = "player/walk/boy_up_1.png";
@@ -103,20 +106,20 @@ public class LoadSave {
     }
 
     private static int[][] ReadFromFile(File file) {
-        int[][] matrix = new int[50][50];
+        int[][] matrix = new int[MAX_WORLD_COL][MAX_WORLD_ROW];
         try {
             Scanner scanner = new Scanner(file);
             int col = 0;
             int row = 0;
-            while(col < 50 && row < 50) {
+            while(col < MAX_WORLD_COL && row < MAX_WORLD_ROW) {
                 String line = scanner.nextLine();
-                while(col < 50) {
-                    String[] numbers = line.split(" ");
+                while(col < MAX_WORLD_COL) {
+                    String[] numbers = line.split("\t");
                     int num = Integer.parseInt(numbers[col]);
                     matrix[col][row] = num;
                     col++;
                 }
-                if(col == 50) {
+                if(col == MAX_WORLD_COL) {
                     col = 0;
                     row++;
                 }

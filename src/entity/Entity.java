@@ -19,4 +19,16 @@ public abstract class Entity {
         this.width = width;
         this.height = height;
     }
+
+    public float getWorldX() {
+        return worldX;
+    }
+
+    public float getWorldY() {
+        return worldY;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
 }

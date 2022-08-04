@@ -1,5 +1,7 @@
 package utility;
 
+import static utility.Constant.SceneConstant.TILE_SIZE;
+
 public class Constant {
     /**
      * GAME SETTINGS
@@ -24,8 +26,8 @@ public class Constant {
         public static final int MAX_SCREEN_COL = 20;        // ratio 4:3
         public static final int MAX_SCREEN_ROW = 15;        // ratio 4:3
         // @formatter:on
-        public static final int SCENE_WIDTH = TILE_SIZE * MAX_SCREEN_COL;       // 768 pixels
-        public static final int SCENE_HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;      // 576 pixels
+        public static final int SCENE_WIDTH = MAX_SCREEN_COL * TILE_SIZE;       // 768 pixels
+        public static final int SCENE_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;      // 576 pixels
     }
 
     /**
@@ -36,5 +38,15 @@ public class Constant {
         public static final String LEFT = "LEFT";
         public static final String DOWN = "DOWN";
         public static final String RIGHT = "RIGHT";
+    }
+
+    /**
+     * WORLD SETTINGS
+     */
+    public static class WorldConstant {
+        public static final int MAX_WORLD_COL = 100;
+        public static final int MAX_WORLD_ROW = 100;
+        public static final int WORLD_WIDTH = MAX_WORLD_COL * TILE_SIZE;
+        public static final int WORLD_HEIGHT = MAX_WORLD_ROW * TILE_SIZE;
     }
 }

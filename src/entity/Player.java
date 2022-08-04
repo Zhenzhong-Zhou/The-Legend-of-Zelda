@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import static utility.Constant.DirectionConstant.*;
 import static utility.Constant.SceneConstant.*;
+import static utility.Constant.WorldConstant.*;
 import static utility.LoadSave.*;
 
 public class Player extends Entity {
@@ -20,9 +21,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = 23 * TILE_SIZE;
-        worldY = 21* TILE_SIZE;
-        speed = 0.2f * SCALE;
+        worldX = (MAX_WORLD_COL/2.0f-1) * TILE_SIZE;
+        worldY = (MAX_WORLD_ROW/2.0f-1) * TILE_SIZE;
+        speed = 2f * SCALE;
         direction = DOWN;
     }
 
@@ -148,5 +149,13 @@ public class Player extends Entity {
 
     public void setRight(boolean right) {
         this.right = right;
+    }
+
+    public float getScreenX() {
+        return screenX;
+    }
+
+    public float getScreenY() {
+        return screenY;
     }
 }

@@ -85,4 +85,8 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_D -> player.setRight(false);
         }
     }
+
+    public Player getPlayer() {
+        return player;
+    }
 }
