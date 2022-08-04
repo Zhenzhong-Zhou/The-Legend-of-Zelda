@@ -83,9 +83,11 @@ public class LoadSave {
     private static void WriteToFile(File file, int[][] idArray) {
         try {
             PrintWriter printWriter = new PrintWriter(file);
-            for(int[] ints : idArray) {
-                for(int anInt : ints) {
-                    printWriter.print(anInt + " ");
+            for(int y = 0; y<idArray.length; y++) {
+                for(int x = 0; x<idArray[y].length; x++) {
+                    if(x <idArray[y].length) {
+                        printWriter.print(idArray[x][y] + "\t");
+                    }
                 }
                 printWriter.append("\n");
             }

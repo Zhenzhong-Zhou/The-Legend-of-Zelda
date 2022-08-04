@@ -23,7 +23,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = (MAX_WORLD_COL/2.0f-1) * TILE_SIZE;
         worldY = (MAX_WORLD_ROW/2.0f-1) * TILE_SIZE;
-        speed = 2f * SCALE;
+        speed = 2f * SCALE;//TODO: need to change later
         direction = DOWN;
     }
 
