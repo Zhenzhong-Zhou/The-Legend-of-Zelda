@@ -45,12 +45,14 @@ public class LoadSave {
 
     public static void CreateLevel(String filename, int[][] idArray) {
         File levelFile = new File("res/" + filename + ".txt");
-        try {
-            if(! levelFile.createNewFile()) {
-                System.out.println("File: " + filename + " is already exists.");
+        if(levelFile.exists()) {
+            System.out.println("File: " + filename + " is already exists.");
+        } else {
+            try {
+               levelFile.createNewFile();
+            } catch(IOException e) {
+                e.printStackTrace();
             }
-        } catch(IOException e) {
-            e.printStackTrace();
         }
         WriteToFile(levelFile, idArray);
     }
@@ -67,6 +69,16 @@ public class LoadSave {
             printWriter.close();
         } catch(FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void SaveLevel(String filename, int[][] idArray) {
+        File levelFile = new File("res/" + filename + ".txt");
+        if(levelFile.exists()) {
+            WriteToFile(levelFile, idArray);
+        } else {
+            //TODO: new level
+            System.out.println("File: " + filename + " is already exists.");
         }
     }
 

@@ -6,8 +6,7 @@ import java.awt.*;
 
 import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LevelBuilder.getLevelData;
-import static utility.LoadSave.CreateLevel;
-import static utility.LoadSave.GetLevelData;
+import static utility.LoadSave.*;
 
 public class LevelManager {
     private final Game game;
@@ -20,6 +19,7 @@ public class LevelManager {
         tileManager = new TileManager();
         createDefaultLevel();
         loadDefaultLevel();
+        saveLevel();
     }
 
     private void createDefaultLevel() {
@@ -33,6 +33,10 @@ public class LevelManager {
             }
         }
         CreateLevel("default_level", array);
+    }
+
+    public void saveLevel() {
+        SaveLevel("default_level", level);
     }
 
     private void loadDefaultLevel() {
