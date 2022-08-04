@@ -10,21 +10,20 @@ import static utility.LoadSave.*;
 
 public class Player extends Entity{
     private boolean up, left, down, right;
-    private boolean moving;
-    private float speed = 0.9f;
 
     public Player(float x, float y, float speed, int width, int height) {
         super(x, y, speed, width, height);
         setDefaultValues();
         getPlayerImage();
-//        direction = DOWN;
     }
+
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
-//        speed = 0.9f*SCALE;
+        x = (int)(SCENE_WIDTH/2f);
+        y = (int)(SCENE_HEIGHT/2f);
+        speed = 0.3f*SCALE;
         direction = DOWN;
     }
+
     public void getPlayerImage() {
         up1 = GetSpriteAtlas(UP_1_IMAGE);
         up2 = GetSpriteAtlas(UP_2_IMAGE);
@@ -38,35 +37,34 @@ public class Player extends Entity{
 
     public void update() {
         updatePositions();
+        updateAnimation();
     }
 
-    private void updatePositions() {
-        moving= false;
-        if(left && ! right) {
-//            direction = LEFT;
+    public void updatePositions() {
+        if(!left && !right&&!up&&!down) return;
+
+        if(left) {
+            direction = LEFT;
             x -= speed;
-            moving = true;
-        } else if(right && ! left) {
-//            direction = RIGHT;
+        }
+        if(right) {
+            direction = RIGHT;
             x += speed;
-            moving = true;
         }
 
-        if(up && ! down) {
-//            direction = UP;
+        if(up) {
+            direction = UP;
             y -= speed;
-            moving = true;
-        } else if(down && ! up) {
-//            direction = DOWN;
-            y += speed;
-            moving = true;
         }
-        updateAnimation();
+        if(down) {
+            direction = DOWN;
+            y += speed;
+        }
     }
 
     public void updateAnimation() {
         spriteCounter++;
-        if(spriteCounter  > 30) {
+        if(spriteCounter  >= animationSpeed) {
             if(spriteNum == 1) {
                 spriteNum =2;
             } else if(spriteNum == 2) {
