@@ -16,6 +16,7 @@ public class Player extends Entity {
         super(worldX, worldY, speed, width, height);
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
+        hitbox = new Rectangle(8,16,32,32);
         setDefaultValues();
         getPlayerImage();
     }

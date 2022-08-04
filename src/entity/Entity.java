@@ -1,5 +1,7 @@
 package entity;
 
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
@@ -11,6 +13,8 @@ public abstract class Entity {
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
     protected int animationSpeed = 50;
+    protected Rectangle hitbox;
+    protected boolean collision;
 
     public Entity(float worldX, float worldY, float speed, int width, int height) {
         this.worldX = worldX;
