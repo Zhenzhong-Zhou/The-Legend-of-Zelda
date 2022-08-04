@@ -19,7 +19,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = (int) (SCENE_WIDTH / 2f);
         y = (int) (SCENE_HEIGHT / 2f);
-        speed = 0.3f * SCALE;
+        speed = 0.2f * SCALE;
         direction = DOWN;
     }
 

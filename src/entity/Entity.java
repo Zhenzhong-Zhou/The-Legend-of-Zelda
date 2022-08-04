@@ -10,7 +10,7 @@ public abstract class Entity {
     protected String direction;
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
-    protected int animationSpeed = 30;
+    protected int animationSpeed = 50;
 
     public Entity(float x, float y, float speed, int width, int height) {
         this.x = x;
