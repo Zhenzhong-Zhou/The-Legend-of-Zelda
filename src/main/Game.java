@@ -1,5 +1,6 @@
 package main;
 
+import state.Editor;
 import state.Menu;
 import state.Play;
 
@@ -15,6 +16,7 @@ public class Game implements Runnable {
     private Thread thread;
     private Menu menu;
     private Play play;
+    private Editor editor;
 
     public Game() {
         initClasses();
@@ -30,6 +32,7 @@ public class Game implements Runnable {
     private void initClasses() {
         menu = new Menu(this);
         play = new Play(this);
+        editor = new Editor(this);
     }
 
 
@@ -37,7 +40,7 @@ public class Game implements Runnable {
         switch(gameState) {
             case MENU -> menu.update();
             case PLAY -> play.update();
-            case EDITOR -> System.out.println("Editor");
+            case EDITOR -> editor.update();
             case OPTIONS -> System.out.println("Options");
             case QUIT -> System.exit(0);
             default -> {
@@ -49,7 +52,7 @@ public class Game implements Runnable {
         switch(gameState) {
             case MENU -> menu.draw(graphics2D);
             case PLAY -> play.draw(graphics2D);
-            case EDITOR -> System.out.println("Editor");
+            case EDITOR -> editor.draw(graphics2D);
             case OPTIONS -> System.out.println("Options");
             case QUIT -> System.exit(0);
             default -> {
@@ -110,5 +113,9 @@ public class Game implements Runnable {
 
     public Play getPlay() {
         return play;
+    }
+
+    public Editor getEditor() {
+        return editor;
     }
 }

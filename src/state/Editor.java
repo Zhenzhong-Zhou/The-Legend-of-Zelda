@@ -6,11 +6,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static state.GameState.*;
+import static state.GameState.PLAY;
+import static state.GameState.gameState;
 
-public class Menu extends State implements StateMethods {
-    public Menu(Game game) {
+public class Editor extends State implements StateMethods{
+    public Editor(Game game) {
         super(game);
+
     }
 
     @Override
@@ -20,8 +22,8 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.RED);
-        graphics2D.fillRect(200, 200, 100, 50);
+        graphics2D.setColor(Color.GREEN);
+        graphics2D.fillRect(150, 150, 150, 150);
     }
 
     @Override
@@ -53,8 +55,6 @@ public class Menu extends State implements StateMethods {
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
             gameState = PLAY;
-        } else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-            gameState = EDITOR;
         }
     }
 
