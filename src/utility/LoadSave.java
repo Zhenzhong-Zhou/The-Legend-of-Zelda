@@ -20,6 +20,9 @@ public class LoadSave {
     public static final String GRASS_IMAGE = "tiles/grass01.png";
     public static final String WALL_IMAGE = "tiles/wall.png";
     public static final String WATER_IMAGE = "tiles/water01.png";
+    public static final String EARTH_IMAGE = "tiles/earth.png";
+    public static final String TREE_IMAGE = "tiles/tree.png";
+    public static final String ROAD_IMAGE = "tiles/road00.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;
