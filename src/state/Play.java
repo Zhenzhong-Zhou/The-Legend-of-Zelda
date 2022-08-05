@@ -4,6 +4,7 @@ import collision.CollisionDetection;
 import entity.Player;
 import main.Game;
 import manager.LevelManager;
+import manager.ObjectManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,7 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private ObjectManager objectManager;
     private CollisionDetection collisionDetection;
 
     public Play(Game game) {
@@ -27,17 +29,20 @@ public class Play extends State implements StateMethods {
     private void initClasses() {
         collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(game);
+        objectManager = new ObjectManager(this);
         player = new Player(200, 200, 0.9f * SCALE, TILE_SIZE, TILE_SIZE, this);
     }
 
     @Override
     public void update() {
+        // TODO: add level/object manager update();
         player.update();
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         levelManager.draw(graphics2D);
+        objectManager.draw(graphics2D);
         player.draw(graphics2D);
     }
 
@@ -95,6 +100,10 @@ public class Play extends State implements StateMethods {
 
     public LevelManager getLevelManager() {
         return levelManager;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
     }
 
     public CollisionDetection getCollisionDetection() {

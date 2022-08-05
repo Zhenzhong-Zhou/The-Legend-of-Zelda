@@ -27,6 +27,11 @@ public class LoadSave {
     public static final String TREE_IMAGE = "tiles/tree.png";
     public static final String ROAD_IMAGE = "tiles/road00.png";
 
+    // OBJECTS
+    public static final String KEY_IMAGE = "objects/key.png";
+    public static final String DOOR_IMAGE = "objects/door.png";
+    public static final String CHEST_IMAGE = "objects/chest.png";
+
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);

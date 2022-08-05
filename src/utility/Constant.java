@@ -49,4 +49,19 @@ public class Constant {
         public static final int WORLD_WIDTH = MAX_WORLD_COL * TILE_SIZE;
         public static final int WORLD_HEIGHT = MAX_WORLD_ROW * TILE_SIZE;
     }
+
+    /**
+     * OBJECT SETTINGS
+     */
+    public static class ObjectConstant {
+        // Object Name
+        public static final String KEY_NAME = "KEY";
+        public static final String DOOR_NAME = "DOOR";
+        public static final String CHEST_NAME = "CHEST";
+
+        // Object Types
+        public static final int KEY_TYPE = 0;
+        public static final int DOOR_TYPE = 1;
+        public static final int CHEST_TYPE = 2;
+    }
 }
