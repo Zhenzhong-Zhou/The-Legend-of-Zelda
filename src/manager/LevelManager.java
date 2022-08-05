@@ -1,5 +1,6 @@
 package manager;
 
+import entity.Player;
 import main.Game;
 
 import java.awt.*;
@@ -44,7 +45,8 @@ public class LevelManager {
         level = GetLevelData("default_level");
     }
 
-    public void draw(Graphics2D graphics2D) {
+    public void draw(Graphics2D graphics2D, Player player) {
+        // TODO: may remove player
         int worldCol = 0;
         int worldRow = 0;
 
@@ -53,10 +55,10 @@ public class LevelManager {
 
             float worldX = worldCol * TILE_SIZE;
             float worldY = worldRow * TILE_SIZE;
-            float playerWorldX = game.getPlay().getPlayer().getWorldX();
-            float playerWorldY = game.getPlay().getPlayer().getWorldY();
-            float playerScreenX = game.getPlay().getPlayer().getScreenX();
-            float playerScreenY = game.getPlay().getPlayer().getScreenY();
+            float playerWorldX = player.getWorldX();
+            float playerWorldY = player.getWorldY();
+            float playerScreenX = player.getScreenX();
+            float playerScreenY = player.getScreenY();
 
             float screenX = worldX - playerWorldX + playerScreenX;
             float screenY = worldY - playerWorldY + playerScreenY;

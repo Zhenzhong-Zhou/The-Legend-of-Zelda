@@ -51,7 +51,6 @@ public class ObjectManager {
     private void drawKeys(Graphics2D graphics2D, Player player) {
         for(Key key : keys) {
             // TODO: Player can be removed
-//            float playerWorldX = play.getPlayer().getWorldX();
             float playerWorldX = player.getWorldX();
             float playerWorldY = player.getWorldY();
             float playerScreenX = player.getScreenX();

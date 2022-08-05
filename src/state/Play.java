@@ -41,7 +41,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        levelManager.draw(graphics2D);
+        levelManager.draw(graphics2D, player);
         objectManager.draw(graphics2D, player);
         player.draw(graphics2D);
     }
