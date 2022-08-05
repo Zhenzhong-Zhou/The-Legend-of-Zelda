@@ -3,7 +3,6 @@ package object;
 import java.awt.image.BufferedImage;
 
 public class GameObject {
-    protected BufferedImage image;
     protected String object_name;
     protected boolean collision;
     protected float worldX, worldY;
