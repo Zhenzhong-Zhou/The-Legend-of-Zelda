@@ -3,7 +3,6 @@ package manager;
 import entity.Player;
 import object.Door;
 import object.Key;
-import state.Play;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,13 +12,13 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 import static utility.LoadSave.*;
 
 public class ObjectManager {
-    private Play play;
+    private Player player;
     private BufferedImage keyImages, doorImages;
     private ArrayList<Key> keys;
     private ArrayList<Door> doors;
 
-    public ObjectManager(Play play) {
-        this.play = play;
+    public ObjectManager(Player player) {
+        this.player = player;
         loadObjects();
         loadImages();
         addKeys();
@@ -44,11 +43,11 @@ public class ObjectManager {
 
     }
 
-    public void draw(Graphics2D graphics2D, Player player) {
-        drawKeys(graphics2D, player);
+    public void draw(Graphics2D graphics2D) {
+        drawKeys(graphics2D);
     }
 
-    private void drawKeys(Graphics2D graphics2D, Player player) {
+    private void drawKeys(Graphics2D graphics2D) {
         for(Key key : keys) {
             // TODO: Player can be removed
             float playerWorldX = player.getWorldX();
