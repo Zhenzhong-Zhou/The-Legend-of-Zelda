@@ -1,5 +1,7 @@
 package object;
 
+import static utility.Constant.ObjectConstant.KEY_NAME;
+
 public class Key extends GameObject{
     private float worldX, worldY;
 
@@ -7,7 +9,7 @@ public class Key extends GameObject{
         super(worldX, worldY, objectType);
         this.worldX = worldX;
         this.worldY = worldY;
-        object_name = "Key";
+        object_name = KEY_NAME;
     }
 
     public float getWorldX() {
