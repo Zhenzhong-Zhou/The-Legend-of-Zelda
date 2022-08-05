@@ -47,16 +47,17 @@ public class ObjectManager {
 
     private void addKeys() {
         keys.add(new Key(55 * TILE_SIZE, 55*TILE_SIZE, KEY_TYPE));
-        keys.add(new Key(56 * TILE_SIZE, 56*TILE_SIZE, KEY_TYPE));
+        keys.add(new Key(25 * TILE_SIZE, 73*TILE_SIZE, KEY_TYPE));
     }
 
     private void addDoors() {
         doors.add(new Door(60 * TILE_SIZE, 55*TILE_SIZE, DOOR_TYPE));
+        doors.add(new Door(75 * TILE_SIZE, 28*TILE_SIZE, DOOR_TYPE));
         doors.add(new Door(55 * TILE_SIZE, 60*TILE_SIZE, DOOR_TYPE));
     }
 
     private void addChests() {
-        chests.add(new Chest(65 * TILE_SIZE, 65*TILE_SIZE, CHEST_TYPE));
+        chests.add(new Chest(75 * TILE_SIZE, 19*TILE_SIZE, CHEST_TYPE));
         chests.add(new Chest(70 * TILE_SIZE, 70*TILE_SIZE, CHEST_TYPE));
     }
 
