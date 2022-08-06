@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import static state.GameState.PLAY;
 import static state.GameState.gameState;
 
-public class Editor extends State implements StateMethods{
+public class Editor extends State implements StateMethods {
     public Editor(Game game) {
         super(game);
 

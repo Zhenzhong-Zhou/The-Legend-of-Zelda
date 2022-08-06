@@ -7,7 +7,8 @@ import static utility.Constant.DirectionConstant.*;
 import static utility.Constant.SceneConstant.TILE_SIZE;
 
 public class CollisionDetection {
-    private Play play;
+    private final Play play;
+
     public CollisionDetection(Play play) {
         this.play = play;
     }
@@ -18,10 +19,10 @@ public class CollisionDetection {
         int entityTopWorldY = (int) (entity.getWorldY() + entity.getHitbox().y);
         int entityBottomWorldY = (int) (entity.getWorldY() + entity.getHitbox().y + entity.getHitbox().height);
 
-        int entityLeftCol = entityLeftWorldX/ TILE_SIZE;
-        int entityRightCol = entityRightWorldX/ TILE_SIZE;
-        int entityTopRow = entityTopWorldY/ TILE_SIZE;
-        int entityBottomRow = entityBottomWorldY/ TILE_SIZE;
+        int entityLeftCol = entityLeftWorldX / TILE_SIZE;
+        int entityRightCol = entityRightWorldX / TILE_SIZE;
+        int entityTopRow = entityTopWorldY / TILE_SIZE;
+        int entityBottomRow = entityBottomWorldY / TILE_SIZE;
 
         int tileNum1, tileNum2;
         switch(entity.getDirection()) {
@@ -69,7 +70,8 @@ public class CollisionDetection {
                     entity.setCollision(true);
                 }
             }
-            default -> {}
+            default -> {
+            }
         }
     }
 }

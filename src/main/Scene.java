@@ -10,8 +10,8 @@ import static utility.Constant.SceneConstant.SCENE_HEIGHT;
 import static utility.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel {
-    private MouseInputs mouseInputs;
     private final Game game;
+    private MouseInputs mouseInputs;
 
     public Scene(Game game) {
         this.game = game;

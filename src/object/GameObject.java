@@ -1,7 +1,5 @@
 package object;
 
-import java.awt.image.BufferedImage;
-
 public class GameObject {
     protected String object_name;
     protected boolean collision;
@@ -22,12 +20,12 @@ public class GameObject {
         this.object_name = object_name;
     }
 
-    public void setCollision(boolean collision) {
-        this.collision = collision;
-    }
-
     public boolean isCollision() {
         return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 
     public float getWorldX() {

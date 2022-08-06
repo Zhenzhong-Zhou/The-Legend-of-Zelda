@@ -2,8 +2,9 @@ package object;
 
 import static utility.Constant.ObjectConstant.CHEST_NAME;
 
-public class Chest extends GameObject{
-    private float worldX, worldY;
+public class Chest extends GameObject {
+    private final float worldX;
+    private final float worldY;
 
     public Chest(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);

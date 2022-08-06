@@ -6,7 +6,8 @@ import main.Game;
 import java.awt.*;
 
 import static utility.Constant.SceneConstant.TILE_SIZE;
-import static utility.Constant.WorldConstant.*;
+import static utility.Constant.WorldConstant.MAX_WORLD_COL;
+import static utility.Constant.WorldConstant.MAX_WORLD_ROW;
 import static utility.LevelBuilder.getLevelData;
 import static utility.LoadSave.*;
 
@@ -63,13 +64,13 @@ public class LevelManager {
             float screenX = worldX - playerWorldX + playerScreenX;
             float screenY = worldY - playerWorldY + playerScreenY;
 
-            float left = playerWorldX -  playerScreenX;
+            float left = playerWorldX - playerScreenX;
             float right = playerWorldX + playerScreenX;
             float up = playerWorldY - playerScreenY;
             float down = playerWorldY + playerScreenY;
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(tileManager.getTile(id), (int)screenX, (int)screenY, TILE_SIZE, TILE_SIZE, null);
+                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
             }
             worldCol++;
 

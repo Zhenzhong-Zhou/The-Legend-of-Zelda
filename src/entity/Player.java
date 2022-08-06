@@ -9,14 +9,15 @@ import java.awt.image.BufferedImage;
 
 import static utility.Constant.DirectionConstant.*;
 import static utility.Constant.SceneConstant.*;
-import static utility.Constant.WorldConstant.*;
+import static utility.Constant.WorldConstant.MAX_WORLD_COL;
+import static utility.Constant.WorldConstant.MAX_WORLD_ROW;
 import static utility.LoadSave.*;
 
 public class Player extends Entity {
-    private boolean up, left, down, right;
     private final float screenX, screenY;
+    private boolean up, left, down, right;
     private CollisionDetection collisionDetection;
-    private Play play;
+    private final Play play;
     private ObjectManager objectManager;
 
     public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
@@ -24,8 +25,8 @@ public class Player extends Entity {
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-        hitbox = new Rectangle(8,16,32,32);
-       initClasses();
+        hitbox = new Rectangle(8, 16, 32, 32);
+        initClasses();
         setDefaultValues();
         getPlayerImage();
     }
@@ -36,8 +37,8 @@ public class Player extends Entity {
     }
 
     private void setDefaultValues() {
-        worldX = (MAX_WORLD_COL/2.0f-1) * TILE_SIZE;
-        worldY = (MAX_WORLD_ROW/2.0f-1) * TILE_SIZE;
+        worldX = (MAX_WORLD_COL / 2.0f - 1) * TILE_SIZE;
+        worldY = (MAX_WORLD_ROW / 2.0f - 1) * TILE_SIZE;
         speed = 2f * SCALE;//TODO: need to change later
         direction = DOWN;
     }

@@ -60,7 +60,7 @@ public class LoadSave {
             System.out.println("File: " + levelFile + " is already exists.");
         } else {
             try {
-               levelFile.createNewFile();
+                levelFile.createNewFile();
             } catch(IOException e) {
                 e.printStackTrace();
             }
@@ -68,9 +68,9 @@ public class LoadSave {
             WriteToFile(levelFile, idArray);
         }
 
-        String levelName= "level";
+        String levelName = "level";
         for(int i = 0; i < counter; i++) {
-            File newFile =  new File(filePath + levelName + i + fileType);
+            File newFile = new File(filePath + levelName + i + fileType);
             if(newFile.exists()) {
                 System.out.println("File: " + newFile + " is already exists.");
             } else {
@@ -88,9 +88,9 @@ public class LoadSave {
     private static void WriteToFile(File file, int[][] idArray) {
         try {
             PrintWriter printWriter = new PrintWriter(file);
-            for(int y = 0; y<idArray.length; y++) {
-                for(int x = 0; x<idArray[y].length; x++) {
-                    if(x <idArray[y].length) {
+            for(int y = 0; y < idArray.length; y++) {
+                for(int x = 0; x < idArray[y].length; x++) {
+                    if(x < idArray[y].length) {
                         printWriter.print(idArray[x][y] + "\t");
                     }
                 }
