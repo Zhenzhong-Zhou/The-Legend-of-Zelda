@@ -1,49 +1,67 @@
 package main;
 
-import objects.Object;
-import objects.ObjectManager;
+import state.Editor;
+import state.Menu;
+import state.Play;
 
 import java.awt.*;
 
+import static state.GameState.gameState;
+import static utility.Constant.GameConstant.FPS_SET;
+import static utility.Constant.GameConstant.UPS_SET;
+
 public class Game implements Runnable {
-    private final int FPS_SET = 120;
-    private final int UPS_SET = 200;
     private final Window window;
-    private final Screen screen;
+    private final Scene scene;
     private Thread thread;
-//    private ObjectManager objectManager;
-//    public Object[] objects;
+    private Menu menu;
+    private Play play;
+    private Editor editor;
 
     public Game() {
         initClasses();
 
-        screen = new Screen(this);
-        window = new Window(screen);
-        screen.setupGame();
+        scene = new Scene(this);
+        window = new Window(scene);
+        scene.setFocusable(true);
+        scene.requestFocus();
 
         start();
     }
 
     private void initClasses() {
-//        objectManager = new ObjectManager(screen);
-//        objects = new Object[10];
+        menu = new Menu(this);
+        play = new Play(this);
+        editor = new Editor(this);
     }
-//
-//    private void setupGame() {
-//        objectManager.setObjects();
-//    }
+
+    public void update() {
+        switch(gameState) {
+            case MENU -> menu.update();
+            case PLAY -> play.update();
+            case EDITOR -> editor.update();
+            case OPTIONS -> System.out.println("Options");
+            case QUIT -> System.exit(0);
+            default -> {
+            }
+        }
+    }
+
+    public void draw(Graphics2D graphics2D) {
+        switch(gameState) {
+            case MENU -> menu.draw(graphics2D);
+            case PLAY -> play.draw(graphics2D);
+            case EDITOR -> editor.draw(graphics2D);
+            case OPTIONS -> System.out.println("Options");
+            case QUIT -> System.exit(0);
+            default -> {
+            }
+        }
+    }
 
     private void start() {
         thread = new Thread(this);
         thread.start();
-    }
-
-    public void update() {
-        screen.getPlayer().update();
-    }
-
-    public void draw(Graphics2D graphics2D) {
-//        screen.getPlayer().draw(graphics2D);
     }
 
     @Override
@@ -74,7 +92,7 @@ public class Game implements Runnable {
 
             // DRAW: draw the screen with the updated information
             if(deltaFrames >= 1) {
-                screen.repaint();
+                scene.repaint();
                 frames++;
                 deltaFrames--;
             }
@@ -87,8 +105,16 @@ public class Game implements Runnable {
             }
         }
     }
-//
-//    public ObjectManager getObjectManager() {
-//        return objectManager;
-//    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Play getPlay() {
+        return play;
+    }
+
+    public Editor getEditor() {
+        return editor;
+    }
 }

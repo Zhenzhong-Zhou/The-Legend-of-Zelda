@@ -3,11 +3,11 @@ package main;
 import javax.swing.*;
 
 public class Window extends JFrame {
-    public Window(Screen screen) {
+    public Window(Scene scene) {
         setTitle("The Legend of Zelda");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        add(scene);
         setResizable(false);
-        add(screen);
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

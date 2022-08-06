@@ -1,20 +1,21 @@
-package inputs;
+package input;
 
-import main.Screen;
+import main.Scene;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class MouseHandler implements MouseListener, MouseMotionListener {
-    private final Screen screen;
+public class MouseInputs implements MouseListener, MouseMotionListener {
+    private final Scene scene;
 
-    public MouseHandler(Screen screen) {
-        this.screen = screen;
+    public MouseInputs(Scene scene) {
+        this.scene = scene;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println("Clicked!");
     }
 
     @Override
