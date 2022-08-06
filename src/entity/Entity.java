@@ -1,7 +1,6 @@
 package entity;
 
-
-import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
@@ -13,7 +12,8 @@ public abstract class Entity {
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
     protected int animationSpeed = 50;
-    protected Rectangle hitbox;
+    protected Rectangle2D.Float hitbox;
+    protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
 
     public Entity(float worldX, float worldY, float speed, int width, int height) {
@@ -40,8 +40,16 @@ public abstract class Entity {
         return speed;
     }
 
-    public Rectangle getHitbox() {
+    public Rectangle2D.Float getHitbox() {
         return hitbox;
+    }
+
+    public int getHitboxDefaultX() {
+        return hitboxDefaultX;
+    }
+
+    public int getHitboxDefaultY() {
+        return hitboxDefaultY;
     }
 
     public void setCollision(boolean collision) {

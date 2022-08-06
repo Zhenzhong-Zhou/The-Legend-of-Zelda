@@ -5,6 +5,7 @@ import manager.ObjectManager;
 import state.Play;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import static utility.Constant.DirectionConstant.*;
@@ -25,7 +26,9 @@ public class Player extends Entity {
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-        hitbox = new Rectangle(8, 16, 32, 32);
+        hitbox = new Rectangle2D.Float(8, 16, 32, 32);
+        hitboxDefaultX = (int) hitbox.x;
+        hitboxDefaultY = (int) hitbox.y;
         initClasses();
         setDefaultValues();
         getPlayerImage();

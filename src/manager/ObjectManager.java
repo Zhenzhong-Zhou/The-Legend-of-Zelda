@@ -62,7 +62,9 @@ public class ObjectManager {
     }
 
     public void update() {
-
+        for(Door door : doors) {
+            door.setCollision(true);
+        }
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -126,5 +128,17 @@ public class ObjectManager {
                 graphics2D.drawImage(chestImage, (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
             }
         }
+    }
+
+    public ArrayList<Key> getKeys() {
+        return keys;
+    }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
+
+    public ArrayList<Chest> getChests() {
+        return chests;
     }
 }
