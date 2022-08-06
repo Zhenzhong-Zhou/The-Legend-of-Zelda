@@ -46,19 +46,19 @@ public class ObjectManager {
     }
 
     private void addKeys() {
-        keys.add(new Key(55 * TILE_SIZE, 55*TILE_SIZE, KEY_TYPE));
-        keys.add(new Key(25 * TILE_SIZE, 73*TILE_SIZE, KEY_TYPE));
+        keys.add(new Key(23 * TILE_SIZE, 22*TILE_SIZE, KEY_TYPE));      // KEY 1
+        keys.add(new Key(25 * TILE_SIZE, 73*TILE_SIZE, KEY_TYPE));      // KEY 2
     }
 
     private void addDoors() {
-        doors.add(new Door(60 * TILE_SIZE, 55*TILE_SIZE, DOOR_TYPE));
-        doors.add(new Door(75 * TILE_SIZE, 28*TILE_SIZE, DOOR_TYPE));
-        doors.add(new Door(55 * TILE_SIZE, 60*TILE_SIZE, DOOR_TYPE));
+        doors.add(new Door(84 * TILE_SIZE, 85*TILE_SIZE, DOOR_TYPE));    // DOOR 1
+        doors.add(new Door(44 * TILE_SIZE, 14*TILE_SIZE, DOOR_TYPE));    // DOOR 2
+        doors.add(new Door(75 * TILE_SIZE, 28*TILE_SIZE, DOOR_TYPE));    // FINAL DOOR
     }
 
     private void addChests() {
-        chests.add(new Chest(75 * TILE_SIZE, 19*TILE_SIZE, CHEST_TYPE));
-        chests.add(new Chest(70 * TILE_SIZE, 70*TILE_SIZE, CHEST_TYPE));
+        chests.add(new Chest(82 * TILE_SIZE, 83*TILE_SIZE, CHEST_TYPE));   // CHEST 1
+        chests.add(new Chest(75 * TILE_SIZE, 19*TILE_SIZE, CHEST_TYPE));   // FINAL CHEST
     }
 
     public void update() {
