@@ -1,7 +1,10 @@
 package collision;
 
 import entity.Entity;
+import object.Key;
 import state.Play;
+
+import java.util.ArrayList;
 
 import static utility.Constant.DirectionConstant.*;
 import static utility.Constant.SceneConstant.TILE_SIZE;
@@ -73,5 +76,60 @@ public class CollisionDetection {
             default -> {
             }
         }
+    }
+
+    public int checkObject(Entity entity, boolean player) {
+        int index = 999;
+
+        // KEYS OBJECT
+        ArrayList<Key> keys = play.getPlayer().getObjectManager().getKeys();
+        for(Key key : keys) {
+            if(key != null) {
+
+                // Get entity's hitbox position
+                entity.getHitbox().x = entity.getWorldX() + entity.getHitbox().x;
+                entity.getHitbox().y = entity.getWorldY() + entity.getHitbox().y;
+                System.out.println("Player: " + entity.getHitbox().x);
+
+                // Get the object's hitbox position
+                key.getHitbox().x = key.getWorldX() + key.getHitbox().x;
+                key.getHitbox().y = key.getWorldY() + key.getHitbox().y;
+                System.out.println("Key: " + key.getHitbox().x);
+                switch(entity.getDirection()) {
+                    case UP -> {
+                        entity.getHitbox().y -= entity.getSpeed();
+                        if(entity.getHitbox().intersects(key.getHitbox())) {
+                            System.out.println("UP collision!");
+                        }
+                    }
+                    case LEFT -> {
+                        entity.getHitbox().x += entity.getSpeed();
+                        if(entity.getHitbox().intersects(key.getHitbox())) {
+                            System.out.println("LEFT collision!");
+                        }
+                    }
+                    case DOWN -> {
+                        entity.getHitbox().y += entity.getSpeed();
+                        if(entity.getHitbox().intersects(key.getHitbox())) {
+                            System.out.println("DOWN collision!");
+                        }
+                    }
+                    case RIGHT -> {
+                        entity.getHitbox().x -= entity.getSpeed();
+                        if(entity.getHitbox().intersects(key.getHitbox())) {
+                            System.out.println("RIGHT collision!");
+                        }
+                    }
+                    default -> {
+
+                    }
+                }
+                entity.getHitbox().x = entity.getHitboxDefaultX();
+                entity.getHitbox().y = entity.getHitboxDefaultY();
+                key.getHitbox().x = key.getHitboxDefaultX();
+                key.getHitbox().y = key.getHitboxDefaultY();
+            }
+        }
+        return index;
     }
 }

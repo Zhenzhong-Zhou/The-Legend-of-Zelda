@@ -11,7 +11,7 @@ public class Door extends GameObject {
         this.worldY = worldY;
         object_name = DOOR_NAME;
 //        collision = true;
-        initHitbox();
+//        initHitbox();
         hitboxDefaultX = worldX;
         hitboxDefaultY = worldY;
     }
