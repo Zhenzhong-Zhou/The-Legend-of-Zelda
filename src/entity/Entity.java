@@ -14,6 +14,7 @@ public abstract class Entity {
     protected int spriteNum = 1;
     protected int animationSpeed = 50;
     protected Rectangle hitbox;
+    protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
 
     public Entity(float worldX, float worldY, float speed, int width, int height) {
@@ -42,6 +43,14 @@ public abstract class Entity {
 
     public Rectangle getHitbox() {
         return hitbox;
+    }
+
+    public int getHitboxDefaultX() {
+        return hitboxDefaultX;
+    }
+
+    public int getHitboxDefaultY() {
+        return hitboxDefaultY;
     }
 
     public void setCollision(boolean collision) {

@@ -26,6 +26,8 @@ public class Player extends Entity {
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
         hitbox = new Rectangle(8, 16, 32, 32);
+        hitboxDefaultX = hitbox.x;
+        hitboxDefaultY = hitbox.y;
         initClasses();
         setDefaultValues();
         getPlayerImage();
@@ -156,5 +158,9 @@ public class Player extends Entity {
 
     public float getScreenY() {
         return screenY;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
     }
 }
