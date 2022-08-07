@@ -7,14 +7,12 @@ import static utility.Constant.ObjectConstant.KEY_NAME;
 public class Key extends GameObject {
     private final float worldX;
     private final float worldY;
-    private Rectangle hitbox;
-    private
+    private int hitboxDefaultX=0, hitboxDefaultY=0;
 
-    public Key(float worldX, float worldY, int objectType, Rectangle hitbox) {
+    public Key(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);
         this.worldX = worldX;
         this.worldY = worldY;
-        this.hitbox = hitbox;
         object_name = KEY_NAME;
     }
 
@@ -29,5 +27,13 @@ public class Key extends GameObject {
     @Override
     public Rectangle getHitbox() {
         return hitbox;
+    }
+
+    public int getHitboxDefaultX() {
+        return hitboxDefaultX;
+    }
+
+    public int getHitboxDefaultY() {
+        return hitboxDefaultY;
     }
 }

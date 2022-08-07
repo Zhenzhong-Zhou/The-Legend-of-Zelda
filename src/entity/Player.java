@@ -71,6 +71,7 @@ public class Player extends Entity {
 
         collision = false;
         collisionDetection.checkTile(this);
+        collisionDetection.checkObject(this, true);
         if(! collision) {
             switch(direction) {
                 case UP -> worldY -= speed;
