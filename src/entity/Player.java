@@ -20,7 +20,7 @@ public class Player extends Entity {
     private final Play play;
     private ObjectManager objectManager;
 
-    public Player(int worldX, int worldY, int speed, int width, int height, Play play) {
+    public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
@@ -39,9 +39,9 @@ public class Player extends Entity {
     }
 
     private void setDefaultValues() {
-        worldX = (MAX_WORLD_COL / 2 - 1) * TILE_SIZE;
-        worldY = (MAX_WORLD_ROW / 2 - 1) * TILE_SIZE;
-        speed = 1;//TODO: need to change later
+        worldX = (MAX_WORLD_COL / 2.0f - 1) * TILE_SIZE;
+        worldY = (MAX_WORLD_ROW / 2.0f - 1) * TILE_SIZE;
+        speed = 0.9f*SCALE;//TODO: need to change later
         direction = DOWN;
     }
 
@@ -140,7 +140,6 @@ public class Player extends Entity {
         }
         objectManager.draw(graphics2D);
         graphics2D.drawImage(image, (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
-//        objectManager.draw(graphics2D);
     }
 
     public void setUp(boolean up) {

@@ -3,16 +3,18 @@ package object;
 import static utility.Constant.ObjectConstant.CHEST_NAME;
 
 public class Chest extends GameObject {
-    public Chest(int worldX, int worldY, int objectType) {
+    private float worldX, worldY;
+
+    public Chest(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);
         object_name = CHEST_NAME;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return worldX;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return worldY;
     }
 }

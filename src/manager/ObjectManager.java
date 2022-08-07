@@ -130,6 +130,18 @@ public class ObjectManager {
         }
     }
 
+    public int getKeyListSize() {
+        return keys.size();
+    }
+
+    public int getDoorListSize() {
+        return doors.size();
+    }
+
+    public int getChestListSize() {
+        return chests.size();
+    }
+
     public ArrayList<Key> getKeys() {
         return keys;
     }

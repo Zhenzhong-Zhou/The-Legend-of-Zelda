@@ -1,24 +1,40 @@
 package object;
 
+import java.awt.*;
+
 import static utility.Constant.ObjectConstant.KEY_NAME;
 import static utility.Constant.SceneConstant.TILE_SIZE;
 
 public class Key extends GameObject {
-    public Key(int worldX, int worldY, int objectType) {
+    private int hitboxDefaultX=0, hitboxDefaultY=0;
+
+    public Key(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);
+        this.worldX = worldX;
+        this.worldY = worldY;
         object_name = KEY_NAME;
-//        initHitbox();
         hitbox.x = 23 * TILE_SIZE;
         hitbox.y = 22 * TILE_SIZE;
-        hitboxDefaultX = worldX;
-        hitboxDefaultY = worldY;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return worldX;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return worldY;
+    }
+
+    @Override
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
+    public int getHitboxDefaultX() {
+        return hitboxDefaultX;
+    }
+
+    public int getHitboxDefaultY() {
+        return hitboxDefaultY;
     }
 }

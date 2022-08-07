@@ -1,6 +1,7 @@
 package collision;
 
 import entity.Entity;
+
 import object.Key;
 import state.Play;
 
@@ -85,16 +86,14 @@ public class CollisionDetection {
         ArrayList<Key> keys = play.getPlayer().getObjectManager().getKeys();
         for(Key key : keys) {
             if(key != null) {
-
                 // Get entity's hitbox position
-                entity.getHitbox().x = entity.getWorldX() + entity.getHitbox().x;
-                entity.getHitbox().y = entity.getWorldY() + entity.getHitbox().y;
-                System.out.println("Player: " + entity.getHitbox().x);
+                entity.getHitbox().x = (int) (entity.getWorldX() + entity.getHitbox().x);
+                entity.getHitbox().y = (int) (entity.getWorldY() + entity.getHitbox().y);
 
                 // Get the object's hitbox position
-                key.getHitbox().x = key.getWorldX() + key.getHitbox().x;
-                key.getHitbox().y = key.getWorldY() + key.getHitbox().y;
-                System.out.println("Key: " + key.getHitbox().x);
+                key.getHitbox().x = (int) (key.getWorldX() + key.getHitbox().x);
+                key.getHitbox().y = (int) (key.getWorldY() + key.getHitbox().y);
+
                 switch(entity.getDirection()) {
                     case UP -> {
                         entity.getHitbox().y -= entity.getSpeed();
@@ -121,7 +120,6 @@ public class CollisionDetection {
                         }
                     }
                     default -> {
-
                     }
                 }
                 entity.getHitbox().x = entity.getHitboxDefaultX();

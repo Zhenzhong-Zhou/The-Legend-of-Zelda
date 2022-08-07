@@ -7,14 +7,16 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 public class GameObject {
     protected String object_name;
     protected boolean collision;
-    protected int worldX, worldY, objectType;
-    protected Rectangle hitbox = new Rectangle(0,0,48,48);
+    protected float worldX, worldY;
+    protected int objectType;
+    protected Rectangle hitbox;
     protected int hitboxDefaultX = 0, hitboxDefaultY = 0;
 
-    public GameObject(int worldX, int worldY, int objectType) {
+    public GameObject(float worldX, float worldY, int objectType) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
+        hitbox = new Rectangle(0,0,TILE_SIZE, TILE_SIZE);
     }
 
 //    protected void initHitbox() {
@@ -43,11 +45,11 @@ public class GameObject {
         this.collision = collision;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return worldX;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return worldY;
     }
 
@@ -59,11 +61,11 @@ public class GameObject {
         return hitbox;
     }
 
-    public int getHitboxDefaultX() {
-        return hitboxDefaultX;
-    }
-
-    public int getHitboxDefaultY() {
-        return hitboxDefaultY;
-    }
+//    public int getHitboxDefaultX() {
+//        return hitboxDefaultX;
+//    }
+//
+//    public int getHitboxDefaultY() {
+//        return hitboxDefaultY;
+//    }
 }

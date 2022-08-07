@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
-    protected int worldX, worldY, speed;
+    protected float worldX, worldY, speed;
     protected int width, height;
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
     // TODO: once have pathfinding may cause problem because of String not Integer
@@ -12,11 +12,11 @@ public abstract class Entity {
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
     protected int animationSpeed = 50;
-    public Rectangle hitbox;
+    protected Rectangle hitbox;
     protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
 
-    public Entity(int worldX, int worldY, int speed, int width, int height) {
+    public Entity(float worldX, float worldY, float speed, int width, int height) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.speed = speed;
@@ -28,15 +28,15 @@ public abstract class Entity {
         return direction;
     }
 
-    public int getWorldX() {
+    public float getWorldX() {
         return worldX;
     }
 
-    public int getWorldY() {
+    public float getWorldY() {
         return worldY;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
