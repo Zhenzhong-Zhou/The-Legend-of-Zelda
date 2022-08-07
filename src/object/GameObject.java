@@ -19,16 +19,6 @@ public class GameObject {
         hitbox = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
     }
 
-//    protected void initHitbox() {
-//        // TODO: (0,0,48,48)
-//        hitbox = new Rectangle2D.Float(worldX, worldY, TILE_SIZE, TILE_SIZE);
-//    }
-//
-//    public void drawHitbox(Graphics2D graphics2D) {
-//        graphics2D.setColor(Color.PINK);
-//        graphics2D.drawRect((int) hitbox.x, (int) hitbox.y, TILE_SIZE, TILE_SIZE);
-//    }
-
     public String getObject_name() {
         return object_name;
     }
@@ -60,12 +50,4 @@ public class GameObject {
     public Rectangle getHitbox() {
         return hitbox;
     }
-
-//    public int getHitboxDefaultX() {
-//        return hitboxDefaultX;
-//    }
-//
-//    public int getHitboxDefaultY() {
-//        return hitboxDefaultY;
-//    }
 }

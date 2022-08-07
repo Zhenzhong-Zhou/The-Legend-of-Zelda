@@ -96,8 +96,4 @@ public class Play extends State implements StateMethods {
     public LevelManager getLevelManager() {
         return levelManager;
     }
-
-    public CollisionDetection getCollisionDetection() {
-        return collisionDetection;
-    }
 }
