@@ -15,9 +15,9 @@ import static utility.LoadSave.*;
 
 public class Player extends Entity {
     private final float screenX, screenY;
+    private final Play play;
     private boolean up, left, down, right;
     private CollisionDetection collisionDetection;
-    private final Play play;
     private ObjectManager objectManager;
 
     public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
@@ -41,7 +41,7 @@ public class Player extends Entity {
     private void setDefaultValues() {
         worldX = (MAX_WORLD_COL / 2.0f - 1) * TILE_SIZE;
         worldY = (MAX_WORLD_ROW / 2.0f - 1) * TILE_SIZE;
-        speed = 0.9f*SCALE;//TODO: need to change later
+        speed = 0.9f * SCALE;//TODO: need to change later
         direction = DOWN;
     }
 

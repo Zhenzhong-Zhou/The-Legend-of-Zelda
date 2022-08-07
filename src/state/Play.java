@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 
 import static state.GameState.MENU;
 import static state.GameState.gameState;
-import static utility.Constant.SceneConstant.SCALE;
 import static utility.Constant.SceneConstant.TILE_SIZE;
 
 public class Play extends State implements StateMethods {

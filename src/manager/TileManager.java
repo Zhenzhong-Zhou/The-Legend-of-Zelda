@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import static utility.LoadSave.*;
 
 public class TileManager {
-    private Tile GRASS, WATER, WALL, EARTH, TREE, ROAD;
     private final ArrayList<Tile> tiles = new ArrayList<>();
+    private Tile GRASS, WATER, WALL, EARTH, TREE, ROAD;
 
     public TileManager() {
         createTiles();

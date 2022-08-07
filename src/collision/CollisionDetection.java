@@ -1,7 +1,6 @@
 package collision;
 
 import entity.Entity;
-
 import object.Key;
 import state.Play;
 

@@ -3,7 +3,8 @@ package object;
 import static utility.Constant.ObjectConstant.DOOR_NAME;
 
 public class Door extends GameObject {
-    private float worldX, worldY;
+    private final float worldX;
+    private final float worldY;
 
     public Door(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);

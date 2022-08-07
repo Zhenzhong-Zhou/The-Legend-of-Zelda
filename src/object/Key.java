@@ -6,7 +6,8 @@ import static utility.Constant.ObjectConstant.KEY_NAME;
 import static utility.Constant.SceneConstant.TILE_SIZE;
 
 public class Key extends GameObject {
-    private int hitboxDefaultX=0, hitboxDefaultY=0;
+    private final int hitboxDefaultX = 0;
+    private final int hitboxDefaultY = 0;
 
     public Key(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);

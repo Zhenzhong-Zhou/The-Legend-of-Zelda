@@ -16,7 +16,7 @@ public class GameObject {
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
-        hitbox = new Rectangle(0,0,TILE_SIZE, TILE_SIZE);
+        hitbox = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
     }
 
 //    protected void initHitbox() {
