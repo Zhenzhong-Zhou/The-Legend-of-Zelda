@@ -31,7 +31,7 @@ public class Player extends Entity {
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-        hitbox = new Rectangle(8, 16, 32, 32);
+        hitbox = new Rectangle(7, 15, 32, 32);
         hitboxDefaultX = hitbox.x;
         hitboxDefaultY = hitbox.y;
         initClasses();
