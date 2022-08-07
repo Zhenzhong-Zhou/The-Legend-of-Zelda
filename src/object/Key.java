@@ -15,8 +15,6 @@ public class Key extends GameObject {
         this.worldX = worldX;
         this.worldY = worldY;
         object_name = KEY_NAME;
-        hitbox.x = 23 * TILE_SIZE;
-        hitbox.y = 22 * TILE_SIZE;
     }
 
     public float getWorldX() {

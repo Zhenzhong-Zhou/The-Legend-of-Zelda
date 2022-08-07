@@ -7,6 +7,8 @@ public class Chest extends GameObject {
 
     public Chest(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);
+        this.worldX = worldX;
+        this.worldY = worldY;
         object_name = CHEST_NAME;
     }
 
