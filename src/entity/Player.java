@@ -2,12 +2,17 @@ package entity;
 
 import collision.CollisionDetection;
 import manager.ObjectManager;
+import object.Key;
 import state.Play;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import static utility.Constant.DirectionConstant.*;
+import static utility.Constant.ObjectConstant.DOOR_NAME;
+import static utility.Constant.ObjectConstant.KEY_NAME;
 import static utility.Constant.SceneConstant.*;
 import static utility.Constant.WorldConstant.MAX_WORLD_COL;
 import static utility.Constant.WorldConstant.MAX_WORLD_ROW;
@@ -19,6 +24,7 @@ public class Player extends Entity {
     private boolean up, left, down, right;
     private CollisionDetection collisionDetection;
     private ObjectManager objectManager;
+    private int hasKey = 0;
 
     public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
@@ -74,7 +80,8 @@ public class Player extends Entity {
         collisionDetection.checkTile(this);
 
         // CHECK OBJECT COLLISION
-        int object = collisionDetection.checkObject(this, true);
+        int objectIndex = collisionDetection.checkObject(this, true);
+        collectObject(objectIndex);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {
@@ -96,6 +103,25 @@ public class Player extends Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+    }
+
+    public void collectObject(int objectIndex) {
+        if(objectIndex != 999) {
+            ArrayList<Key> keys = play.getPlayer().getObjectManager().getKeys();
+            if(Objects.equals(keys.get(objectIndex).getObject_name(), KEY_NAME)) {
+                hasKey++;
+                keys.remove(objectIndex);
+                System.out.println("KEY: " + hasKey);
+            }
+            else if(Objects.equals(keys.get(objectIndex).getObject_name(), DOOR_NAME)) {
+                if(hasKey > 0) {
+                    keys.remove(objectIndex);
+                    hasKey--;
+                }
+                System.out.println("KEY: " + hasKey);
+            }
+
         }
     }
 

@@ -52,6 +52,10 @@ public abstract class Entity {
         return hitboxDefaultY;
     }
 
+    public boolean isCollision() {
+        return collision;
+    }
+
     public void setCollision(boolean collision) {
         this.collision = collision;
     }

@@ -8,6 +8,7 @@ import static utility.Constant.SceneConstant.TILE_SIZE;
 public class Key extends GameObject {
     private final int hitboxDefaultX = 0;
     private final int hitboxDefaultY = 0;
+    private String object_name;
 
     public Key(float worldX, float worldY, int objectType) {
         super(worldX, worldY, objectType);
@@ -37,5 +38,10 @@ public class Key extends GameObject {
 
     public int getHitboxDefaultY() {
         return hitboxDefaultY;
+    }
+
+    @Override
+    public String getObject_name() {
+        return object_name;
     }
 }
