@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 
+import static utilities.Constant.SceneConstant.TILE_SIZE;
 import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
 import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
+import static utilities.Tool.ScaleImage;
 
 public class LoadSave {
     // PLAYER WALK
@@ -38,6 +40,7 @@ public class LoadSave {
         try {
             assert is != null;
             image = ImageIO.read(is);
+            image = ScaleImage(image, TILE_SIZE, TILE_SIZE);
         } catch(IOException e) {
             e.printStackTrace();
         } finally {
@@ -52,7 +55,7 @@ public class LoadSave {
     }
 
     public static void CreateLevel(String filename, int[][] idArray) {
-        int counter = 10;
+//        int counter = 10;
         String filePath = "res/";
         String fileType = ".txt";
         File levelFile = new File(filePath + filename + fileType);
@@ -69,20 +72,20 @@ public class LoadSave {
         }
 
         String levelName = "level";
-        for(int i = 0; i < counter; i++) {
-            File newFile = new File(filePath + levelName + i + fileType);
-            if(newFile.exists()) {
-                System.out.println("File: " + newFile + " is already exists.");
-            } else {
-                try {
-                    newFile.createNewFile();
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
-
-                WriteToFile(newFile, idArray);
-            }
-        }
+//        for(int i = 0; i < counter; i++) {
+//            File newFile = new File(filePath + levelName + i + fileType);
+//            if(newFile.exists()) {
+//                System.out.println("File: " + newFile + " is already exists.");
+//            } else {
+//                try {
+//                    newFile.createNewFile();
+//                } catch(IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                WriteToFile(newFile, idArray);
+//            }
+//        }
     }
 
     private static void WriteToFile(File file, int[][] idArray) {

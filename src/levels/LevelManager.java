@@ -69,7 +69,7 @@ public class LevelManager {
             float down = playerWorldY + playerScreenY;
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
+                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
             }
             worldCol++;
 

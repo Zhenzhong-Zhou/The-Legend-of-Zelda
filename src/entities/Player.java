@@ -134,7 +134,7 @@ public class Player extends Entity {
             default -> {
             }
         }
-        graphics2D.drawImage(image, (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
+        graphics2D.drawImage(image, (int) screenX, (int) screenY, null);
     }
 
     public void setUp(boolean up) {
