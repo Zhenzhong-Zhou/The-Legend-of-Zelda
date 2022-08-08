@@ -6,9 +6,8 @@ import tiles.TileManager;
 
 import java.awt.*;
 
-import static utilities.Constant.SceneConstant.TILE_SIZE;
-import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
-import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
+import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
 
 public class LevelManager {
@@ -68,7 +67,30 @@ public class LevelManager {
             float up = playerWorldY - playerScreenY;
             float down = playerWorldY + playerScreenY;
 
+            // Stop moving the camera at the edge of map
+            if(playerScreenX > playerWorldX) {
+                screenX = worldX;
+            }
+            if(playerScreenY > playerWorldY) {
+                screenY = worldY;
+            }
+
+            int rightOffset = (int) (SCENE_WIDTH - playerScreenX);
+            if(rightOffset >  WORLD_WIDTH - playerWorldX) {
+                screenX = SCENE_WIDTH - (WORLD_WIDTH - worldX);
+            }
+
+            int bottomOffset = (int) (SCENE_HEIGHT - playerScreenY);
+            if(bottomOffset > WORLD_HEIGHT - playerWorldY) {
+                screenY = SCENE_HEIGHT - (WORLD_HEIGHT - worldY);
+            }
+
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
+                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
+            } else if(playerScreenX > playerWorldX ||
+                      playerScreenY > playerWorldY ||
+                      rightOffset >  WORLD_WIDTH - playerWorldX ||
+                      bottomOffset > WORLD_HEIGHT - playerWorldY) {
                 graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
             }
             worldCol++;

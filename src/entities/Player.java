@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 
 import static utilities.Constant.DirectionConstant.*;
 import static utilities.Constant.SceneConstant.*;
-import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
-import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
+import static utilities.Constant.WorldConstant.*;
+import static utilities.Constant.WorldConstant.WORLD_HEIGHT;
 import static utilities.LoadSave.*;
 
 public class Player extends Entity {
@@ -134,7 +134,27 @@ public class Player extends Entity {
             default -> {
             }
         }
-        graphics2D.drawImage(image, (int) screenX, (int) screenY, null);
+
+        int x = (int) screenX;
+        int y = (int) screenY;
+        if(screenX > worldX) {
+            x = (int) worldX;
+        }
+        if(screenY > worldY) {
+            y = (int) worldY;
+        }
+
+        int rightOffset = (int) (SCENE_WIDTH - screenX);
+        if(rightOffset >  WORLD_WIDTH - worldX) {
+            x = (int) (SCENE_WIDTH - (WORLD_WIDTH - worldX));
+        }
+
+        int bottomOffset = (int) (SCENE_HEIGHT - screenY);
+        if(bottomOffset > WORLD_HEIGHT - worldY) {
+            y = (int) (SCENE_HEIGHT - (WORLD_HEIGHT - worldY));
+        }
+
+        graphics2D.drawImage(image, x, y, null);
     }
 
     public void setUp(boolean up) {
