@@ -34,15 +34,15 @@ public class LevelManager {
                 array[i][j] = 0;
             }
         }
-        CreateLevel("default_level", array);
+        CreateLevel(array);
     }
 
     public void saveLevel() {
-        SaveLevel("default_level", level);
+        SaveLevel(level);
     }
 
     private void loadDefaultLevel() {
-        level = GetLevelData("default_level");
+        level = GetLevelData();
     }
 
     public void draw(Graphics2D graphics2D, Player player) {

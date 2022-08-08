@@ -11,6 +11,13 @@ import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
 import static utilities.Tool.ScaleImage;
 
 public class LoadSave {
+    // Level File Path Config
+    public static String homePath = System.getProperty("user.home");
+    public static String saveFolder = "The Legend of Zelda";
+    public static String levelFile = "default_level.txt";
+    public static String filePath = homePath + File.separator + saveFolder + File.separator + levelFile;
+    private static File dataFile = new File(filePath);
+
     // PLAYER WALK
     public static final String UP_1_IMAGE = "player/walk/boy_up_1.png";
     public static final String UP_2_IMAGE = "player/walk/boy_up_2.png";
@@ -54,43 +61,49 @@ public class LoadSave {
         return image;
     }
 
-    public static void CreateLevel(String filename, int[][] idArray) {
-//        int counter = 10;
-        String filePath = "res/";
-        String fileType = ".txt";
-        File levelFile = new File(filePath + filename + fileType);
-        if(levelFile.exists()) {
-            System.out.println("File: " + levelFile + " is already exists.");
+    public static void CreatedFolder() {
+        File folder = new File(homePath + File.separator + saveFolder);
+        if(!folder.exists()) {
+            folder.mkdir();
+        }
+    }
+
+    public static void CreateLevel(int[][] idArray) {
+        if(dataFile.exists()) {
+            System.out.println("File: " + dataFile + " is already exists.");
         } else {
             try {
-                levelFile.createNewFile();
+                dataFile.createNewFile();
             } catch(IOException e) {
                 e.printStackTrace();
             }
 
-            WriteToFile(levelFile, idArray);
+            WriteToFile(idArray);
         }
 
+        int counter = 10;
+        String filePath = "res/";
         String levelName = "level";
-//        for(int i = 0; i < counter; i++) {
-//            File newFile = new File(filePath + levelName + i + fileType);
-//            if(newFile.exists()) {
-//                System.out.println("File: " + newFile + " is already exists.");
-//            } else {
-//                try {
-//                    newFile.createNewFile();
-//                } catch(IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                WriteToFile(newFile, idArray);
-//            }
-//        }
+        String fileType = ".txt";
+        for(int i = 0; i < counter; i++) {
+            File newFile = new File(filePath + levelName + i + fileType);
+            if(newFile.exists()) {
+                System.out.println("File: " + newFile + " is already exists.");
+            } else {
+                try {
+                    newFile.createNewFile();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+
+                WriteToFile(idArray);
+            }
+        }
     }
 
-    private static void WriteToFile(File file, int[][] idArray) {
+    private static void WriteToFile(int[][] idArray) {
         try {
-            PrintWriter printWriter = new PrintWriter(file);
+            PrintWriter printWriter = new PrintWriter(dataFile);
             for(int y = 0; y < idArray.length; y++) {
                 for(int x = 0; x < idArray[y].length; x++) {
                     if(x < idArray[y].length) {
@@ -105,20 +118,19 @@ public class LoadSave {
         }
     }
 
-    public static void SaveLevel(String filename, int[][] idArray) {
-        File levelFile = new File("res/" + filename + ".txt");
-        if(levelFile.exists()) {
-            WriteToFile(levelFile, idArray);
+    public static void SaveLevel(int[][] idArray) {
+        if(dataFile.exists()) {
+            WriteToFile(idArray);
         } else {
             //TODO: new level
-            System.out.println("File: " + filename + " is already exists.");
+            System.out.println("File: " + dataFile + " is already exists.");
         }
     }
 
-    private static int[][] ReadFromFile(File file) {
+    private static int[][] ReadFromFile() {
         int[][] matrix = new int[MAX_WORLD_COL][MAX_WORLD_ROW];
         try {
-            Scanner scanner = new Scanner(file);
+            Scanner scanner = new Scanner(dataFile);
             int col = 0;
             int row = 0;
             while(col < MAX_WORLD_COL && row < MAX_WORLD_ROW) {
@@ -141,12 +153,11 @@ public class LoadSave {
         return matrix;
     }
 
-    public static int[][] GetLevelData(String filename) {
-        File levelFile = new File("res/" + filename + ".txt");
-        if(levelFile.exists()) {
-            return ReadFromFile(levelFile);
+    public static int[][] GetLevelData() {
+        if(dataFile.exists()) {
+            return ReadFromFile();
         } else {
-            System.out.println("File: " + filename + " does not exist!");
+            System.out.println("File: " + dataFile + " does not exist!");
             return null;
         }
     }
