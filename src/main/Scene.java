@@ -12,6 +12,7 @@ import java.awt.*;
 
 import java.text.DecimalFormat;
 
+import static states.GameState.PLAY;
 import static states.GameState.gameState;
 import static utilities.Constant.GameConstant.FPS_SET;
 import static utilities.Constant.GameConstant.UPS_SET;
@@ -150,6 +151,12 @@ public class Scene extends JPanel implements Runnable {
                 frames = 0;
                 updates = 0;
             }
+        }
+    }
+
+    public void windowFocusLost() {
+        if(gameState == PLAY) {
+           play.getPlayer().resetDirectionBoolean();
         }
     }
 

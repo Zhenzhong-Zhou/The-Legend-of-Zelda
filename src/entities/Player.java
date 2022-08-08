@@ -180,4 +180,11 @@ public class Player extends Entity {
     public float getScreenY() {
         return screenY;
     }
+
+    public void resetDirectionBoolean() {
+        up = false;
+        left = false;
+        down = false;
+        right = false;
+    }
 }

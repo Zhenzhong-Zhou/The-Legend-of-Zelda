@@ -95,8 +95,8 @@ public class Play extends State implements StateMethods {
         return checkDrawDuration;
     }
 
-    public void setCheckDrawDuration(boolean checkDrawDuration) {
-        this.checkDrawDuration = checkDrawDuration;
+    public Player getPlayer() {
+        return player;
     }
 
     public LevelManager getLevelManager() {
