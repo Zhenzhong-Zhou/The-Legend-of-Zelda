@@ -1,6 +1,7 @@
 package states;
 
 import entities.Player;
+import levels.LevelManager;
 import main.Scene;
 
 import java.awt.*;
@@ -13,6 +14,8 @@ import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Play extends State implements StateMethods {
     private Player player;
+    private LevelManager levelManager;
+    private boolean checkDrawDuration;
 
     public Play(Scene scene) {
         super(scene);
@@ -20,6 +23,7 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
+        levelManager = new LevelManager(scene);
         player = new Player(200, 200, 1, TILE_SIZE, TILE_SIZE, this);
     }
 
@@ -30,6 +34,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
+        levelManager.draw(graphics2D, player);
         player.draw(graphics2D);
     }
 
@@ -69,6 +74,11 @@ public class Play extends State implements StateMethods {
         if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             gameState = MENU;
         }
+
+        // DEBUG
+        if(e.getKeyCode() == KeyEvent.VK_H) {
+            checkDrawDuration = ! checkDrawDuration;
+        }
     }
 
     @Override
@@ -81,7 +91,15 @@ public class Play extends State implements StateMethods {
         }
     }
 
-//    public Player getPlayer() {
-//        return player;
-//    }
+    public boolean isCheckDrawDuration() {
+        return checkDrawDuration;
+    }
+
+    public void setCheckDrawDuration(boolean checkDrawDuration) {
+        this.checkDrawDuration = checkDrawDuration;
+    }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
 }

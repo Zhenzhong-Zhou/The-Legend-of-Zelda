@@ -10,6 +10,8 @@ import states.Play;
 import javax.swing.*;
 import java.awt.*;
 
+import java.text.DecimalFormat;
+
 import static states.GameState.gameState;
 import static utilities.Constant.GameConstant.FPS_SET;
 import static utilities.Constant.GameConstant.UPS_SET;
@@ -82,7 +84,25 @@ public class Scene extends JPanel implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
+
+        // DEBUG
+        long drawStart = 0;
+        if(play.isCheckDrawDuration()) drawStart = System.nanoTime();
+
         draw(graphics2D);
+
+        // DEBUG
+        if(play.isCheckDrawDuration()) {
+            long drawEnd = System.nanoTime();
+            long duration = drawEnd - drawStart;
+            double second = (double) duration / 1000000000.0;
+            DecimalFormat convert = new DecimalFormat();
+            convert.setMaximumFractionDigits(8);
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.drawString("Duration: " + convert.format(second) + " seconds", 10, 400);
+            System.out.println(convert.format(second) + " seconds");
+        }
+
         graphics.dispose();
     }
 
