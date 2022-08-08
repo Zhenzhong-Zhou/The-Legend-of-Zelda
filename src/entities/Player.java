@@ -15,15 +15,17 @@ public class Player extends Entity {
     private final float screenX, screenY;
     private final Play play;
     private boolean up, left, down, right;
+    private boolean moving;
+    private int pixelCounter = 0;
 
     public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-//        hitbox = new Rectangle(7, 15, 32, 32);
-//        hitboxDefaultX = hitbox.x;
-//        hitboxDefaultY = hitbox.y;
+        hitbox = new Rectangle(1, 1, 46, 46);
+        hitboxDefaultX = hitbox.x;
+        hitboxDefaultY = hitbox.y;
 //        initClasses();
         setDefaultValues();
         getPlayerImage();
@@ -59,18 +61,21 @@ public class Player extends Entity {
     public void updatePositions() {
         if(! left && ! right && ! up && ! down) return;
 
-        if(up) direction = UP;
-        if(left) direction = LEFT;
-        if(down) direction = DOWN;
-        if(right) direction = RIGHT;
+        if(! moving) {
+            if(up) direction = UP;
+            if(left) direction = LEFT;
+            if(down) direction = DOWN;
+            if(right) direction = RIGHT;
+            moving = true;
 
-        // CHECK TILE COLLISION
-        collision = false;
+            // CHECK TILE COLLISION
+            collision = false;
 //        collisionDetection.checkTile(this);
 
-        // CHECK OBJECT COLLISION
+            // CHECK OBJECT COLLISION
 //        int objectIndex = collisionDetection.checkObject(this, true);
 //        collectObject(objectIndex);
+        }
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
 //        if(! collision) {
@@ -92,6 +97,12 @@ public class Player extends Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+
+        pixelCounter += speed;
+        if(pixelCounter == TILE_SIZE) {
+            moving = false;
+            pixelCounter = 0;
         }
     }
 
@@ -155,6 +166,9 @@ public class Player extends Entity {
         }
 
         graphics2D.drawImage(image, x, y, null);
+        // Draw hitbox
+        graphics2D.setColor(Color.RED);
+        graphics2D.drawRect(x + 8, y + 16, 32, 32);
     }
 
     public void setUp(boolean up) {
