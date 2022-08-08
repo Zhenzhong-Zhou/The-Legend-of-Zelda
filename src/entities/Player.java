@@ -1,6 +1,7 @@
 package entities;
 
 import states.Play;
+import utilities.CollisionDetection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -23,10 +24,10 @@ public class Player extends Entity {
         this.play = play;
         screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
         screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-        hitbox = new Rectangle(1, 1, 46, 46);
+        hitbox = new Rectangle(8, 16, 32, 32);
         hitboxDefaultX = hitbox.x;
         hitboxDefaultY = hitbox.y;
-//        initClasses();
+        initClasses();
         setDefaultValues();
         getPlayerImage();
     }
@@ -61,31 +62,31 @@ public class Player extends Entity {
     public void updatePositions() {
         if(! left && ! right && ! up && ! down) return;
 
-        if(! moving) {
-            if(up) direction = UP;
-            if(left) direction = LEFT;
-            if(down) direction = DOWN;
-            if(right) direction = RIGHT;
-            moving = true;
 
-            // CHECK TILE COLLISION
-            collision = false;
-//        collisionDetection.checkTile(this);
+        if(up) direction = UP;
+        if(left) direction = LEFT;
+        if(down) direction = DOWN;
+        if(right) direction = RIGHT;
+
+
+        // CHECK TILE COLLISION
+        collision = false;
+        play.getCollisionDetection().checkTile(this);
 
             // CHECK OBJECT COLLISION
 //        int objectIndex = collisionDetection.checkObject(this, true);
 //        collectObject(objectIndex);
-        }
+//        }
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
-//        if(! collision) {
-        switch(direction) {
-            case UP -> worldY -= speed;
-            case LEFT -> worldX -= speed;
-            case DOWN -> worldY += speed;
-            case RIGHT -> worldX += speed;
+        if(! collision) {
+            switch(direction) {
+                case UP -> worldY -= speed;
+                case LEFT -> worldX -= speed;
+                case DOWN -> worldY += speed;
+                case RIGHT -> worldX += speed;
+            }
         }
-//        }
     }
 
     public void updateAnimation() {
@@ -97,12 +98,6 @@ public class Player extends Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
-        }
-
-        pixelCounter += speed;
-        if(pixelCounter == TILE_SIZE) {
-            moving = false;
-            pixelCounter = 0;
         }
     }
 

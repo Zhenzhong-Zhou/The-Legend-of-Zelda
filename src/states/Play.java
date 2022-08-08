@@ -3,6 +3,7 @@ package states;
 import entities.Player;
 import levels.LevelManager;
 import main.Scene;
+import utilities.CollisionDetection;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import static utilities.Constant.SceneConstant.TILE_SIZE;
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private CollisionDetection collisionDetection;
     private boolean checkDrawDuration;
 
     public Play(Scene scene) {
@@ -23,6 +25,7 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
+        collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(scene);
         player = new Player(200, 200, 1, TILE_SIZE, TILE_SIZE, this);
     }
@@ -93,6 +96,10 @@ public class Play extends State implements StateMethods {
 
     public boolean isCheckDrawDuration() {
         return checkDrawDuration;
+    }
+
+    public CollisionDetection getCollisionDetection() {
+        return collisionDetection;
     }
 
     public Player getPlayer() {
