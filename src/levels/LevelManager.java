@@ -76,7 +76,7 @@ public class LevelManager {
             }
 
             int rightOffset = (int) (SCENE_WIDTH - playerScreenX);
-            if(rightOffset >  WORLD_WIDTH - playerWorldX) {
+            if(rightOffset > WORLD_WIDTH - playerWorldX) {
                 screenX = SCENE_WIDTH - (WORLD_WIDTH - worldX);
             }
 
@@ -88,9 +88,9 @@ public class LevelManager {
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
                 graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
             } else if(playerScreenX > playerWorldX ||
-                      playerScreenY > playerWorldY ||
-                      rightOffset >  WORLD_WIDTH - playerWorldX ||
-                      bottomOffset > WORLD_HEIGHT - playerWorldY) {
+                    playerScreenY > playerWorldY ||
+                    rightOffset > WORLD_WIDTH - playerWorldX ||
+                    bottomOffset > WORLD_HEIGHT - playerWorldY) {
                 graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
             }
             worldCol++;

@@ -6,7 +6,6 @@ import states.Play;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static utilities.Constant.ObjectConstant.*;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
@@ -34,7 +33,7 @@ public class ObjectManager {
         // KEY 1
         objects.add(new Key(GetSpriteAtlas(KEY_IMAGE), 23 * TILE_SIZE, 22 * TILE_SIZE, KEY_TYPE, KEY_NAME, false));
         // KEY 2
-        objects.add(new Key(GetSpriteAtlas(KEY_IMAGE),25 * TILE_SIZE, 73 * TILE_SIZE, KEY_TYPE, KEY_NAME, false));
+        objects.add(new Key(GetSpriteAtlas(KEY_IMAGE), 25 * TILE_SIZE, 73 * TILE_SIZE, KEY_TYPE, KEY_NAME, false));
 
         // DOOR 1
         objects.add(new Door(GetSpriteAtlas(DOOR_IMAGE), 84 * TILE_SIZE, 85 * TILE_SIZE, DOOR_TYPE, DOOR_NAME, true));

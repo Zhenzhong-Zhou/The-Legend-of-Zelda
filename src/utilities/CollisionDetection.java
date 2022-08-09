@@ -82,7 +82,7 @@ public class CollisionDetection {
         int index = 999;
 
         ArrayList<GameObject> objects = play.getObjectManager().getObjects();
-        for(int i = 0; i<objects.size();i++) {
+        for(int i = 0; i < objects.size(); i++) {
             GameObject object = objects.get(i);
             if(object != null) {
                 // Get entity's hitbox position

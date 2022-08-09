@@ -6,11 +6,13 @@ import static utilities.Constant.ObjectConstant.DOOR_NAME;
 import static utilities.LoadSave.DOOR_IMAGE;
 import static utilities.LoadSave.GetSpriteAtlas;
 
-public class Door extends GameObject{
-    private BufferedImage sprite;
-    private int worldX, worldY, objectType;
-    private String objectName;
-    private boolean collision;
+public class Door extends GameObject {
+    private final BufferedImage sprite;
+    private final int worldX;
+    private final int worldY;
+    private final int objectType;
+    private final String objectName;
+    private final boolean collision;
 
     public Door(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);

@@ -2,15 +2,17 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.DOOR_NAME;
 import static utilities.Constant.ObjectConstant.KEY_NAME;
-import static utilities.LoadSave.*;
+import static utilities.LoadSave.GetSpriteAtlas;
+import static utilities.LoadSave.KEY_IMAGE;
 
-public class Key extends GameObject{
-    private BufferedImage sprite;
-    private int worldX, worldY, objectType;
-    private String objectName;
-    private boolean collision;
+public class Key extends GameObject {
+    private final BufferedImage sprite;
+    private final int worldX;
+    private final int worldY;
+    private final int objectType;
+    private final String objectName;
+    private final boolean collision;
 
     public Key(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);

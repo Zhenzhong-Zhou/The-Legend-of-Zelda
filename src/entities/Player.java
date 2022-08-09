@@ -2,7 +2,6 @@ package entities;
 
 import objects.GameObject;
 import states.Play;
-import utilities.CollisionDetection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,6 @@ import static utilities.Constant.ObjectConstant.DOOR_NAME;
 import static utilities.Constant.ObjectConstant.KEY_NAME;
 import static utilities.Constant.SceneConstant.*;
 import static utilities.Constant.WorldConstant.*;
-import static utilities.Constant.WorldConstant.WORLD_HEIGHT;
 import static utilities.LoadSave.*;
 
 public class Player extends Entity {
@@ -76,7 +74,7 @@ public class Player extends Entity {
         collision = false;
         play.getCollisionDetection().checkTile(this);
 
-            // CHECK OBJECT COLLISION
+        // CHECK OBJECT COLLISION
         int objectIndex = play.getCollisionDetection().checkObject(this, true);
         collectObject(objectIndex);
 
@@ -104,7 +102,7 @@ public class Player extends Entity {
                 case DOOR_NAME -> {
                     if(hasKey > 0) {
                         objects.remove(objectIndex);
-                        hasKey-- ;
+                        hasKey--;
                     }
                     System.out.println("Key: " + hasKey);
                 }
@@ -174,7 +172,7 @@ public class Player extends Entity {
         }
 
         int rightOffset = (int) (SCENE_WIDTH - screenX);
-        if(rightOffset >  WORLD_WIDTH - worldX) {
+        if(rightOffset > WORLD_WIDTH - worldX) {
             x = (int) (SCENE_WIDTH - (WORLD_WIDTH - worldX));
         }
 

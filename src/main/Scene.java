@@ -9,7 +9,6 @@ import states.Play;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.text.DecimalFormat;
 
 import static states.GameState.PLAY;
@@ -156,7 +155,7 @@ public class Scene extends JPanel implements Runnable {
 
     public void windowFocusLost() {
         if(gameState == PLAY) {
-           play.getPlayer().resetDirectionBoolean();
+            play.getPlayer().resetDirectionBoolean();
         }
     }
 

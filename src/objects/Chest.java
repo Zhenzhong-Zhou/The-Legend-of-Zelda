@@ -3,13 +3,16 @@ package objects;
 import java.awt.image.BufferedImage;
 
 import static utilities.Constant.ObjectConstant.CHEST_NAME;
-import static utilities.LoadSave.*;
+import static utilities.LoadSave.CHEST_IMAGE;
+import static utilities.LoadSave.GetSpriteAtlas;
 
-public class Chest extends GameObject{
-    private BufferedImage sprite;
-    private int worldX, worldY, objectType;
-    private String objectName;
-    private boolean collision;
+public class Chest extends GameObject {
+    private final BufferedImage sprite;
+    private final int worldX;
+    private final int worldY;
+    private final int objectType;
+    private final String objectName;
+    private final boolean collision;
 
     public Chest(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);
