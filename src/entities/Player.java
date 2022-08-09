@@ -94,9 +94,7 @@ public class Player extends Entity {
     public void collectObject(int objectIndex) {
         if(objectIndex != 999) {
             ArrayList<GameObject> objects = play.getObjectManager().getObjects();
-            objects.remove(objectIndex);
             String objectName = objects.get(objectIndex).getObjectName();
-            System.out.println(objectName + " " + objects.get(objectIndex).isCollision());
             switch(objectName) {
                 case KEY_NAME -> {
                     hasKey++;

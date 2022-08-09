@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class GameObject {
-    private BufferedImage sprite;
+    protected BufferedImage sprite;
     protected String objectName;
     protected boolean collision;
     protected int worldX, worldY, objectType;
