@@ -15,16 +15,16 @@ import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
 
 public class Player extends Entity {
-    private final float screenX, screenY;
+    private final int screenX, screenY;
     private final Play play;
     private boolean up, left, down, right;
     private int hasKey = 0;
 
-    public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
+    public Player(int worldX, int worldY, int speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
         this.play = play;
-        screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
-        screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
+        screenX = (SCENE_WIDTH / 2) - (TILE_SIZE / 2);
+        screenY = (SCENE_HEIGHT / 2) - (TILE_SIZE / 2);
         hitbox = new Rectangle(8, 16, 32, 32);
         hitboxDefaultX = hitbox.x;
         hitboxDefaultY = hitbox.y;
@@ -38,9 +38,9 @@ public class Player extends Entity {
     }
 
     private void setDefaultValues() {
-        worldX = (MAX_WORLD_COL / 2.0f - 1) * TILE_SIZE;
-        worldY = (MAX_WORLD_ROW / 2.0f - 1) * TILE_SIZE;
-        speed = 0.9f * SCALE;//TODO: need to change later
+        worldX = (MAX_WORLD_COL / 2 - 1) * TILE_SIZE;
+        worldY = (MAX_WORLD_ROW / 2 - 1) * TILE_SIZE;
+        speed = (int) SCALE;//TODO: need to change later
         direction = DOWN;
     }
 
@@ -162,23 +162,23 @@ public class Player extends Entity {
             }
         }
 
-        int x = (int) screenX;
-        int y = (int) screenY;
+        int x = screenX;
+        int y = screenY;
         if(screenX > worldX) {
-            x = (int) worldX;
+            x = worldX;
         }
         if(screenY > worldY) {
-            y = (int) worldY;
+            y = worldY;
         }
 
-        int rightOffset = (int) (SCENE_WIDTH - screenX);
+        int rightOffset = SCENE_WIDTH - screenX;
         if(rightOffset > WORLD_WIDTH - worldX) {
-            x = (int) (SCENE_WIDTH - (WORLD_WIDTH - worldX));
+            x = SCENE_WIDTH - (WORLD_WIDTH - worldX);
         }
 
-        int bottomOffset = (int) (SCENE_HEIGHT - screenY);
+        int bottomOffset = SCENE_HEIGHT - screenY;
         if(bottomOffset > WORLD_HEIGHT - worldY) {
-            y = (int) (SCENE_HEIGHT - (WORLD_HEIGHT - worldY));
+            y = SCENE_HEIGHT - (WORLD_HEIGHT - worldY);
         }
 
         graphics2D.drawImage(image, x, y, null);
@@ -203,11 +203,11 @@ public class Player extends Entity {
         this.right = right;
     }
 
-    public float getScreenX() {
+    public int getScreenX() {
         return screenX;
     }
 
-    public float getScreenY() {
+    public int getScreenY() {
         return screenY;
     }
 

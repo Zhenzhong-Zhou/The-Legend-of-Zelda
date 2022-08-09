@@ -55,18 +55,18 @@ public class ObjectManager {
     public void draw(Graphics2D graphics2D, Player player) {
         for(GameObject object : objects) {
             // TODO: Player can be removed
-            float worldX = object.getWorldX();
-            float worldY = object.getWorldY();
-            float screenX = worldX - player.getWorldX() + player.getScreenX();
-            float screenY = worldY - player.getWorldY() + player.getScreenY();
+            int worldX = object.getWorldX();
+            int worldY = object.getWorldY();
+            int screenX = worldX - player.getWorldX() + player.getScreenX();
+            int screenY = worldY - player.getWorldY() + player.getScreenY();
 
-            float left = player.getWorldX() - player.getScreenX();
-            float right = player.getWorldX() + player.getScreenX();
-            float up = player.getWorldY() - player.getScreenY();
-            float down = player.getWorldY() + player.getScreenY();
+            int left = player.getWorldX() - player.getScreenX();
+            int right = player.getWorldX() + player.getScreenX();
+            int up = player.getWorldY() - player.getScreenY();
+            int down = player.getWorldY() + player.getScreenY();
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(object.sprite, (int) screenX, (int) screenY, null);
+                graphics2D.drawImage(object.sprite, screenX, screenY, null);
             }
         }
     }

@@ -17,10 +17,10 @@ public class CollisionDetection {
     }
 
     public void checkTile(Entity entity) {
-        int entityLeftWorldX = (int) (entity.getWorldX() + entity.getHitbox().x);
-        int entityRightWorldX = (int) (entity.getWorldX() + entity.getHitbox().x + entity.getHitbox().width);
-        int entityTopWorldY = (int) (entity.getWorldY() + entity.getHitbox().y);
-        int entityBottomWorldY = (int) (entity.getWorldY() + entity.getHitbox().y + entity.getHitbox().height);
+        int entityLeftWorldX = entity.getWorldX() + entity.getHitbox().x;
+        int entityRightWorldX = entity.getWorldX() + entity.getHitbox().x + entity.getHitbox().width;
+        int entityTopWorldY = entity.getWorldY() + entity.getHitbox().y;
+        int entityBottomWorldY = entity.getWorldY() + entity.getHitbox().y + entity.getHitbox().height;
 
         int entityLeftCol = entityLeftWorldX / TILE_SIZE;
         int entityRightCol = entityRightWorldX / TILE_SIZE;
@@ -30,7 +30,7 @@ public class CollisionDetection {
         int tileNum1, tileNum2;
         switch(entity.getDirection()) {
             case UP -> {
-                entityTopRow = (int) ((entityTopWorldY - entity.getSpeed()) / TILE_SIZE);
+                entityTopRow = (entityTopWorldY - entity.getSpeed()) / TILE_SIZE;
                 tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
                 tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityTopRow];
                 boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
@@ -41,7 +41,7 @@ public class CollisionDetection {
                 }
             }
             case LEFT -> {
-                entityLeftCol = (int) ((entityLeftWorldX - entity.getSpeed()) / TILE_SIZE);
+                entityLeftCol = (entityLeftWorldX - entity.getSpeed()) / TILE_SIZE;
                 tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
                 tileNum2 = play.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
                 boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
@@ -52,7 +52,7 @@ public class CollisionDetection {
                 }
             }
             case DOWN -> {
-                entityBottomRow = (int) ((entityBottomWorldY + entity.getSpeed()) / TILE_SIZE);
+                entityBottomRow = (entityBottomWorldY + entity.getSpeed()) / TILE_SIZE;
                 tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
                 tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
                 boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
@@ -63,7 +63,7 @@ public class CollisionDetection {
                 }
             }
             case RIGHT -> {
-                entityRightCol = (int) ((entityRightWorldX + entity.getSpeed()) / TILE_SIZE);
+                entityRightCol = (entityRightWorldX + entity.getSpeed()) / TILE_SIZE;
                 tileNum1 = play.getLevelManager().getTileId()[entityRightCol][entityTopRow];
                 tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
                 boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
@@ -86,8 +86,8 @@ public class CollisionDetection {
             GameObject object = objects.get(i);
             if(object != null) {
                 // Get entity's hitbox position
-                entity.getHitbox().x = (int) (entity.getWorldX() + entity.getHitbox().x);
-                entity.getHitbox().y = (int) (entity.getWorldY() + entity.getHitbox().y);
+                entity.getHitbox().x = entity.getWorldX() + entity.getHitbox().x;
+                entity.getHitbox().y = entity.getWorldY() + entity.getHitbox().y;
 
                 // Get the object's hitbox position
                 object.getHitbox().x = object.getWorldX() + object.getHitbox().x;

@@ -52,20 +52,20 @@ public class LevelManager {
         while(worldCol < MAX_WORLD_COL && worldRow < MAX_WORLD_ROW) {
             int id = level[worldCol][worldRow];
 
-            float worldX = worldCol * TILE_SIZE;
-            float worldY = worldRow * TILE_SIZE;
-            float playerWorldX = player.getWorldX();
-            float playerWorldY = player.getWorldY();
-            float playerScreenX = player.getScreenX();
-            float playerScreenY = player.getScreenY();
+            int worldX = worldCol * TILE_SIZE;
+            int worldY = worldRow * TILE_SIZE;
+            int playerWorldX = player.getWorldX();
+            int playerWorldY = player.getWorldY();
+            int playerScreenX = player.getScreenX();
+            int playerScreenY = player.getScreenY();
 
-            float screenX = worldX - playerWorldX + playerScreenX;
-            float screenY = worldY - playerWorldY + playerScreenY;
+            int screenX = worldX - playerWorldX + playerScreenX;
+            int screenY = worldY - playerWorldY + playerScreenY;
 
-            float left = playerWorldX - playerScreenX;
-            float right = playerWorldX + playerScreenX;
-            float up = playerWorldY - playerScreenY;
-            float down = playerWorldY + playerScreenY;
+            int left = playerWorldX - playerScreenX;
+            int right = playerWorldX + playerScreenX;
+            int up = playerWorldY - playerScreenY;
+            int down = playerWorldY + playerScreenY;
 
             // Stop moving the camera at the edge of map
             if(playerScreenX > playerWorldX) {
@@ -75,23 +75,23 @@ public class LevelManager {
                 screenY = worldY;
             }
 
-            int rightOffset = (int) (SCENE_WIDTH - playerScreenX);
+            int rightOffset = SCENE_WIDTH - playerScreenX;
             if(rightOffset > WORLD_WIDTH - playerWorldX) {
                 screenX = SCENE_WIDTH - (WORLD_WIDTH - worldX);
             }
 
-            int bottomOffset = (int) (SCENE_HEIGHT - playerScreenY);
+            int bottomOffset = SCENE_HEIGHT - playerScreenY;
             if(bottomOffset > WORLD_HEIGHT - playerWorldY) {
                 screenY = SCENE_HEIGHT - (WORLD_HEIGHT - worldY);
             }
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
+                graphics2D.drawImage(tileManager.getTile(id), screenX, screenY, null);
             } else if(playerScreenX > playerWorldX ||
                     playerScreenY > playerWorldY ||
                     rightOffset > WORLD_WIDTH - playerWorldX ||
                     bottomOffset > WORLD_HEIGHT - playerWorldY) {
-                graphics2D.drawImage(tileManager.getTile(id), (int) screenX, (int) screenY, null);
+                graphics2D.drawImage(tileManager.getTile(id), screenX, screenY, null);
             }
             worldCol++;
 
