@@ -1,44 +1,47 @@
-package state;
+package states;
 
-import collision.CollisionDetection;
-import entity.Player;
-import main.Game;
-import manager.LevelManager;
+import entities.Player;
+import levels.LevelManager;
+import main.Scene;
+import objects.ObjectManager;
+import utilities.CollisionDetection;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static state.GameState.MENU;
-import static state.GameState.gameState;
-import static utility.Constant.SceneConstant.SCALE;
-import static utility.Constant.SceneConstant.TILE_SIZE;
+import static states.GameState.MENU;
+import static states.GameState.gameState;
+import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private ObjectManager objectManager;
     private CollisionDetection collisionDetection;
+    private boolean checkDrawDuration;
 
-    public Play(Game game) {
-        super(game);
+    public Play(Scene scene) {
+        super(scene);
         initClasses();
     }
 
     private void initClasses() {
         collisionDetection = new CollisionDetection(this);
-        levelManager = new LevelManager(game);
-        player = new Player(200, 200, 0.9f * SCALE, TILE_SIZE, TILE_SIZE, this);
+        levelManager = new LevelManager(scene);
+        objectManager = new ObjectManager(this);
+        player = new Player(200, 200, 1, TILE_SIZE, TILE_SIZE, this);
     }
 
     @Override
     public void update() {
-        // TODO: add level/object manager update();
         player.update();
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         levelManager.draw(graphics2D, player);
+        objectManager.draw(graphics2D, player);
         player.draw(graphics2D);
     }
 
@@ -78,6 +81,11 @@ public class Play extends State implements StateMethods {
         if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             gameState = MENU;
         }
+
+        // DEBUG
+        if(e.getKeyCode() == KeyEvent.VK_H) {
+            checkDrawDuration = ! checkDrawDuration;
+        }
     }
 
     @Override
@@ -90,6 +98,14 @@ public class Play extends State implements StateMethods {
         }
     }
 
+    public boolean isCheckDrawDuration() {
+        return checkDrawDuration;
+    }
+
+    public CollisionDetection getCollisionDetection() {
+        return collisionDetection;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -98,7 +114,7 @@ public class Play extends State implements StateMethods {
         return levelManager;
     }
 
-    public CollisionDetection getCollisionDetection() {
-        return collisionDetection;
+    public ObjectManager getObjectManager() {
+        return objectManager;
     }
 }

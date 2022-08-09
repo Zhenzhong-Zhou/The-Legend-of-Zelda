@@ -1,16 +1,17 @@
-package state;
+package states;
 
-import main.Game;
+import main.Scene;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static state.GameState.*;
+import static states.GameState.MENU;
+import static states.GameState.gameState;
 
-public class Menu extends State implements StateMethods {
-    public Menu(Game game) {
-        super(game);
+public class Options extends State implements StateMethods {
+    public Options(Scene scene) {
+        super(scene);
     }
 
     @Override
@@ -20,8 +21,9 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.RED);
-        graphics2D.fillRect(200, 200, 100, 50);
+        graphics2D.setColor(Color.PINK);
+        graphics2D.drawString("OPTIONS", 50, 50);
+        graphics2D.fillRect(45, 50, 200, 100);
     }
 
     @Override
@@ -51,10 +53,8 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-            gameState = PLAY;
-        } else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-            gameState = EDITOR;
+        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            gameState = MENU;
         }
     }
 

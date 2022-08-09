@@ -1,12 +1,14 @@
-package utility;
+package utilities;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 
-import static utility.Constant.WorldConstant.MAX_WORLD_COL;
-import static utility.Constant.WorldConstant.MAX_WORLD_ROW;
+import static utilities.Constant.SceneConstant.TILE_SIZE;
+import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
+import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
+import static utilities.Tool.ScaleImage;
 
 public class LoadSave {
     // PLAYER WALK
@@ -18,7 +20,6 @@ public class LoadSave {
     public static final String DOWN_2_IMAGE = "player/walk/boy_down_2.png";
     public static final String RIGHT_1_IMAGE = "player/walk/boy_right_1.png";
     public static final String RIGHT_2_IMAGE = "player/walk/boy_right_2.png";
-
     // TILES
     public static final String GRASS_IMAGE = "tiles/grass01.png";
     public static final String WALL_IMAGE = "tiles/wall.png";
@@ -26,11 +27,16 @@ public class LoadSave {
     public static final String EARTH_IMAGE = "tiles/earth.png";
     public static final String TREE_IMAGE = "tiles/tree.png";
     public static final String ROAD_IMAGE = "tiles/road00.png";
-
     // OBJECTS
     public static final String KEY_IMAGE = "objects/key.png";
     public static final String DOOR_IMAGE = "objects/door.png";
     public static final String CHEST_IMAGE = "objects/chest.png";
+    // Level File Path Config
+    public static String homePath = System.getProperty("user.home");
+    public static String saveFolder = "The Legend of Zelda";
+    public static String levelFile = "default_level.txt";
+    public static String filePath = homePath + File.separator + saveFolder + File.separator + levelFile;
+    private static final File dataFile = new File(filePath);
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;
@@ -38,6 +44,7 @@ public class LoadSave {
         try {
             assert is != null;
             image = ImageIO.read(is);
+            image = ScaleImage(image, TILE_SIZE, TILE_SIZE);
         } catch(IOException e) {
             e.printStackTrace();
         } finally {
@@ -51,26 +58,32 @@ public class LoadSave {
         return image;
     }
 
-    public static void CreateLevel(String filename, int[][] idArray) {
-        int counter = 10;
-        String filePath = "res/";
-        String fileType = ".txt";
-        File levelFile = new File(filePath + filename + fileType);
-        if(levelFile.exists()) {
-            System.out.println("File: " + levelFile + " is already exists.");
+    public static void CreatedFolder() {
+        File folder = new File(homePath + File.separator + saveFolder);
+        if(! folder.exists()) {
+            folder.mkdir();
+        }
+    }
+
+    public static void CreateLevel(int[][] idArray) {
+        if(dataFile.exists()) {
+            System.out.println("File: " + dataFile + " is already exists.");
         } else {
             try {
-               levelFile.createNewFile();
+                dataFile.createNewFile();
             } catch(IOException e) {
                 e.printStackTrace();
             }
 
-            WriteToFile(levelFile, idArray);
+            WriteToFile(idArray);
         }
 
-        String levelName= "level";
+        int counter = 10;
+        String filePath = "res/";
+        String levelName = "level";
+        String fileType = ".txt";
         for(int i = 0; i < counter; i++) {
-            File newFile =  new File(filePath + levelName + i + fileType);
+            File newFile = new File(filePath + levelName + i + fileType);
             if(newFile.exists()) {
                 System.out.println("File: " + newFile + " is already exists.");
             } else {
@@ -80,17 +93,17 @@ public class LoadSave {
                     e.printStackTrace();
                 }
 
-                WriteToFile(newFile, idArray);
+                WriteToFile(idArray);
             }
         }
     }
 
-    private static void WriteToFile(File file, int[][] idArray) {
+    private static void WriteToFile(int[][] idArray) {
         try {
-            PrintWriter printWriter = new PrintWriter(file);
-            for(int y = 0; y<idArray.length; y++) {
-                for(int x = 0; x<idArray[y].length; x++) {
-                    if(x <idArray[y].length) {
+            PrintWriter printWriter = new PrintWriter(dataFile);
+            for(int y = 0; y < idArray.length; y++) {
+                for(int x = 0; x < idArray[y].length; x++) {
+                    if(x < idArray[y].length) {
                         printWriter.print(idArray[x][y] + "\t");
                     }
                 }
@@ -102,20 +115,19 @@ public class LoadSave {
         }
     }
 
-    public static void SaveLevel(String filename, int[][] idArray) {
-        File levelFile = new File("res/" + filename + ".txt");
-        if(levelFile.exists()) {
-            WriteToFile(levelFile, idArray);
+    public static void SaveLevel(int[][] idArray) {
+        if(dataFile.exists()) {
+            WriteToFile(idArray);
         } else {
             //TODO: new level
-            System.out.println("File: " + filename + " is already exists.");
+            System.out.println("File: " + dataFile + " is already exists.");
         }
     }
 
-    private static int[][] ReadFromFile(File file) {
+    private static int[][] ReadFromFile() {
         int[][] matrix = new int[MAX_WORLD_COL][MAX_WORLD_ROW];
         try {
-            Scanner scanner = new Scanner(file);
+            Scanner scanner = new Scanner(dataFile);
             int col = 0;
             int row = 0;
             while(col < MAX_WORLD_COL && row < MAX_WORLD_ROW) {
@@ -138,12 +150,11 @@ public class LoadSave {
         return matrix;
     }
 
-    public static int[][] GetLevelData(String filename) {
-        File levelFile = new File("res/" + filename + ".txt");
-        if(levelFile.exists()) {
-            return ReadFromFile(levelFile);
+    public static int[][] GetLevelData() {
+        if(dataFile.exists()) {
+            return ReadFromFile();
         } else {
-            System.out.println("File: " + filename + " does not exist!");
+            System.out.println("File: " + dataFile + " does not exist!");
             return null;
         }
     }

@@ -1,4 +1,4 @@
-package state;
+package states;
 
 public enum GameState {
     MENU, PLAY, EDITOR, OPTIONS, QUIT;

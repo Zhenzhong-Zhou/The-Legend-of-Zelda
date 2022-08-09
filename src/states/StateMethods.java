@@ -1,4 +1,4 @@
-package state;
+package states;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -1,11 +1,11 @@
-package input;
+package inputs;
 
 import main.Scene;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static state.GameState.gameState;
+import static states.GameState.gameState;
 
 public class KeyInputs implements KeyListener {
     private final Scene scene;
@@ -22,9 +22,10 @@ public class KeyInputs implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch(gameState) {
-            case MENU -> scene.getGame().getMenu().keyPressed(e);
-            case PLAY -> scene.getGame().getPlay().keyPressed(e);
-            case EDITOR -> scene.getGame().getEditor().keyPressed(e);
+            case MENU -> scene.getMenu().keyPressed(e);
+            case PLAY -> scene.getPlay().keyPressed(e);
+            case EDITOR -> scene.getEditor().keyPressed(e);
+            case OPTIONS -> scene.getOptions().keyPressed(e);
             default -> {
             }
         }
@@ -33,9 +34,10 @@ public class KeyInputs implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         switch(gameState) {
-            case MENU -> scene.getGame().getMenu().keyReleased(e);
-            case PLAY -> scene.getGame().getPlay().keyReleased(e);
-            case EDITOR -> scene.getGame().getEditor().keyReleased(e);
+            case MENU -> scene.getMenu().keyReleased(e);
+            case PLAY -> scene.getPlay().keyReleased(e);
+            case EDITOR -> scene.getEditor().keyReleased(e);
+            case OPTIONS -> scene.getOptions().keyReleased(e);
             default -> {
             }
         }

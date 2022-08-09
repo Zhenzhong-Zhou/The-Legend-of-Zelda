@@ -26,4 +26,4 @@ The Legend of Zelda.iml
 .idea
 out
 META-INF
-*.txt
+level*.txt

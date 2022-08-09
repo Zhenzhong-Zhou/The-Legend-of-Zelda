@@ -1,11 +1,10 @@
-package entity;
-
+package entities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
-    protected float worldX, worldY, speed;
+    protected int worldX, worldY, speed;
     protected int width, height;
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
     // TODO: once have pathfinding may cause problem because of String not Integer
@@ -14,9 +13,10 @@ public abstract class Entity {
     protected int spriteNum = 1;
     protected int animationSpeed = 50;
     protected Rectangle hitbox;
+    protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
 
-    public Entity(float worldX, float worldY, float speed, int width, int height) {
+    public Entity(int worldX, int worldY, int speed, int width, int height) {
         this.worldX = worldX;
         this.worldY = worldY;
         this.speed = speed;
@@ -28,20 +28,32 @@ public abstract class Entity {
         return direction;
     }
 
-    public float getWorldX() {
+    public int getWorldX() {
         return worldX;
     }
 
-    public float getWorldY() {
+    public int getWorldY() {
         return worldY;
     }
 
-    public float getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
     public Rectangle getHitbox() {
         return hitbox;
+    }
+
+    public int getHitboxDefaultX() {
+        return hitboxDefaultX;
+    }
+
+    public int getHitboxDefaultY() {
+        return hitboxDefaultY;
+    }
+
+    public boolean isCollision() {
+        return collision;
     }
 
     public void setCollision(boolean collision) {

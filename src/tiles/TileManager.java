@@ -1,15 +1,13 @@
-package manager;
-
-import tile.Tile;
+package tiles;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static utility.LoadSave.*;
+import static utilities.LoadSave.*;
 
 public class TileManager {
+    private final ArrayList<Tile> tiles = new ArrayList<>();
     private Tile GRASS, WATER, WALL, EARTH, TREE, ROAD;
-    private ArrayList<Tile> tiles = new ArrayList<>();
 
     public TileManager() {
         createTiles();

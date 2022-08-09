@@ -1,44 +1,46 @@
-package entity;
+package entities;
 
-import collision.CollisionDetection;
-import manager.ObjectManager;
-import state.Play;
+import objects.GameObject;
+import states.Play;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-import static utility.Constant.DirectionConstant.*;
-import static utility.Constant.SceneConstant.*;
-import static utility.Constant.WorldConstant.*;
-import static utility.LoadSave.*;
+import static utilities.Constant.DirectionConstant.*;
+import static utilities.Constant.ObjectConstant.DOOR_NAME;
+import static utilities.Constant.ObjectConstant.KEY_NAME;
+import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.WorldConstant.*;
+import static utilities.LoadSave.*;
 
 public class Player extends Entity {
+    private final int screenX, screenY;
+    private final Play play;
     private boolean up, left, down, right;
-    private final float screenX, screenY;
-    private CollisionDetection collisionDetection;
-    private Play play;
-    private ObjectManager objectManager;
+    private int hasKey = 0;
 
-    public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
+    public Player(int worldX, int worldY, int speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
         this.play = play;
-        screenX = (int) (SCENE_WIDTH / 2f) - (TILE_SIZE / 2f);
-        screenY = (int) (SCENE_HEIGHT / 2f) - (TILE_SIZE / 2f);
-        hitbox = new Rectangle(8,16,32,32);
-       initClasses();
+        screenX = (SCENE_WIDTH / 2) - (TILE_SIZE / 2);
+        screenY = (SCENE_HEIGHT / 2) - (TILE_SIZE / 2);
+        hitbox = new Rectangle(8, 16, 32, 32);
+        hitboxDefaultX = hitbox.x;
+        hitboxDefaultY = hitbox.y;
+        initClasses();
         setDefaultValues();
         getPlayerImage();
     }
 
     private void initClasses() {
-        collisionDetection = new CollisionDetection(play);
-        objectManager = new ObjectManager(this);
+
     }
 
     private void setDefaultValues() {
-        worldX = (MAX_WORLD_COL/2.0f-1) * TILE_SIZE;
-        worldY = (MAX_WORLD_ROW/2.0f-1) * TILE_SIZE;
-        speed = 2f * SCALE;//TODO: need to change later
+        worldX = (MAX_WORLD_COL / 2 - 1) * TILE_SIZE;
+        worldY = (MAX_WORLD_ROW / 2 - 1) * TILE_SIZE;
+        speed = (int) SCALE;//TODO: need to change later
         direction = DOWN;
     }
 
@@ -61,19 +63,49 @@ public class Player extends Entity {
     public void updatePositions() {
         if(! left && ! right && ! up && ! down) return;
 
+
         if(up) direction = UP;
         if(left) direction = LEFT;
         if(down) direction = DOWN;
         if(right) direction = RIGHT;
 
+
+        // CHECK TILE COLLISION
         collision = false;
-        collisionDetection.checkTile(this);
+        play.getCollisionDetection().checkTile(this);
+
+        // CHECK OBJECT COLLISION
+        int objectIndex = play.getCollisionDetection().checkObject(this, true);
+        collectObject(objectIndex);
+
+        // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {
             switch(direction) {
                 case UP -> worldY -= speed;
                 case LEFT -> worldX -= speed;
                 case DOWN -> worldY += speed;
                 case RIGHT -> worldX += speed;
+            }
+        }
+    }
+
+    public void collectObject(int objectIndex) {
+        if(objectIndex != 999) {
+            ArrayList<GameObject> objects = play.getObjectManager().getObjects();
+            String objectName = objects.get(objectIndex).getObjectName();
+            switch(objectName) {
+                case KEY_NAME -> {
+                    hasKey++;
+                    objects.remove(objectIndex);
+                    System.out.println("Key: " + hasKey);
+                }
+                case DOOR_NAME -> {
+                    if(hasKey > 0) {
+                        objects.remove(objectIndex);
+                        hasKey--;
+                    }
+                    System.out.println("Key: " + hasKey);
+                }
             }
         }
     }
@@ -129,8 +161,30 @@ public class Player extends Entity {
             default -> {
             }
         }
-        graphics2D.drawImage(image, (int) screenX, (int) screenY, TILE_SIZE, TILE_SIZE, null);
-        objectManager.draw(graphics2D);
+
+        int x = screenX;
+        int y = screenY;
+        if(screenX > worldX) {
+            x = worldX;
+        }
+        if(screenY > worldY) {
+            y = worldY;
+        }
+
+        int rightOffset = SCENE_WIDTH - screenX;
+        if(rightOffset > WORLD_WIDTH - worldX) {
+            x = SCENE_WIDTH - (WORLD_WIDTH - worldX);
+        }
+
+        int bottomOffset = SCENE_HEIGHT - screenY;
+        if(bottomOffset > WORLD_HEIGHT - worldY) {
+            y = SCENE_HEIGHT - (WORLD_HEIGHT - worldY);
+        }
+
+        graphics2D.drawImage(image, x, y, null);
+        // Draw hitbox
+        graphics2D.setColor(Color.RED);
+        graphics2D.drawRect(x + 8, y + 16, 32, 32);
     }
 
     public void setUp(boolean up) {
@@ -149,11 +203,18 @@ public class Player extends Entity {
         this.right = right;
     }
 
-    public float getScreenX() {
+    public int getScreenX() {
         return screenX;
     }
 
-    public float getScreenY() {
+    public int getScreenY() {
         return screenY;
+    }
+
+    public void resetDirectionBoolean() {
+        up = false;
+        left = false;
+        down = false;
+        right = false;
     }
 }
