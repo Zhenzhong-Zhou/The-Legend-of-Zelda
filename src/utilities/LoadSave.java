@@ -1,6 +1,7 @@
 package utilities;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
@@ -34,6 +35,10 @@ public class LoadSave {
     public static final String DOOR_IMAGE = "objects/door.png";
     public static final String CHEST_IMAGE = "objects/chest.png";
 
+    // FONTS
+    public static final String MARU_MONICA= "fonts/x12y16pxMaruMonica.ttf";
+    public static final String PURISA_BOLD= "fonts/Purisa Bold.ttf";
+
     // Level File Path Config
     public static String homePath = System.getProperty("user.home");
     public static String saveFolder = "The Legend of Zelda";
@@ -59,6 +64,27 @@ public class LoadSave {
             }
         }
         return image;
+    }
+
+    public static Font GetFont(String fileName) {
+        Font font = null;
+        InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
+        try {
+            assert is != null;
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch(IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                assert is != null;
+                is.close();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return font;
     }
 
     public static void CreatedFolder() {

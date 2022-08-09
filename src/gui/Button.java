@@ -4,6 +4,9 @@ import states.GameState;
 
 import java.awt.*;
 
+import static utilities.LoadSave.GetFont;
+import static utilities.LoadSave.MARU_MONICA;
+
 public class Button {
     private int x, y, width, height;
     private String buttonName;
@@ -20,17 +23,16 @@ public class Button {
         this.buttonName = buttonName;
         this.gameState = gameState;
         initBounds();
-//        initFont();
+        initFont();
     }
 
     private void initBounds() {
         bounds = new Rectangle(x,y, width,height);
     }
 
-//    private void initFont() {
-//
-//        maruMonica = Font.createFont(Font.TRUETYPE_FONT, GetSpriteAtlas(MARU_MONICA));
-//    }
+    private void initFont() {
+        maruMonica = GetFont(MARU_MONICA);
+    }
 
     public void draw(Graphics2D graphics2D) {
         // BODY
@@ -47,7 +49,8 @@ public class Button {
 
     private void drawText(Graphics2D graphics2D) {
         graphics2D.setColor(Color.BLACK);
-//        graphics2D.setFont();
+        graphics2D.setFont(maruMonica);
+        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 32F));
         int widthName = graphics2D.getFontMetrics().stringWidth(buttonName);
         int heightName = graphics2D.getFontMetrics().getHeight();
         graphics2D.drawString(buttonName, x- widthName/2 + width/2, y+heightName/2+height/2);

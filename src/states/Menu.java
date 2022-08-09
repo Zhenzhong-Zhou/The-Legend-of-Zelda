@@ -19,11 +19,11 @@ public class Menu extends State implements StateMethods {
     }
 
     private void initButtons() {
-        start = new Button(BUTTON_X, 440, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
-        load = new Button(BUTTON_X, 520, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", PLAY);
-        editor = new Button(BUTTON_X, 600, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", PLAY);
-        options = new Button(BUTTON_X, 680, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", PLAY);
-        quit = new Button(BUTTON_X, 750 , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", PLAY);
+        start = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*4, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        load = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", PLAY);
+        editor = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", PLAY);
+        options = new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", PLAY);
+        quit = new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", PLAY);
     }
 
     @Override

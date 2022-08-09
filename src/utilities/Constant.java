@@ -24,8 +24,8 @@ public class Constant {
         public static final int TILE_SIZE = (int) (ORIGINAL_TILES_SIZE * SCALE);    // 48*48 tile
         public static final int MAX_SCREEN_COL = 24;        // ratio 4:3
         public static final int MAX_SCREEN_ROW = 18;        // ratio 4:3
-        public static final int SCENE_WIDTH = MAX_SCREEN_COL * TILE_SIZE;       // 768 pixels
-        public static final int SCENE_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;      // 576 pixels
+        public static final int SCENE_WIDTH = MAX_SCREEN_COL * TILE_SIZE;       // 1152 pixels
+        public static final int SCENE_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;      // 864 pixels
     }
 
     /**
@@ -68,11 +68,11 @@ public class Constant {
      */
     public static class GUI {
         public static class Buttons {
-            public static final int BUTTON_X = SceneConstant.SCENE_HEIGHT / 2 + 65;
-            public static final int BUTTON_Y = 300;
-            public static final int Y_OFFSET = 100;
-            public static final int BUTTON_WIDTH = 150;
-            public static final int BUTTON_HEIGHT = 50;
+            public static final int Y_OFFSET = 65;
+            public static final int BUTTON_WIDTH = 220;
+            public static final int BUTTON_HEIGHT = 60;
+            public static final int BUTTON_X = SceneConstant.SCENE_WIDTH / 2 - BUTTON_WIDTH / 2;
+            public static final int BUTTON_Y = 770;
         }
     }
 }
