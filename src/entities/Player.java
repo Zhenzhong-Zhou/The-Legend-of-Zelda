@@ -1,12 +1,16 @@
 package entities;
 
+import objects.GameObject;
 import states.Play;
 import utilities.CollisionDetection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static utilities.Constant.DirectionConstant.*;
+import static utilities.Constant.ObjectConstant.DOOR_NAME;
+import static utilities.Constant.ObjectConstant.KEY_NAME;
 import static utilities.Constant.SceneConstant.*;
 import static utilities.Constant.WorldConstant.*;
 import static utilities.Constant.WorldConstant.WORLD_HEIGHT;
@@ -16,8 +20,7 @@ public class Player extends Entity {
     private final float screenX, screenY;
     private final Play play;
     private boolean up, left, down, right;
-    private boolean moving;
-    private int pixelCounter = 0;
+    private int hasKey = 0;
 
     public Player(float worldX, float worldY, float speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
@@ -74,9 +77,8 @@ public class Player extends Entity {
         play.getCollisionDetection().checkTile(this);
 
             // CHECK OBJECT COLLISION
-//        int objectIndex = collisionDetection.checkObject(this, true);
-//        collectObject(objectIndex);
-//        }
+        int objectIndex = play.getCollisionDetection().checkObject(this, true);
+        collectObject(objectIndex);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {
@@ -85,6 +87,29 @@ public class Player extends Entity {
                 case LEFT -> worldX -= speed;
                 case DOWN -> worldY += speed;
                 case RIGHT -> worldX += speed;
+            }
+        }
+    }
+
+    public void collectObject(int objectIndex) {
+        if(objectIndex != 999) {
+            ArrayList<GameObject> objects = play.getObjectManager().getObjects();
+            objects.remove(objectIndex);
+            String objectName = objects.get(objectIndex).getObjectName();
+            System.out.println(objectName + " " + objects.get(objectIndex).isCollision());
+            switch(objectName) {
+                case KEY_NAME -> {
+                    hasKey++;
+                    objects.remove(objectIndex);
+                    System.out.println("Key: " + hasKey);
+                }
+                case DOOR_NAME -> {
+                    if(hasKey > 0) {
+                        objects.remove(objectIndex);
+                        hasKey-- ;
+                    }
+                    System.out.println("Key: " + hasKey);
+                }
             }
         }
     }

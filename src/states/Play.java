@@ -113,4 +113,8 @@ public class Play extends State implements StateMethods {
     public LevelManager getLevelManager() {
         return levelManager;
     }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
+    }
 }
