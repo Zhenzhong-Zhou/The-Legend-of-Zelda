@@ -1,5 +1,6 @@
 package states;
 
+import gui.Button;
 import main.Scene;
 
 import java.awt.*;
@@ -7,10 +8,22 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static states.GameState.*;
+import static utilities.Constant.GUI.Buttons.*;
 
 public class Menu extends State implements StateMethods {
+    private Button start, load, editor, options, quit;
+
     public Menu(Scene scene) {
         super(scene);
+        initButtons();
+    }
+
+    private void initButtons() {
+        start = new Button(BUTTON_X, 440, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        load = new Button(BUTTON_X, 520, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", PLAY);
+        editor = new Button(BUTTON_X, 600, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", PLAY);
+        options = new Button(BUTTON_X, 680, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", PLAY);
+        quit = new Button(BUTTON_X, 750 , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", PLAY);
     }
 
     @Override
@@ -20,9 +33,15 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.RED);
-        graphics2D.drawString("MENU", 50, 50);
-        graphics2D.fillRect(200, 200, 100, 50);
+        drawButtons(graphics2D);
+    }
+
+    private void drawButtons(Graphics2D graphics2D) {
+        start.draw(graphics2D);
+        load.draw(graphics2D);
+        editor.draw(graphics2D);
+        options.draw(graphics2D);
+        quit.draw(graphics2D);
     }
 
     @Override

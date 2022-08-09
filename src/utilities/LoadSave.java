@@ -20,6 +20,7 @@ public class LoadSave {
     public static final String DOWN_2_IMAGE = "player/walk/boy_down_2.png";
     public static final String RIGHT_1_IMAGE = "player/walk/boy_right_1.png";
     public static final String RIGHT_2_IMAGE = "player/walk/boy_right_2.png";
+
     // TILES
     public static final String GRASS_IMAGE = "tiles/grass01.png";
     public static final String WALL_IMAGE = "tiles/wall.png";
@@ -27,10 +28,12 @@ public class LoadSave {
     public static final String EARTH_IMAGE = "tiles/earth.png";
     public static final String TREE_IMAGE = "tiles/tree.png";
     public static final String ROAD_IMAGE = "tiles/road00.png";
+
     // OBJECTS
     public static final String KEY_IMAGE = "objects/key.png";
     public static final String DOOR_IMAGE = "objects/door.png";
     public static final String CHEST_IMAGE = "objects/chest.png";
+
     // Level File Path Config
     public static String homePath = System.getProperty("user.home");
     public static String saveFolder = "The Legend of Zelda";

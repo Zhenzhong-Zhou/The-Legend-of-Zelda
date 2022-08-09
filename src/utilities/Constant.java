@@ -1,5 +1,7 @@
 package utilities;
 
+import static utilities.Constant.SceneConstant.TILE_SIZE;
+
 public class Constant {
     /**
      * GAME SETTINGS
@@ -42,8 +44,8 @@ public class Constant {
     public static class WorldConstant {
         public static final int MAX_WORLD_COL = 100;
         public static final int MAX_WORLD_ROW = 100;
-        public static final int WORLD_WIDTH = MAX_WORLD_COL * SceneConstant.TILE_SIZE;
-        public static final int WORLD_HEIGHT = MAX_WORLD_ROW * SceneConstant.TILE_SIZE;
+        public static final int WORLD_WIDTH = MAX_WORLD_COL * TILE_SIZE;
+        public static final int WORLD_HEIGHT = MAX_WORLD_ROW * TILE_SIZE;
     }
 
     /**
@@ -59,5 +61,18 @@ public class Constant {
         public static final int KEY_TYPE = 0;
         public static final int DOOR_TYPE = 1;
         public static final int CHEST_TYPE = 2;
+    }
+
+    /**
+     * GUI SETTINGS
+     */
+    public static class GUI {
+        public static class Buttons {
+            public static final int BUTTON_X = SceneConstant.SCENE_HEIGHT / 2 + 65;
+            public static final int BUTTON_Y = 300;
+            public static final int Y_OFFSET = 100;
+            public static final int BUTTON_WIDTH = 150;
+            public static final int BUTTON_HEIGHT = 50;
+        }
     }
 }
