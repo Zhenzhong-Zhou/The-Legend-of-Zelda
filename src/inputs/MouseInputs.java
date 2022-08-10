@@ -21,7 +21,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             switch(gameState) {
                 case MENU -> scene.getMenu().mouseClicked(e);
                 case PLAY -> scene.getPlay().mouseClicked(e);
-                case LOAD -> System.out.println("Load!");
+                case LOAD -> scene.getLoad().mouseClicked(e);
                 case EDITOR -> scene.getEditor().mouseClicked(e);
                 case OPTIONS -> scene.getOptions().mouseClicked(e);
             }

@@ -2,10 +2,8 @@ package main;
 
 import inputs.KeyInputs;
 import inputs.MouseInputs;
-import states.Editor;
+import states.*;
 import states.Menu;
-import states.Options;
-import states.Play;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +21,7 @@ public class Scene extends JPanel implements Runnable {
     private Thread thread;
     private Menu menu;
     private Play play;
+    private Load load;
     private Editor editor;
     private Options options;
     private MouseInputs mouseInputs;
@@ -53,6 +52,7 @@ public class Scene extends JPanel implements Runnable {
         // States Classes
         menu = new Menu(this);
         play = new Play(this);
+        load = new Load(this);
         editor = new Editor(this);
         options = new Options(this);
     }
@@ -61,6 +61,7 @@ public class Scene extends JPanel implements Runnable {
         switch(gameState) {
             case MENU -> menu.update();
             case PLAY -> play.update();
+            case LOAD -> load.update();
             case EDITOR -> editor.update();
             case OPTIONS -> options.update();
             case QUIT -> System.exit(0);
@@ -73,6 +74,7 @@ public class Scene extends JPanel implements Runnable {
         switch(gameState) {
             case MENU -> menu.draw(graphics2D);
             case PLAY -> play.draw(graphics2D);
+            case LOAD -> load.draw(graphics2D);
             case EDITOR -> editor.draw(graphics2D);
             case OPTIONS -> options.draw(graphics2D);
             case QUIT -> System.exit(0);
@@ -165,6 +167,10 @@ public class Scene extends JPanel implements Runnable {
 
     public Play getPlay() {
         return play;
+    }
+
+    public Load getLoad() {
+        return load;
     }
 
     public Editor getEditor() {
