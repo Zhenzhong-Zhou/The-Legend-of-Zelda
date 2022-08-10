@@ -1,7 +1,5 @@
 package gui;
 
-import states.Editor;
-import states.GameState;
 import states.Play;
 import tiles.Tile;
 
@@ -29,7 +27,7 @@ public class EditorBar {
         ArrayList<Tile> tiles = play.getLevelManager().getTileManager().getTiles();
         for(int i =0 ; i < tiles.size(); i++) {
             Tile tile = tiles.get(i);
-            tileButtons.add(new Button(TILE_BUTTON_SIZE + X_OFFSET*i, BAR_Y, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE, tile.getTileName(), i));
+            tileButtons.add(new Button(TILE_BUTTON_SIZE + X_OFFSET*i, BAR_Y +10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE, tile.getTileName(), i));
         }
     }
 
@@ -47,11 +45,10 @@ public class EditorBar {
         for(Button button :  tileButtons) {
             Rectangle bounds = button.getBounds();
             graphics2D.drawImage(getButtonImage(button.getId()),bounds.x, bounds.y, bounds.width, bounds.height, null);
-            button.draw(graphics2D);
         }
     }
 
     private BufferedImage getButtonImage(int id) {
-        return play.getLevelManager().getTileManager().getTile(id);
+        return play.getLevelManager().getTileManager().getSprite(id);
     }
 }

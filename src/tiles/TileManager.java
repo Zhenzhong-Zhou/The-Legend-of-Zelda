@@ -24,7 +24,11 @@ public class TileManager {
         tiles.add(ROAD = new Tile(GetSpriteAtlas(ROAD_IMAGE), ROAD_NAME,id++,false));
     }
 
-    public BufferedImage getTile(int id) {
+    public Tile getTile(int id) {
+        return tiles.get(id);
+    }
+
+    public BufferedImage getSprite(int id) {
         return tiles.get(id).getSprite();
     }
 

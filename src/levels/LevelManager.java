@@ -86,12 +86,12 @@ public class LevelManager {
             }
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
-                graphics2D.drawImage(tileManager.getTile(id), screenX, screenY, null);
+                graphics2D.drawImage(tileManager.getSprite(id), screenX, screenY, null);
             } else if(playerScreenX > playerWorldX ||
                     playerScreenY > playerWorldY ||
                     rightOffset > WORLD_WIDTH - playerWorldX ||
                     bottomOffset > WORLD_HEIGHT - playerWorldY) {
-                graphics2D.drawImage(tileManager.getTile(id), screenX, screenY, null);
+                graphics2D.drawImage(tileManager.getSprite(id), screenX, screenY, null);
             }
             worldCol++;
 
