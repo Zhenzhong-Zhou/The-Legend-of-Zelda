@@ -3,6 +3,7 @@ package gui;
 import states.GameState;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 import static utilities.LoadSave.GetFont;
 import static utilities.LoadSave.MARU_MONICA;
@@ -92,6 +93,10 @@ public class Button {
         int widthName = graphics2D.getFontMetrics().stringWidth(buttonName);
         int heightName = graphics2D.getFontMetrics().getHeight();
         graphics2D.drawString(buttonName, x - widthName / 2 + width / 2, y + heightName / 2 + height / 2);
+    }
+
+    public boolean isBound(MouseEvent e, Button button) {
+        return button.getBounds().contains(e.getX(), e.getY());
     }
 
     public boolean isMouseHover() {

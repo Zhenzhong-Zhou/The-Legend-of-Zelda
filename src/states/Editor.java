@@ -49,22 +49,30 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if(e.getY() >= BAR_Y) {
+            editorBar.mouseClicked(e);
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if(e.getY() >= BAR_Y) {
+            editorBar.mousePressed(e);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if(e.getY() >= BAR_Y) {
+            editorBar.mouseReleased(e);
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-//        if(isBound(e,))
+        if(e.getY() >= BAR_Y) {
+            editorBar.mouseMoved(e);
+        }
     }
 
     @Override
