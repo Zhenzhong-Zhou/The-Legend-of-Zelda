@@ -34,7 +34,7 @@ public class EditorBar implements StateMethods {
         ArrayList<Tile> tiles = play.getLevelManager().getTileManager().getTiles();
         for(int i = 0; i < tiles.size(); i++) {
             Tile tile = tiles.get(i);
-            tileButtons.add(new Button(TILE_BUTTON_SIZE + X_OFFSET * i, BAR_Y + 10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE, tile.getTileName(), i));
+            tileButtons.add(new Button(TILE_BUTTON_SIZE*2 + X_OFFSET * i, BAR_Y + 10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE, tile.getTileName(), i));
         }
     }
 
@@ -79,7 +79,7 @@ public class EditorBar implements StateMethods {
 
     private void drawSelectedTile(Graphics2D graphics2D) {
         if(selectedTile != null) {
-            graphics2D.drawImage(selectedTile.getSprite(), 550,BAR_Y + 10 , TILE_BUTTON_SIZE,TILE_BUTTON_SIZE,null);
+            graphics2D.drawImage(selectedTile.getSprite(), X_SELECTED_TILE,BAR_Y + 10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE,null);
         }
     }
 

@@ -80,6 +80,7 @@ public class Constant {
             public static final int BAR_Y = SCENE_HEIGHT - BAR_HEIGHT;
             public static final int TILE_BUTTON_SIZE = BAR_HEIGHT / 3;
             public static final int X_OFFSET = (int) ((BAR_HEIGHT / 3) * 1.1f);
+            public static final int X_SELECTED_TILE = 20;
             public static final String GRASS_NAME = "GRASS";
             public static final String WATER_NAME = "WATER";
             public static final String WALL_NAME = "WALL";
