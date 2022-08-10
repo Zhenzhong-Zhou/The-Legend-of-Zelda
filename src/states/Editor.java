@@ -1,28 +1,50 @@
 package states;
 
+import entities.Player;
+import gui.EditorBar;
+import levels.LevelManager;
 import main.Scene;
+import objects.ObjectManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static states.GameState.*;
+import static utilities.Constant.GUI.EditorBar.BAR_HEIGHT;
+import static utilities.Constant.GUI.EditorBar.BAR_Y;
+import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Editor extends State implements StateMethods {
+    private Player player;
+    private LevelManager levelManager;
+    private ObjectManager objectManager;
+    private EditorBar editorBar;
+
     public Editor(Scene scene) {
         super(scene);
+        editorBar = new EditorBar(0, BAR_Y, SCENE_WIDTH, BAR_HEIGHT, scene.getPlay());
+        initClasses();
+    }
+
+    private void initClasses() {
+        levelManager = new LevelManager(scene);
+        objectManager = new ObjectManager(scene.getPlay());
+        player = new Player(200, 200, 1, TILE_SIZE, TILE_SIZE, scene.getPlay());
     }
 
     @Override
     public void update() {
-
+        player.update();
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.GREEN);
-        graphics2D.drawString("EDITOR", 50, 50);
-        graphics2D.fillRect(150, 150, 150, 150);
+        levelManager.draw(graphics2D, player);
+        objectManager.draw(graphics2D, player);
+        player.draw(graphics2D);
+        editorBar.draw(graphics2D);
     }
 
     @Override
@@ -42,7 +64,7 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+//        if(isBound(e,))
     }
 
     @Override
@@ -52,6 +74,12 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_W -> player.setUp(true);
+            case KeyEvent.VK_A -> player.setLeft(true);
+            case KeyEvent.VK_S -> player.setDown(true);
+            case KeyEvent.VK_D -> player.setRight(true);
+        }
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gameState = MENU;
         } else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -61,6 +89,27 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_W -> player.setUp(false);
+            case KeyEvent.VK_A -> player.setLeft(false);
+            case KeyEvent.VK_S -> player.setDown(false);
+            case KeyEvent.VK_D -> player.setRight(false);
+        }
+    }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
+    }
+
+    public EditorBar getEditorBar() {
+        return editorBar;
     }
 }

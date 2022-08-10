@@ -12,12 +12,16 @@ public class Button {
     private final int y;
     private final int width;
     private final int height;
+    private int id;
     private final String buttonName;
     private final GameState gameState;
     private Rectangle bounds;
     private boolean mouseHover, mousePressed;
     private Font maruMonica, purisaB;
 
+    /**
+     * Menu Buttons
+     */
     public Button(int x, int y, int width, int height, String buttonName, GameState gameState) {
         this.x = x;
         this.y = y;
@@ -25,6 +29,22 @@ public class Button {
         this.height = height;
         this.buttonName = buttonName;
         this.gameState = gameState;
+        this.id = -1;
+        initBounds();
+        initFont();
+    }
+
+    /**
+     * Tile Buttons
+     */
+    public Button(int x, int y, int width, int height, String buttonName, int id) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.buttonName = buttonName;
+        this.gameState = null;
+        this.id = id;
         initBounds();
         initFont();
     }
@@ -88,6 +108,10 @@ public class Button {
 
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Rectangle getBounds() {
