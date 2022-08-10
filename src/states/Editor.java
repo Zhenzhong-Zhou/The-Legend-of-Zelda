@@ -13,14 +13,14 @@ import java.awt.event.MouseEvent;
 import static states.GameState.*;
 import static utilities.Constant.GUI.EditorBar.BAR_HEIGHT;
 import static utilities.Constant.GUI.EditorBar.BAR_Y;
-import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Editor extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private ObjectManager objectManager;
-    private EditorBar editorBar;
+    private final EditorBar editorBar;
 
     public Editor(Scene scene) {
         super(scene);

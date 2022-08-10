@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import static states.GameState.MENU;
 import static states.GameState.gameState;
 
-public class Load extends State implements StateMethods{
+public class Load extends State implements StateMethods {
     public Load(Scene scene) {
         super(scene);
     }

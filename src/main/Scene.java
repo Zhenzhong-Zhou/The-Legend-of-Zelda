@@ -2,8 +2,8 @@ package main;
 
 import inputs.KeyInputs;
 import inputs.MouseInputs;
-import states.*;
 import states.Menu;
+import states.*;
 
 import javax.swing.*;
 import java.awt.*;

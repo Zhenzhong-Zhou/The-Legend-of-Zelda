@@ -12,9 +12,9 @@ public class Button {
     private final int y;
     private final int width;
     private final int height;
-    private int id;
     private final String buttonName;
     private final GameState gameState;
+    private final int id;
     private Rectangle bounds;
     private boolean mouseHover, mousePressed;
     private Font maruMonica, purisaB;
@@ -29,7 +29,7 @@ public class Button {
         this.height = height;
         this.buttonName = buttonName;
         this.gameState = gameState;
-        this.id = -1;
+        this.id = - 1;
         initBounds();
         initFont();
     }

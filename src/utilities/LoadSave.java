@@ -36,8 +36,8 @@ public class LoadSave {
     public static final String CHEST_IMAGE = "objects/chest.png";
 
     // FONTS
-    public static final String MARU_MONICA= "fonts/x12y16pxMaruMonica.ttf";
-    public static final String PURISA_BOLD= "fonts/Purisa Bold.ttf";
+    public static final String MARU_MONICA = "fonts/x12y16pxMaruMonica.ttf";
+    public static final String PURISA_BOLD = "fonts/Purisa Bold.ttf";
 
     // Level File Path Config
     public static String homePath = System.getProperty("user.home");

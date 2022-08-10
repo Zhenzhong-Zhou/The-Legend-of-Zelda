@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     private final BufferedImage sprite;
-    private String tileName;
-    private int tileId;
     private final boolean collision;
+    private final String tileName;
+    private final int tileId;
 
     public Tile(BufferedImage sprite, String tileName, int tileId, boolean collision) {
         this.sprite = sprite;
