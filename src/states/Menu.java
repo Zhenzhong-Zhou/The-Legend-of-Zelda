@@ -49,17 +49,33 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        for(Button button :  buttons) {
+            if(isBound(e, button)) {
+                button.setMousePressed(true);
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        for(Button button :  buttons) {
+            if(isBound(e, button)) {
+                button.restBooleans();
+            }
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        for(Button button :  buttons) {
+            button.setMouseHover(false);
+        }
 
+        for(Button button :  buttons) {
+            if(isBound(e, button)) {
+                button.setMouseHover(true);
+            }
+        }
     }
 
     @Override

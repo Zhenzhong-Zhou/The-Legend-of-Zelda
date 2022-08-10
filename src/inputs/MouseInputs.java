@@ -35,7 +35,13 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getMenu().mouseReleased(e);
+            case PLAY -> scene.getPlay().mouseReleased(e);
+            case LOAD -> scene.getLoad().mouseReleased(e);
+            case EDITOR -> scene.getEditor().mouseReleased(e);
+            case OPTIONS -> scene.getOptions().mouseReleased(e);
+        }
     }
 
     @Override
@@ -55,6 +61,12 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getMenu().mouseMoved(e);
+            case PLAY -> scene.getPlay().mouseMoved(e);
+            case LOAD -> scene.getLoad().mouseMoved(e);
+            case EDITOR -> scene.getEditor().mouseMoved(e);
+            case OPTIONS -> scene.getOptions().mouseMoved(e);
+        }
     }
 }

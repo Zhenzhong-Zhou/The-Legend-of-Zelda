@@ -36,15 +36,30 @@ public class Button {
 
     public void draw(Graphics2D graphics2D) {
         // BODY
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(x,y,width,height);
+        drawBody(graphics2D);
 
         // BORDER
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.drawRect(x,y,width,height);
+        drawBorder(graphics2D);
 
         // TEXT
         drawText(graphics2D);
+    }
+
+    private void drawBody(Graphics2D graphics2D) {
+        if(mouseHover) graphics2D.setColor(Color.GRAY);
+        else graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(x,y,width,height);
+    }
+
+    private void drawBorder(Graphics2D graphics2D) {
+        if(mousePressed) {
+            graphics2D.setColor(Color.PINK);
+            graphics2D.drawRect(x+1,y+1,width-2,height-2);
+            graphics2D.drawRect(x+2,y+2,width-4,height-4);
+        } else {
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.drawRect(x,y,width,height);
+        }
     }
 
     private void drawText(Graphics2D graphics2D) {
