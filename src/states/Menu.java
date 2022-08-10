@@ -11,7 +11,7 @@ import static states.GameState.*;
 import static utilities.Constant.GUI.Buttons.*;
 
 public class Menu extends State implements StateMethods {
-    private final Button[] buttons = new Button[5];
+    private final Button[] buttons = new Button[4];
 
     public Menu(Scene scene) {
         super(scene);
@@ -19,11 +19,10 @@ public class Menu extends State implements StateMethods {
     }
 
     private void initButtons() {
-        buttons[0] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*4, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
-        buttons[1] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
-        buttons[2] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", EDITOR);
-        buttons[3] =  new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
-        buttons[4] =  new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
+        buttons[0] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        buttons[1] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
+        buttons[2] =  new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
+        buttons[3] =  new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
     }
 
     @Override
@@ -87,7 +86,6 @@ public class Menu extends State implements StateMethods {
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_ENTER -> gameState = PLAY;
-            case KeyEvent.VK_SPACE -> gameState = EDITOR;
             case KeyEvent.VK_SHIFT -> gameState = OPTIONS;
         }
     }

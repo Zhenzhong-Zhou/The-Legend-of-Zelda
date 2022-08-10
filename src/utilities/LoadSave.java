@@ -106,25 +106,6 @@ public class LoadSave {
 
             WriteToFile(idArray);
         }
-
-        int counter = 10;
-        String filePath = "res/";
-        String levelName = "level";
-        String fileType = ".txt";
-        for(int i = 0; i < counter; i++) {
-            File newFile = new File(filePath + levelName + i + fileType);
-            if(newFile.exists()) {
-                System.out.println("File: " + newFile + " is already exists.");
-            } else {
-                try {
-                    newFile.createNewFile();
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
-
-                WriteToFile(idArray);
-            }
-        }
     }
 
     private static void WriteToFile(int[][] idArray) {

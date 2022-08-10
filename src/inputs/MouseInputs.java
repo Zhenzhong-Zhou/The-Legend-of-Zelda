@@ -22,7 +22,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
                 case MENU -> scene.getMenu().mouseClicked(e);
                 case PLAY -> scene.getPlay().mouseClicked(e);
                 case LOAD -> scene.getLoad().mouseClicked(e);
-                case EDITOR -> scene.getEditor().mouseClicked(e);
                 case OPTIONS -> scene.getOptions().mouseClicked(e);
             }
         }
@@ -34,7 +33,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case MENU -> scene.getMenu().mousePressed(e);
             case PLAY -> scene.getPlay().mousePressed(e);
             case LOAD -> scene.getLoad().mousePressed(e);
-            case EDITOR -> scene.getEditor().mousePressed(e);
             case OPTIONS -> scene.getOptions().mousePressed(e);
         }
     }
@@ -45,7 +43,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case MENU -> scene.getMenu().mouseReleased(e);
             case PLAY -> scene.getPlay().mouseReleased(e);
             case LOAD -> scene.getLoad().mouseReleased(e);
-            case EDITOR -> scene.getEditor().mouseReleased(e);
             case OPTIONS -> scene.getOptions().mouseReleased(e);
         }
     }
@@ -71,7 +68,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
             case MENU -> scene.getMenu().mouseMoved(e);
             case PLAY -> scene.getPlay().mouseMoved(e);
             case LOAD -> scene.getLoad().mouseMoved(e);
-            case EDITOR -> scene.getEditor().mouseMoved(e);
             case OPTIONS -> scene.getOptions().mouseMoved(e);
         }
     }

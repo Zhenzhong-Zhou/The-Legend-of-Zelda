@@ -22,7 +22,6 @@ public class Scene extends JPanel implements Runnable {
     private Menu menu;
     private Play play;
     private Load load;
-    private Editor editor;
     private Options options;
     private MouseInputs mouseInputs;
 
@@ -53,7 +52,6 @@ public class Scene extends JPanel implements Runnable {
         menu = new Menu(this);
         play = new Play(this);
         load = new Load(this);
-        editor = new Editor(this);
         options = new Options(this);
     }
 
@@ -62,7 +60,6 @@ public class Scene extends JPanel implements Runnable {
             case MENU -> menu.update();
             case PLAY -> play.update();
             case LOAD -> load.update();
-            case EDITOR -> editor.update();
             case OPTIONS -> options.update();
             case QUIT -> System.exit(0);
             default -> {
@@ -75,7 +72,6 @@ public class Scene extends JPanel implements Runnable {
             case MENU -> menu.draw(graphics2D);
             case PLAY -> play.draw(graphics2D);
             case LOAD -> load.draw(graphics2D);
-            case EDITOR -> editor.draw(graphics2D);
             case OPTIONS -> options.draw(graphics2D);
             case QUIT -> System.exit(0);
             default -> {
@@ -171,10 +167,6 @@ public class Scene extends JPanel implements Runnable {
 
     public Load getLoad() {
         return load;
-    }
-
-    public Editor getEditor() {
-        return editor;
     }
 
     public Options getOptions() {
