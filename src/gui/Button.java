@@ -8,9 +8,12 @@ import static utilities.LoadSave.GetFont;
 import static utilities.LoadSave.MARU_MONICA;
 
 public class Button {
-    private int x, y, width, height;
-    private String buttonName;
-    private GameState gameState;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
+    private final String buttonName;
+    private final GameState gameState;
     private Rectangle bounds;
     private boolean mouseHover, mousePressed;
     private Font maruMonica, purisaB;
@@ -27,7 +30,7 @@ public class Button {
     }
 
     private void initBounds() {
-        bounds = new Rectangle(x,y, width,height);
+        bounds = new Rectangle(x, y, width, height);
     }
 
     private void initFont() {
@@ -48,17 +51,17 @@ public class Button {
     private void drawBody(Graphics2D graphics2D) {
         if(mouseHover) graphics2D.setColor(Color.GRAY);
         else graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(x,y,width,height);
+        graphics2D.fillRect(x, y, width, height);
     }
 
     private void drawBorder(Graphics2D graphics2D) {
         if(mousePressed) {
             graphics2D.setColor(Color.PINK);
-            graphics2D.drawRect(x+1,y+1,width-2,height-2);
-            graphics2D.drawRect(x+2,y+2,width-4,height-4);
+            graphics2D.drawRect(x + 1, y + 1, width - 2, height - 2);
+            graphics2D.drawRect(x + 2, y + 2, width - 4, height - 4);
         } else {
             graphics2D.setColor(Color.WHITE);
-            graphics2D.drawRect(x,y,width,height);
+            graphics2D.drawRect(x, y, width, height);
         }
     }
 
@@ -68,7 +71,7 @@ public class Button {
         graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 32F));
         int widthName = graphics2D.getFontMetrics().stringWidth(buttonName);
         int heightName = graphics2D.getFontMetrics().getHeight();
-        graphics2D.drawString(buttonName, x- widthName/2 + width/2, y+heightName/2+height/2);
+        graphics2D.drawString(buttonName, x - widthName / 2 + width / 2, y + heightName / 2 + height / 2);
     }
 
     public boolean isMouseHover() {
