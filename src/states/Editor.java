@@ -17,10 +17,10 @@ import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Editor extends State implements StateMethods {
+    private final EditorBar editorBar;
     private Player player;
     private LevelManager levelManager;
     private ObjectManager objectManager;
-    private final EditorBar editorBar;
 
     public Editor(Scene scene) {
         super(scene);
