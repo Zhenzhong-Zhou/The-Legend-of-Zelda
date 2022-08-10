@@ -5,26 +5,30 @@ import gui.EditorBar;
 import levels.LevelManager;
 import main.Scene;
 import objects.ObjectManager;
+import tiles.Tile;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static states.GameState.*;
-import static utilities.Constant.GUI.EditorBar.BAR_HEIGHT;
-import static utilities.Constant.GUI.EditorBar.BAR_Y;
+import static utilities.Constant.GUI.EditorBar.*;
 import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Editor extends State implements StateMethods {
     private final EditorBar editorBar;
+    private Tile selectedTile;
     private Player player;
     private LevelManager levelManager;
     private ObjectManager objectManager;
+    private int mouseX, mouseY;
+    private boolean drawSelected;
 
     public Editor(Scene scene) {
         super(scene);
-        editorBar = new EditorBar(0, BAR_Y, SCENE_WIDTH, BAR_HEIGHT, scene.getPlay());
+        // TODO: change later
+        editorBar = new EditorBar(0, BAR_Y, SCENE_WIDTH, BAR_HEIGHT, this, scene.getPlay());
         initClasses();
     }
 
@@ -45,13 +49,29 @@ public class Editor extends State implements StateMethods {
         objectManager.draw(graphics2D, player);
         player.draw(graphics2D);
         editorBar.draw(graphics2D);
+        drawSelectedTile(graphics2D);
+    }
+
+    private void drawSelectedTile(Graphics2D graphics2D) {
+        if(selectedTile != null && drawSelected) {
+            graphics2D.drawImage(selectedTile.getSprite(), mouseX, mouseY, TILE_SIZE, TILE_SIZE, null);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getY() >= BAR_Y) {
             editorBar.mouseClicked(e);
+        } else {
+            changeTile(mouseX, mouseY);
         }
+    }
+
+    private void changeTile(int mouseX, int mouseY) {
+        int tileX = mouseX / TILE_SIZE;
+        int tileY = mouseY / TILE_SIZE;
+
+        levelManager.getTileId()[tileX][tileY] = selectedTile.getTileId();
     }
 
     @Override
@@ -70,8 +90,13 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        if(e.getY() >= BAR_Y) {
+        if(e.getY() >= BAR_Y - X_SELECTED_TILE) {
             editorBar.mouseMoved(e);
+            drawSelected = false;
+        } else {
+            mouseX = (e.getX() / TILE_SIZE) * TILE_SIZE;
+            mouseY = (e.getY() / TILE_SIZE) * TILE_SIZE;
+            drawSelected = true;
         }
     }
 
@@ -103,6 +128,11 @@ public class Editor extends State implements StateMethods {
             case KeyEvent.VK_S -> player.setDown(false);
             case KeyEvent.VK_D -> player.setRight(false);
         }
+    }
+
+    public void setSelectedTile(Tile selectedTile) {
+        this.selectedTile = selectedTile;
+        drawSelected = true;
     }
 
     public Player getPlayer() {

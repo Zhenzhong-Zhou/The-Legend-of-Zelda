@@ -1,5 +1,7 @@
 package gui;
 
+import main.Scene;
+import states.Editor;
 import states.Play;
 import states.StateMethods;
 import tiles.Tile;
@@ -17,15 +19,18 @@ public class EditorBar implements StateMethods {
     private final int y;
     private final int width;
     private final int height;
+   // TODO: Changed later
+    private final Editor editor;
     private final Play play;
     private final ArrayList<Button> tileButtons = new ArrayList<>();
     private Tile selectedTile;
 
-    public EditorBar(int x, int y, int width, int height, Play play) {
+    public EditorBar(int x, int y, int width, int height, Editor editor, Play play) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.editor = editor;
         this.play = play;
         initButtons();
     }
@@ -80,6 +85,8 @@ public class EditorBar implements StateMethods {
     private void drawSelectedTile(Graphics2D graphics2D) {
         if(selectedTile != null) {
             graphics2D.drawImage(selectedTile.getSprite(), X_SELECTED_TILE, BAR_Y + 10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE, null);
+            graphics2D.setColor(Color.GREEN);
+            graphics2D.drawRect(X_SELECTED_TILE, BAR_Y + 10, TILE_BUTTON_SIZE, TILE_BUTTON_SIZE);
         }
     }
 
@@ -87,7 +94,8 @@ public class EditorBar implements StateMethods {
     public void mouseClicked(MouseEvent e) {
         for(Button button : tileButtons) {
             if(button.isBound(e, button)) {
-                selectedTile = play.getLevelManager().getTileManager().getTile(button.getId());
+                selectedTile = editor.getLevelManager().getTileManager().getTile(button.getId());
+                editor.setSelectedTile(selectedTile);
             }
         }
     }
@@ -139,6 +147,6 @@ public class EditorBar implements StateMethods {
     }
 
     private BufferedImage getButtonImage(int id) {
-        return play.getLevelManager().getTileManager().getSprite(id);
+        return editor.getLevelManager().getTileManager().getSprite(id);
     }
 }
