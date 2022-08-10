@@ -11,7 +11,7 @@ import static states.GameState.*;
 import static utilities.Constant.GUI.Buttons.*;
 
 public class Menu extends State implements StateMethods {
-    private Button start, load, editor, options, quit;
+    private final Button[] buttons = new Button[5];
 
     public Menu(Scene scene) {
         super(scene);
@@ -19,11 +19,11 @@ public class Menu extends State implements StateMethods {
     }
 
     private void initButtons() {
-        start = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*4, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
-        load = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", PLAY);
-        editor = new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", PLAY);
-        options = new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", PLAY);
-        quit = new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", PLAY);
+        buttons[0] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*4, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        buttons[1] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
+        buttons[2] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Editor", EDITOR);
+        buttons[3] =  new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
+        buttons[4] =  new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
     }
 
     @Override
@@ -33,20 +33,18 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        drawButtons(graphics2D);
-    }
-
-    private void drawButtons(Graphics2D graphics2D) {
-        start.draw(graphics2D);
-        load.draw(graphics2D);
-        editor.draw(graphics2D);
-        options.draw(graphics2D);
-        quit.draw(graphics2D);
+        for(Button button :  buttons) {
+            button.draw(graphics2D);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        for(Button button :  buttons) {
+            if(isBound(e, button)) {
+                button.applyGameState();
+            }
+        }
     }
 
     @Override
