@@ -1,6 +1,6 @@
 package utilities;
 
-import static utilities.Constant.SceneConstant.TILE_SIZE;
+import static utilities.Constant.SceneConstant.*;
 
 public class Constant {
     /**
@@ -56,11 +56,13 @@ public class Constant {
         public static final String KEY_NAME = "KEY";
         public static final String DOOR_NAME = "DOOR";
         public static final String CHEST_NAME = "CHEST";
+        public static final String BOOT_NAME = "BOOT";
 
         // Object Types
         public static final int KEY_TYPE = 0;
         public static final int DOOR_TYPE = 1;
         public static final int CHEST_TYPE = 2;
+        public static final int BOOT_TYPE = 3;
     }
 
     /**
@@ -71,7 +73,7 @@ public class Constant {
             public static final int Y_OFFSET = 65;
             public static final int BUTTON_WIDTH = 220;
             public static final int BUTTON_HEIGHT = 60;
-            public static final int BUTTON_X = SceneConstant.SCENE_WIDTH / 2 - BUTTON_WIDTH / 2;
+            public static final int BUTTON_X = SCENE_WIDTH / 2 - BUTTON_WIDTH / 2;
             public static final int BUTTON_Y = 770;
         }
     }

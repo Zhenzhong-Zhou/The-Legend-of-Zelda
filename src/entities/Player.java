@@ -8,8 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static utilities.Constant.DirectionConstant.*;
-import static utilities.Constant.ObjectConstant.DOOR_NAME;
-import static utilities.Constant.ObjectConstant.KEY_NAME;
+import static utilities.Constant.ObjectConstant.*;
 import static utilities.Constant.SceneConstant.*;
 import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
@@ -105,6 +104,10 @@ public class Player extends Entity {
                         hasKey--;
                     }
                     System.out.println("Key: " + hasKey);
+                }
+                case BOOT_NAME -> {
+                    speed += 2;
+                    objects.remove(objectIndex);
                 }
             }
         }
