@@ -78,7 +78,7 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_S -> player.setDown(true);
             case KeyEvent.VK_D -> player.setRight(true);
         }
-        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gameState = MENU;
         }
 

@@ -52,7 +52,7 @@ public class Editor extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gameState = MENU;
         } else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
             gameState = PLAY;

@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import static states.GameState.MENU;
+import static states.GameState.gameState;
+
 public class Load extends State implements StateMethods{
     public Load(Scene scene) {
         super(scene);
@@ -50,7 +53,9 @@ public class Load extends State implements StateMethods{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            gameState = MENU;
+        }
     }
 
     @Override
