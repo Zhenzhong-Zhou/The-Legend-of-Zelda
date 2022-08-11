@@ -117,7 +117,9 @@ public class Player extends Entity {
                     play.getGui().displayMessage("Speed up!");
                 }
                 case CHEST_NAME -> {
-
+                    play.getGui().setGameCompleted(true);
+                    play.getScene().getAudioManager().stopSound();
+                    play.getScene().getAudioManager().playEffect(FAN_FARE);
                 }
             }
         }
