@@ -16,14 +16,13 @@ public class Chest extends GameObject {
 
     public Chest(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);
+        this.sprite = sprite;
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
-        this.objectName = CHEST_NAME;
-        this.sprite = GetSpriteAtlas(CHEST_IMAGE);
+        this.objectName = objectName;
         this.collision = collision;
     }
-
 
     @Override
     public BufferedImage getSprite() {

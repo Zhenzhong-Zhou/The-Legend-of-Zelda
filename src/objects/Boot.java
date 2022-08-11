@@ -15,11 +15,11 @@ public class Boot extends GameObject{
 
     public Boot(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);
+        this.sprite = sprite;
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
-        this.objectName = BOOT_NAME;
-        this.sprite = sprite;
+        this.objectName = objectName;
         this.collision = collision;
     }
 

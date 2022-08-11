@@ -16,14 +16,13 @@ public class Key extends GameObject {
 
     public Key(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);
+        this.sprite = sprite;
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
-        this.objectName = KEY_NAME;
-        this.sprite = GetSpriteAtlas(KEY_IMAGE);
+        this.objectName = objectName;
         this.collision = collision;
     }
-
 
     @Override
     public BufferedImage getSprite() {
