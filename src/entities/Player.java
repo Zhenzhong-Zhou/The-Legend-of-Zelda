@@ -106,8 +106,7 @@ public class Player extends Entity {
                         objects.remove(objectIndex);
                         hasKey--;
                         play.getGui().displayMessage("You opened a door!");
-                    }
-                    else {
+                    } else {
                         play.getGui().displayMessage("You need a key!");
                     }
                 }

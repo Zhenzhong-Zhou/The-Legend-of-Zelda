@@ -1,6 +1,5 @@
 package main;
 
-import gui.GUI;
 import inputs.KeyInputs;
 import inputs.MouseInputs;
 import sounds.AudioManager;

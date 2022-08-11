@@ -4,12 +4,12 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 import static utilities.Constant.AudioManager.MENU;
-import static utilities.LoadSave.*;
+import static utilities.LoadSave.GetClip;
 
 public class AudioManager {
     private Clip[] musics, effects;
     private int currentMusicId;
-    private float volume = 0.5f;
+    private final float volume = 0.5f;
     private boolean musicMute, effectMute;
 
     public AudioManager() {

@@ -10,7 +10,7 @@ import static utilities.Constant.SceneConstant.TILE_SIZE;
 import static utilities.LoadSave.*;
 
 public class GUI {
-    private Play play;
+    private final Play play;
     private Font maruMonica, purisaB;
     private BufferedImage key;
     private boolean notify;
@@ -47,7 +47,7 @@ public class GUI {
         // MESSAGE
         if(notify) {
             graphics2D.setFont(graphics2D.getFont().deriveFont(30f));
-            graphics2D.drawString(message, TILE_SIZE / 2,SCENE_HEIGHT / 2);
+            graphics2D.drawString(message, TILE_SIZE / 2, SCENE_HEIGHT / 2);
 
             messageCounter++;
 

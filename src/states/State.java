@@ -19,8 +19,8 @@ public class State {
     }
 
     public void setGameStates(GameState gameState) {
-        switch(gameState) {
-            case MENU -> scene.getAudioManager().playMusic(MENU);
+        if(gameState == GameState.MENU) {
+            scene.getAudioManager().playMusic(MENU);
         }
         GameState.gameState = gameState;
     }
