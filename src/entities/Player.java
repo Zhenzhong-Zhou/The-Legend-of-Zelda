@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static utilities.Constant.AudioManager.*;
 import static utilities.Constant.DirectionConstant.*;
-import static utilities.Constant.ObjectConstant.DOOR_NAME;
-import static utilities.Constant.ObjectConstant.KEY_NAME;
+import static utilities.Constant.ObjectConstant.*;
 import static utilities.Constant.SceneConstant.*;
 import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
@@ -95,16 +95,31 @@ public class Player extends Entity {
             String objectName = objects.get(objectIndex).getObjectName();
             switch(objectName) {
                 case KEY_NAME -> {
+                    play.getScene().getAudioManager().playEffect(COIN);
                     hasKey++;
                     objects.remove(objectIndex);
-                    System.out.println("Key: " + hasKey);
+                    play.getGui().displayMessage("You picked up a key!");
                 }
                 case DOOR_NAME -> {
                     if(hasKey > 0) {
+                        play.getScene().getAudioManager().playEffect(UNLOCK);
                         objects.remove(objectIndex);
                         hasKey--;
+                        play.getGui().displayMessage("You opened a door!");
+                    } else {
+                        play.getGui().displayMessage("You need a key!");
                     }
-                    System.out.println("Key: " + hasKey);
+                }
+                case BOOT_NAME -> {
+                    play.getScene().getAudioManager().playEffect(POWER_UP);
+                    speed += 2;
+                    objects.remove(objectIndex);
+                    play.getGui().displayMessage("Speed up!");
+                }
+                case CHEST_NAME -> {
+                    play.getGui().setGameCompleted(true);
+                    play.getScene().getAudioManager().stopSound();
+                    play.getScene().getAudioManager().playEffect(FAN_FARE);
                 }
             }
         }
@@ -216,5 +231,9 @@ public class Player extends Entity {
         left = false;
         down = false;
         right = false;
+    }
+
+    public int getHasKey() {
+        return hasKey;
     }
 }

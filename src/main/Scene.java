@@ -2,7 +2,8 @@ package main;
 
 import inputs.KeyInputs;
 import inputs.MouseInputs;
-import states.Editor;
+import sounds.AudioManager;
+import states.Load;
 import states.Menu;
 import states.Options;
 import states.Play;
@@ -19,16 +20,14 @@ import static utilities.Constant.SceneConstant.SCENE_HEIGHT;
 import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel implements Runnable {
-    private final Game game;
     private Thread thread;
     private Menu menu;
     private Play play;
-    private Editor editor;
+    private Load load;
     private Options options;
-    private MouseInputs mouseInputs;
+    private AudioManager audioManager;
 
-    public Scene(Game game) {
-        this.game = game;
+    public Scene() {
         setFocusable(true);
         requestFocus();
         setSceneSize();
@@ -45,7 +44,7 @@ public class Scene extends JPanel implements Runnable {
 
     private void initClasses() {
         // Inputs Classes
-        mouseInputs = new MouseInputs(this);
+        MouseInputs mouseInputs = new MouseInputs(this);
         addKeyListener(new KeyInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
@@ -53,15 +52,18 @@ public class Scene extends JPanel implements Runnable {
         // States Classes
         menu = new Menu(this);
         play = new Play(this);
-        editor = new Editor(this);
+        load = new Load(this);
         options = new Options(this);
+
+        // Audios Classes
+        audioManager = new AudioManager();
     }
 
     public void update() {
         switch(gameState) {
             case MENU -> menu.update();
             case PLAY -> play.update();
-            case EDITOR -> editor.update();
+            case LOAD -> load.update();
             case OPTIONS -> options.update();
             case QUIT -> System.exit(0);
             default -> {
@@ -73,7 +75,7 @@ public class Scene extends JPanel implements Runnable {
         switch(gameState) {
             case MENU -> menu.draw(graphics2D);
             case PLAY -> play.draw(graphics2D);
-            case EDITOR -> editor.draw(graphics2D);
+            case LOAD -> load.draw(graphics2D);
             case OPTIONS -> options.draw(graphics2D);
             case QUIT -> System.exit(0);
             default -> {
@@ -167,11 +169,15 @@ public class Scene extends JPanel implements Runnable {
         return play;
     }
 
-    public Editor getEditor() {
-        return editor;
+    public Load getLoad() {
+        return load;
     }
 
     public Options getOptions() {
         return options;
+    }
+
+    public AudioManager getAudioManager() {
+        return audioManager;
     }
 }

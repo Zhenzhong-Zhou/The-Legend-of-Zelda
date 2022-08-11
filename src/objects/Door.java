@@ -2,10 +2,6 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.DOOR_NAME;
-import static utilities.LoadSave.DOOR_IMAGE;
-import static utilities.LoadSave.GetSpriteAtlas;
-
 public class Door extends GameObject {
     private final BufferedImage sprite;
     private final int worldX;
@@ -16,14 +12,13 @@ public class Door extends GameObject {
 
     public Door(BufferedImage sprite, int worldX, int worldY, int objectType, String objectName, boolean collision) {
         super(sprite, worldX, worldY, objectType, objectName, collision);
+        this.sprite = sprite;
         this.worldX = worldX;
         this.worldY = worldY;
         this.objectType = objectType;
-        this.objectName = DOOR_NAME;
-        this.sprite = GetSpriteAtlas(DOOR_IMAGE);
+        this.objectName = objectName;
         this.collision = collision;
     }
-
 
     @Override
     public BufferedImage getSprite() {

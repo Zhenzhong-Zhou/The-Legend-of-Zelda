@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import static states.GameState.gameState;
+
 public class MouseInputs implements MouseListener, MouseMotionListener {
     private final Scene scene;
 
@@ -15,17 +17,34 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Clicked!");
+        if(e.getButton() == MouseEvent.BUTTON1) {
+            switch(gameState) {
+                case MENU -> scene.getMenu().mouseClicked(e);
+                case PLAY -> scene.getPlay().mouseClicked(e);
+                case LOAD -> scene.getLoad().mouseClicked(e);
+                case OPTIONS -> scene.getOptions().mouseClicked(e);
+            }
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getMenu().mousePressed(e);
+            case PLAY -> scene.getPlay().mousePressed(e);
+            case LOAD -> scene.getLoad().mousePressed(e);
+            case OPTIONS -> scene.getOptions().mousePressed(e);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getMenu().mouseReleased(e);
+            case PLAY -> scene.getPlay().mouseReleased(e);
+            case LOAD -> scene.getLoad().mouseReleased(e);
+            case OPTIONS -> scene.getOptions().mouseReleased(e);
+        }
     }
 
     @Override
@@ -45,6 +64,11 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        switch(gameState) {
+            case MENU -> scene.getMenu().mouseMoved(e);
+            case PLAY -> scene.getPlay().mouseMoved(e);
+            case LOAD -> scene.getLoad().mouseMoved(e);
+            case OPTIONS -> scene.getOptions().mouseMoved(e);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class Game {
     public Game() {
         CreatedFolder();
 
-        Scene scene = new Scene(this);
+        Scene scene = new Scene();
         new Window(scene);
 
         scene.start();

@@ -1,6 +1,7 @@
 package states;
 
 import entities.Player;
+import gui.GUI;
 import levels.LevelManager;
 import main.Scene;
 import objects.ObjectManager;
@@ -19,6 +20,7 @@ public class Play extends State implements StateMethods {
     private LevelManager levelManager;
     private ObjectManager objectManager;
     private CollisionDetection collisionDetection;
+    private GUI gui;
     private boolean checkDrawDuration;
 
     public Play(Scene scene) {
@@ -27,6 +29,7 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
+        gui = new GUI(this);
         collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(scene);
         objectManager = new ObjectManager(this);
@@ -43,6 +46,7 @@ public class Play extends State implements StateMethods {
         levelManager.draw(graphics2D, player);
         objectManager.draw(graphics2D, player);
         player.draw(graphics2D);
+        gui.draw(graphics2D);
     }
 
     @Override
@@ -78,7 +82,7 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_S -> player.setDown(true);
             case KeyEvent.VK_D -> player.setRight(true);
         }
-        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gameState = MENU;
         }
 
@@ -116,5 +120,9 @@ public class Play extends State implements StateMethods {
 
     public ObjectManager getObjectManager() {
         return objectManager;
+    }
+
+    public GUI getGui() {
+        return gui;
     }
 }
