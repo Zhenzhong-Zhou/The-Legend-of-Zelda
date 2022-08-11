@@ -1,5 +1,6 @@
 package main;
 
+import gui.GUI;
 import inputs.KeyInputs;
 import inputs.MouseInputs;
 import sounds.AudioManager;
@@ -20,17 +21,14 @@ import static utilities.Constant.SceneConstant.SCENE_HEIGHT;
 import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel implements Runnable {
-    private final Game game;
     private Thread thread;
     private Menu menu;
     private Play play;
     private Load load;
     private Options options;
-    private MouseInputs mouseInputs;
     private AudioManager audioManager;
 
-    public Scene(Game game) {
-        this.game = game;
+    public Scene() {
         setFocusable(true);
         requestFocus();
         setSceneSize();
@@ -47,7 +45,7 @@ public class Scene extends JPanel implements Runnable {
 
     private void initClasses() {
         // Inputs Classes
-        mouseInputs = new MouseInputs(this);
+        MouseInputs mouseInputs = new MouseInputs(this);
         addKeyListener(new KeyInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);

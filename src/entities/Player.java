@@ -98,20 +98,27 @@ public class Player extends Entity {
                     play.getScene().getAudioManager().playEffect(COIN);
                     hasKey++;
                     objects.remove(objectIndex);
-                    System.out.println("Key: " + hasKey);
+                    play.getGui().displayMessage("You picked up a key!");
                 }
                 case DOOR_NAME -> {
                     if(hasKey > 0) {
                         play.getScene().getAudioManager().playEffect(UNLOCK);
                         objects.remove(objectIndex);
                         hasKey--;
+                        play.getGui().displayMessage("You opened a door!");
                     }
-                    System.out.println("Key: " + hasKey);
+                    else {
+                        play.getGui().displayMessage("You need a key!");
+                    }
                 }
                 case BOOT_NAME -> {
                     play.getScene().getAudioManager().playEffect(POWER_UP);
                     speed += 2;
                     objects.remove(objectIndex);
+                    play.getGui().displayMessage("Speed up!");
+                }
+                case CHEST_NAME -> {
+
                 }
             }
         }
@@ -223,5 +230,9 @@ public class Player extends Entity {
         left = false;
         down = false;
         right = false;
+    }
+
+    public int getHasKey() {
+        return hasKey;
     }
 }

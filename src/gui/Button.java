@@ -4,8 +4,7 @@ import states.GameState;
 
 import java.awt.*;
 
-import static utilities.LoadSave.GetFont;
-import static utilities.LoadSave.MARU_MONICA;
+import static utilities.LoadSave.*;
 
 public class Button {
     private final int x;
@@ -35,6 +34,7 @@ public class Button {
 
     private void initFont() {
         maruMonica = GetFont(MARU_MONICA);
+        purisaB = GetFont(PURISA_BOLD);
     }
 
     public void draw(Graphics2D graphics2D) {
