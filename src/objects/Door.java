@@ -2,10 +2,6 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.DOOR_NAME;
-import static utilities.LoadSave.DOOR_IMAGE;
-import static utilities.LoadSave.GetSpriteAtlas;
-
 public class Door extends GameObject {
     private final BufferedImage sprite;
     private final int worldX;

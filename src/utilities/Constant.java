@@ -1,6 +1,7 @@
 package utilities;
 
-import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.SceneConstant.SCENE_WIDTH;
+import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Constant {
     /**

@@ -2,10 +2,6 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.CHEST_NAME;
-import static utilities.LoadSave.CHEST_IMAGE;
-import static utilities.LoadSave.GetSpriteAtlas;
-
 public class Chest extends GameObject {
     private final BufferedImage sprite;
     private final int worldX;

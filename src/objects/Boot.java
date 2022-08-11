@@ -2,10 +2,7 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.BOOT_NAME;
-import static utilities.LoadSave.*;
-
-public class Boot extends GameObject{
+public class Boot extends GameObject {
     private final BufferedImage sprite;
     private final int worldX;
     private final int worldY;

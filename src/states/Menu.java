@@ -19,10 +19,10 @@ public class Menu extends State implements StateMethods {
     }
 
     private void initButtons() {
-        buttons[0] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*3, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
-        buttons[1] =  new Button(BUTTON_X, BUTTON_Y-Y_OFFSET*2, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
-        buttons[2] =  new Button(BUTTON_X, BUTTON_Y -Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
-        buttons[3] =  new Button(BUTTON_X, BUTTON_Y , BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
+        buttons[0] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET * 3, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        buttons[1] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET * 2, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
+        buttons[2] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
+        buttons[3] = new Button(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
     }
 
     @Override
@@ -32,14 +32,14 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             button.draw(graphics2D);
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             if(isBound(e, button)) {
                 button.applyGameState();
             }
@@ -48,7 +48,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             if(isBound(e, button)) {
                 button.setMousePressed(true);
             }
@@ -57,7 +57,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             if(isBound(e, button)) {
                 button.restBooleans();
             }
@@ -66,11 +66,11 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             button.setMouseHover(false);
         }
 
-        for(Button button :  buttons) {
+        for(Button button : buttons) {
             if(isBound(e, button)) {
                 button.setMouseHover(true);
             }

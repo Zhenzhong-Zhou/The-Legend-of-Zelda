@@ -2,10 +2,6 @@ package objects;
 
 import java.awt.image.BufferedImage;
 
-import static utilities.Constant.ObjectConstant.KEY_NAME;
-import static utilities.LoadSave.GetSpriteAtlas;
-import static utilities.LoadSave.KEY_IMAGE;
-
 public class Key extends GameObject {
     private final BufferedImage sprite;
     private final int worldX;
