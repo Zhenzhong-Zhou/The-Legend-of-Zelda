@@ -2,6 +2,7 @@ package main;
 
 import inputs.KeyInputs;
 import inputs.MouseInputs;
+import sounds.AudioManager;
 import states.Load;
 import states.Menu;
 import states.Options;
@@ -26,6 +27,7 @@ public class Scene extends JPanel implements Runnable {
     private Load load;
     private Options options;
     private MouseInputs mouseInputs;
+    private AudioManager audioManager;
 
     public Scene(Game game) {
         this.game = game;
@@ -55,6 +57,9 @@ public class Scene extends JPanel implements Runnable {
         play = new Play(this);
         load = new Load(this);
         options = new Options(this);
+
+        // Audios Classes
+        audioManager = new AudioManager();
     }
 
     public void update() {
@@ -173,5 +178,9 @@ public class Scene extends JPanel implements Runnable {
 
     public Options getOptions() {
         return options;
+    }
+
+    public AudioManager getAudioManager() {
+        return audioManager;
     }
 }

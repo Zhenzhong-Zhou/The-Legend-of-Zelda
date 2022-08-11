@@ -87,7 +87,7 @@ public class LevelManager {
 
             if(worldX + TILE_SIZE > left && worldX - TILE_SIZE < right && worldY + TILE_SIZE > up && worldY - TILE_SIZE < down) {
                 graphics2D.drawImage(tileManager.getTile(id), screenX, screenY, null);
-            } else if(playerScreenX > playerWorldX ||
+            } else if(playerScreenX > playerWorldX ||       //TODO: need to fix later
                     playerScreenY > playerWorldY ||
                     rightOffset > WORLD_WIDTH - playerWorldX ||
                     bottomOffset > WORLD_HEIGHT - playerWorldY) {

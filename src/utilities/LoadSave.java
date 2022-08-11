@@ -1,9 +1,11 @@
 package utilities;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 import java.util.Scanner;
 
 import static utilities.Constant.SceneConstant.TILE_SIZE;
@@ -86,6 +88,20 @@ public class LoadSave {
             }
         }
         return font;
+    }
+
+    public static Clip GetClip(String filename) {
+        URL url = LoadSave.class.getResource("/audios/" + filename + ".wav");
+        AudioInputStream audio;
+        try {
+            assert url != null;
+            audio = AudioSystem.getAudioInputStream(url);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audio);
+            return clip;
+        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void CreatedFolder() {

@@ -78,4 +78,18 @@ public class Constant {
             public static final int BUTTON_Y = 770;
         }
     }
+
+    /**
+     * AUDIO SETTINGS
+     */
+    public static class AudioManager {
+        // MUSICS
+        public static final int MENU = 0;
+
+        // SOUND EFFECTS
+        public static final int COIN = 0;
+        public static final int POWER_UP = 1;
+        public static final int UNLOCK = 2;
+        public static final int FAN_FARE = 3;
+    }
 }
