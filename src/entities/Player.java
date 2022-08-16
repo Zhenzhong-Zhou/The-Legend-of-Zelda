@@ -18,7 +18,6 @@ public class Player extends Entity {
     private final int screenX, screenY;
     private final Play play;
     private boolean up, left, down, right;
-    private int hasKey = 0;
 
     public Player(int worldX, int worldY, int speed, int width, int height, Play play) {
         super(worldX, worldY, speed, width, height);
@@ -91,37 +90,7 @@ public class Player extends Entity {
 
     public void collectObject(int objectIndex) {
         if(objectIndex != 999) {
-            ArrayList<GameObject> objects = play.getObjectManager().getObjects();
-            String objectName = objects.get(objectIndex).getObjectName();
-            switch(objectName) {
-                case KEY_NAME -> {
-                    play.getScene().getAudioManager().playEffect(COIN);
-                    hasKey++;
-                    objects.remove(objectIndex);
-                    play.getGui().displayMessage("You picked up a key!");
-                }
-                case DOOR_NAME -> {
-                    if(hasKey > 0) {
-                        play.getScene().getAudioManager().playEffect(UNLOCK);
-                        objects.remove(objectIndex);
-                        hasKey--;
-                        play.getGui().displayMessage("You opened a door!");
-                    } else {
-                        play.getGui().displayMessage("You need a key!");
-                    }
-                }
-                case BOOT_NAME -> {
-                    play.getScene().getAudioManager().playEffect(POWER_UP);
-                    speed += 2;
-                    objects.remove(objectIndex);
-                    play.getGui().displayMessage("Speed up!");
-                }
-                case CHEST_NAME -> {
-                    play.getGui().setGameCompleted(true);
-                    play.getScene().getAudioManager().stopSound();
-                    play.getScene().getAudioManager().playEffect(FAN_FARE);
-                }
-            }
+
         }
     }
 
@@ -231,9 +200,5 @@ public class Player extends Entity {
         left = false;
         down = false;
         right = false;
-    }
-
-    public int getHasKey() {
-        return hasKey;
     }
 }

@@ -11,9 +11,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static states.GameState.MENU;
-import static states.GameState.gameState;
-import static utilities.Constant.SceneConstant.TILE_SIZE;
+import static utilities.Constant.SceneConstant.*;
 
 public class Play extends State implements StateMethods {
     private Player player;
@@ -22,6 +20,7 @@ public class Play extends State implements StateMethods {
     private CollisionDetection collisionDetection;
     private GUI gui;
     private boolean checkDrawDuration;
+    private boolean paused;
 
     public Play(Scene scene) {
         super(scene);
@@ -38,7 +37,11 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        player.update();
+        if(paused) {
+            gui.getPauseOverlay().update();
+        } else {
+            player.update();
+        }
     }
 
     @Override
@@ -46,7 +49,11 @@ public class Play extends State implements StateMethods {
         levelManager.draw(graphics2D, player);
         objectManager.draw(graphics2D, player);
         player.draw(graphics2D);
-        gui.draw(graphics2D);
+        if(paused) {
+            graphics2D.setColor(new Color(0, 0, 0, 150));
+            graphics2D.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+            gui.getPauseOverlay().draw(graphics2D);
+        }
     }
 
     @Override
@@ -81,9 +88,7 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_A -> player.setLeft(true);
             case KeyEvent.VK_S -> player.setDown(true);
             case KeyEvent.VK_D -> player.setRight(true);
-        }
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            gameState = MENU;
+            case KeyEvent.VK_ESCAPE -> paused = ! paused;
         }
 
         // DEBUG
@@ -124,5 +129,13 @@ public class Play extends State implements StateMethods {
 
     public GUI getGui() {
         return gui;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 }

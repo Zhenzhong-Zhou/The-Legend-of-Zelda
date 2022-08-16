@@ -30,25 +30,7 @@ public class ObjectManager {
     }
 
     private void objectSetter() {
-        // KEY 1
-        objects.add(new Key(GetSpriteAtlas(KEY_IMAGE), 23 * TILE_SIZE, 22 * TILE_SIZE, KEY_TYPE, KEY_NAME, false));
-        // KEY 2
-        objects.add(new Key(GetSpriteAtlas(KEY_IMAGE), 25 * TILE_SIZE, 73 * TILE_SIZE, KEY_TYPE, KEY_NAME, false));
 
-        // DOOR 1
-        objects.add(new Door(GetSpriteAtlas(DOOR_IMAGE), 84 * TILE_SIZE, 85 * TILE_SIZE, DOOR_TYPE, DOOR_NAME, true));
-        // DOOR 2
-        objects.add(new Door(GetSpriteAtlas(DOOR_IMAGE), 44 * TILE_SIZE, 14 * TILE_SIZE, DOOR_TYPE, DOOR_NAME, true));
-        // FINAL DOOR
-        objects.add(new Door(GetSpriteAtlas(DOOR_IMAGE), 75 * TILE_SIZE, 28 * TILE_SIZE, DOOR_TYPE, DOOR_NAME, true));
-
-        // CHEST 1
-//        objects.add(new Chest(GetSpriteAtlas(CHEST_IMAGE), 82 * TILE_SIZE, 83 * TILE_SIZE, CHEST_TYPE, CHEST_NAME, true));
-        // FINAL CHEST
-        objects.add(new Chest(GetSpriteAtlas(CHEST_IMAGE), 75 * TILE_SIZE, 19 * TILE_SIZE, CHEST_TYPE, CHEST_NAME, true));
-
-        // BOOT 1
-        objects.add(new Boot(GetSpriteAtlas(BOOT_IMAGE), 55 * TILE_SIZE, 55 * TILE_SIZE, BOOT_TYPE, BOOT_NAME, false));
     }
 
     public void update() {
