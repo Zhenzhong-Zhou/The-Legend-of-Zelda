@@ -1,9 +1,12 @@
 package entities;
 
+import states.Play;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity {
+    protected Play play;
     protected int worldX, worldY, speed;
     protected int width, height;
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
@@ -16,12 +19,8 @@ public abstract class Entity {
     protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
 
-    public Entity(int worldX, int worldY, int speed, int width, int height) {
-        this.worldX = worldX;
-        this.worldY = worldY;
-        this.speed = speed;
-        this.width = width;
-        this.height = height;
+    public Entity(Play play) {
+        this.play = play;
     }
 
     public String getDirection() {

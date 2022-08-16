@@ -32,7 +32,7 @@ public class Play extends State implements StateMethods {
         collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(scene);
         objectManager = new ObjectManager(this);
-        player = new Player(200, 200, 1, TILE_SIZE, TILE_SIZE, this);
+        player = new Player(this);
     }
 
     @Override

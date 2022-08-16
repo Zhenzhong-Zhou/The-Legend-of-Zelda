@@ -12,12 +12,10 @@ import static utilities.LoadSave.*;
 
 public class Player extends Entity {
     private final int screenX, screenY;
-    private final Play play;
     private boolean up, left, down, right;
 
-    public Player(int worldX, int worldY, int speed, int width, int height, Play play) {
-        super(worldX, worldY, speed, width, height);
-        this.play = play;
+    public Player(Play play) {
+        super(play);
         screenX = (SCENE_WIDTH / 2) - (TILE_SIZE / 2);
         screenY = (SCENE_HEIGHT / 2) - (TILE_SIZE / 2);
         hitbox = new Rectangle(8, 16, 32, 32);
