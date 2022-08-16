@@ -1,15 +1,11 @@
 package entities;
 
-import objects.GameObject;
 import states.Play;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
-import static utilities.Constant.AudioManager.*;
 import static utilities.Constant.DirectionConstant.*;
-import static utilities.Constant.ObjectConstant.*;
 import static utilities.Constant.SceneConstant.*;
 import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;

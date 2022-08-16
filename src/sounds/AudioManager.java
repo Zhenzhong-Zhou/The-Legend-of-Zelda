@@ -7,9 +7,9 @@ import static utilities.Constant.AudioManager.MENU;
 import static utilities.LoadSave.GetClip;
 
 public class AudioManager {
+    private final float volume = 0.5f;
     private Clip[] musics, effects;
     private int currentMusicId;
-    private final float volume = 0.5f;
     private boolean musicMute, effectMute;
 
     public AudioManager() {

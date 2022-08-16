@@ -7,9 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static utilities.Constant.ObjectConstant.*;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
-import static utilities.LoadSave.*;
 
 public class ObjectManager {
     private final Play play;

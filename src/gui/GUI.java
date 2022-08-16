@@ -12,7 +12,7 @@ public class GUI {
     private Font maruMonica, purisaB;
     private boolean notify;
     private String message = "";
-    private int messageCounter = 0;
+    private final int messageCounter = 0;
     private boolean gameCompleted;
     private double timer;
     private PauseOverlay pauseOverlay;
@@ -43,7 +43,7 @@ public class GUI {
     }
 
     public int getHorizonCenteredText(Graphics2D graphics2D, String text) {
-        int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D). getWidth();
+        int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
         return SCENE_WIDTH / 2 - length / 2;
     }
 

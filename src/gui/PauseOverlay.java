@@ -5,7 +5,7 @@ import java.awt.*;
 import static utilities.Constant.SceneConstant.SCENE_HEIGHT;
 
 public class PauseOverlay {
-    private GUI gui;
+    private final GUI gui;
 
     public PauseOverlay(GUI gui) {
         this.gui = gui;
