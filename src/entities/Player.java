@@ -72,7 +72,7 @@ public class Player extends Entity {
         collectObject(objectIndex);
 
         // CHECK NPC COLLISION
-        int npcIndex =  start.getCollisionDetection().checkEntity(this, start.getEntityManager().getNpcs());
+        int npcIndex = start.getCollisionDetection().checkEntity(this, start.getEntityManager().getNpcs());
         interactNPC(npcIndex);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE

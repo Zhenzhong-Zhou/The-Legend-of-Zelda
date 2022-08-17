@@ -9,10 +9,10 @@ import static utilities.LoadSave.*;
 
 public class GUI {
     private final Start start;
+    private final int messageCounter = 0;
     private Font maruMonica, purisaB;
     private boolean notify;
     private String message = "";
-    private final int messageCounter = 0;
     private boolean gameCompleted;
     private double timer;
     private PauseOverlay pauseOverlay;

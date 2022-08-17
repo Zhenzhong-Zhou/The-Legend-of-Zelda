@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilities.Constant.DirectionConstant.*;
-import static utilities.Constant.DirectionConstant.RIGHT;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class Entity {
@@ -23,12 +22,12 @@ public class Entity {
     protected Rectangle hitbox;
     protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
-    private boolean up, left, down, right;
     protected int actionLockCounter = 0;
+    private boolean up, left, down, right;
 
     public Entity(Start start) {
         this.start = start;
-        hitbox = new Rectangle(0,0,TILE_SIZE, TILE_SIZE);
+        hitbox = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
         setDefaultValues();
     }
 

@@ -13,7 +13,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static utilities.Constant.SceneConstant.*;
+import static utilities.Constant.SceneConstant.SCENE_HEIGHT;
+import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Start extends State implements StateMethods {
     private Player player;
@@ -38,7 +39,7 @@ public class Start extends State implements StateMethods {
         objectManager = new ObjectManager(this);
         entityManager = new EntityManager(this);
         npc_oldMan = new NPC_OldMan(this);
-        player = new Player( this);
+        player = new Player(this);
     }
 
     @Override
