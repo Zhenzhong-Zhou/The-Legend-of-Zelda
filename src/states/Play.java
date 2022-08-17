@@ -69,22 +69,30 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if(paused) {
+            gui.getPauseOverlay().mouseClicked(e);
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if(paused) {
+            gui.getPauseOverlay().mousePressed(e);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if(paused) {
+            gui.getPauseOverlay().mouseReleased(e);
+        }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        if(paused) {
+            gui.getPauseOverlay().mouseMoved(e);
+        }
     }
 
     @Override

@@ -67,6 +67,10 @@ public class GUI {
         }
     }
 
+    public void resume() {
+        scene.getPlay().setPaused(false);
+    }
+
     public boolean isGameCompleted() {
         return gameCompleted;
     }

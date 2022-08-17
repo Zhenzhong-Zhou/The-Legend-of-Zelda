@@ -4,5 +4,5 @@ public enum GameState {
     MENU, PLAY, LOAD, OPTIONS, QUIT;
 
     // TODO: change to MENU later
-    public static GameState gameState = MENU;
+    public static GameState gameState = PLAY;
 }
