@@ -1,5 +1,7 @@
 package states;
 
+import entities.EntityManager;
+import entities.NPC_OldMan;
 import entities.Player;
 import gui.GUI;
 import levels.LevelManager;
@@ -17,6 +19,8 @@ public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private ObjectManager objectManager;
+    private EntityManager entityManager;
+    private NPC_OldMan npc_oldMan;
     private CollisionDetection collisionDetection;
     private GUI gui;
     private boolean checkDrawDuration;
@@ -32,7 +36,9 @@ public class Play extends State implements StateMethods {
         collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(scene);
         objectManager = new ObjectManager(this);
-        player = new Player(this);
+        entityManager = new EntityManager(this);
+        npc_oldMan = new NPC_OldMan(this);
+        player = new Player( this);
     }
 
     @Override
@@ -40,6 +46,7 @@ public class Play extends State implements StateMethods {
         if(paused) {
             gui.getPauseOverlay().update();
         } else {
+            entityManager.update();
             player.update();
         }
     }
@@ -48,6 +55,7 @@ public class Play extends State implements StateMethods {
     public void draw(Graphics2D graphics2D) {
         levelManager.draw(graphics2D, player);
         objectManager.draw(graphics2D, player);
+        entityManager.draw(graphics2D, player);
         player.draw(graphics2D);
         if(paused) {
             graphics2D.setColor(new Color(0, 0, 0, 150));

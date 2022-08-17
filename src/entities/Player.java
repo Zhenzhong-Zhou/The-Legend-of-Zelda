@@ -33,7 +33,7 @@ public class Player extends Entity {
     private void setDefaultValues() {
         worldX = (MAX_WORLD_COL / 2 - 1) * TILE_SIZE;
         worldY = (MAX_WORLD_ROW / 2 - 1) * TILE_SIZE;
-        speed = (int) SCALE;//TODO: need to change later
+        speed = (int) (0.5f * SCALE);//TODO: need to change later
         direction = DOWN;
     }
 
@@ -160,9 +160,10 @@ public class Player extends Entity {
         }
 
         graphics2D.drawImage(image, x, y, null);
+
         // Draw hitbox
         graphics2D.setColor(Color.RED);
-        graphics2D.drawRect(x + 8, y + 16, 32, 32);
+        graphics2D.drawRect(x + getHitbox().x, y + + getHitbox().y, getHitbox().width, getHitbox().height);
     }
 
     public void setUp(boolean up) {
