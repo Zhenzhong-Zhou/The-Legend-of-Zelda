@@ -89,6 +89,9 @@ public class Player extends Entity {
         int npcIndex =  play.getCollisionDetection().checkEntity(this, play.getEntityManager().getNpcs());
         interactNPC(npcIndex);
 
+        // CHECK EVENT
+        play.getEventManager().checkEvent();
+
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {
             switch(direction) {

@@ -2,6 +2,7 @@ package levels;
 
 import entities.Player;
 import main.Scene;
+import states.Play;
 import tiles.TileManager;
 
 import java.awt.*;
@@ -11,12 +12,13 @@ import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
 
 public class LevelManager {
-    private final Scene scene;
+//    private final Scene scene;
+    private Play play;
     private final TileManager tileManager;
     private int[][] level;
 
-    public LevelManager(Scene scene) {
-        this.scene = scene;
+    public LevelManager(Play play) {
+        this.play = play;
         tileManager = new TileManager();
         createDefaultLevel();
         loadDefaultLevel();

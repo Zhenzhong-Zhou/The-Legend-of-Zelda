@@ -12,7 +12,6 @@ public abstract class Entity {
     protected Play play;
     protected int worldX, worldY;
     protected float speed;
-    protected int width, height;
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
     protected String direction;
     protected int spriteCounter = 0;
@@ -124,5 +123,21 @@ public abstract class Entity {
 
     public String[] getDialogues() {
         return dialogues;
+    }
+
+    public int getMaxLives() {
+        return maxLives;
+    }
+
+    public void setMaxLives(int maxLives) {
+        this.maxLives = maxLives;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
     }
 }

@@ -3,6 +3,7 @@ package states;
 import entities.EntityManager;
 import entities.NPC_OldMan;
 import entities.Player;
+import events.EventManager;
 import gui.GUI;
 import levels.LevelManager;
 import main.Scene;
@@ -21,6 +22,7 @@ public class Play extends State implements StateMethods {
     private LevelManager levelManager;
     private ObjectManager objectManager;
     private EntityManager entityManager;
+    private EventManager eventManager;
     private NPC_OldMan npc_oldMan;
     private CollisionDetection collisionDetection;
     private GUI gui;
@@ -35,7 +37,8 @@ public class Play extends State implements StateMethods {
     private void initClasses() {
         gui = new GUI(scene);
         collisionDetection = new CollisionDetection(this);
-        levelManager = new LevelManager(scene);
+        eventManager = new EventManager(this);
+        levelManager = new LevelManager(this);
         objectManager = new ObjectManager(this);
         entityManager = new EntityManager(this);
         npc_oldMan = new NPC_OldMan(this);
@@ -149,6 +152,10 @@ public class Play extends State implements StateMethods {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 
     public GUI getGui() {
