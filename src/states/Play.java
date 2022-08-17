@@ -33,7 +33,7 @@ public class Play extends State implements StateMethods {
     }
 
     private void initClasses() {
-        gui = new GUI(this);
+        gui = new GUI(scene);
         collisionDetection = new CollisionDetection(this);
         levelManager = new LevelManager(scene);
         objectManager = new ObjectManager(this);

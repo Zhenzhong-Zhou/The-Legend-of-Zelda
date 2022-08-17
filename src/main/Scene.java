@@ -1,5 +1,6 @@
 package main;
 
+import gui.GUI;
 import inputs.KeyInputs;
 import inputs.MouseInputs;
 import sounds.AudioManager;
@@ -21,6 +22,7 @@ import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 
 public class Scene extends JPanel implements Runnable {
     private Thread thread;
+    private GUI gui;
     private Menu menu;
     private Play play;
     private Load load;
@@ -48,6 +50,9 @@ public class Scene extends JPanel implements Runnable {
         addKeyListener(new KeyInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
+
+        // GUI classes
+        gui = new GUI(this);
 
         // States Classes
         menu = new Menu(this);
@@ -159,6 +164,10 @@ public class Scene extends JPanel implements Runnable {
         if(gameState == PLAY) {
             play.getPlayer().resetDirectionBoolean();
         }
+    }
+
+    public GUI getGui() {
+        return gui;
     }
 
     public Menu getMenu() {

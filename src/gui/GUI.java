@@ -1,5 +1,6 @@
 package gui;
 
+import main.Scene;
 import states.Play;
 
 import java.awt.*;
@@ -8,7 +9,7 @@ import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 import static utilities.LoadSave.*;
 
 public class GUI {
-    private final Play play;
+    private final Scene scene;
     private Font maruMonica, purisaB;
     private boolean notify;
     private String currentDialogue = "";
@@ -18,8 +19,8 @@ public class GUI {
     private PauseOverlay pauseOverlay;
     private DialogueOverlay dialogueOverlay;
 
-    public GUI(Play play) {
-        this.play = play;
+    public GUI(Scene scene) {
+        this.scene = scene;
 
         initFont();
         initOverlays();

@@ -18,7 +18,7 @@ public class DialogueOverlay {
     }
 
     private void drawOverlay(Graphics2D graphics2D) {
-        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 30F));
+        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 32F));
         // WINDOW
         int x = TILE_SIZE * 2;
         int y = TILE_SIZE/2;
