@@ -98,4 +98,8 @@ public class EntityManager {
             }
         }
     }
+
+    public Entity[] getNpcs() {
+        return npcs;
+    }
 }

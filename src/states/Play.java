@@ -135,6 +135,10 @@ public class Play extends State implements StateMethods {
         return objectManager;
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
     public GUI getGui() {
         return gui;
     }

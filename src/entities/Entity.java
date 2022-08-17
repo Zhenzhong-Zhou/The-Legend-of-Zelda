@@ -49,6 +49,8 @@ public class Entity {
 
         collision = false;
         play.getCollisionDetection().checkTile(this);
+        play.getCollisionDetection().checkObject(this, false);
+        play.getCollisionDetection().checkPlayer(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {

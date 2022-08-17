@@ -71,6 +71,10 @@ public class Player extends Entity {
         int objectIndex = play.getCollisionDetection().checkObject(this, true);
         collectObject(objectIndex);
 
+        // CHECK NPC COLLISION
+        int npcIndex =  play.getCollisionDetection().checkEntity(this, play.getEntityManager().getNpcs());
+        interactNPC(npcIndex);
+
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {
             switch(direction) {
@@ -82,9 +86,15 @@ public class Player extends Entity {
         }
     }
 
-    public void collectObject(int objectIndex) {
+    private void collectObject(int objectIndex) {
         if(objectIndex != 999) {
 
+        }
+    }
+
+    private void interactNPC(int npcIndex) {
+        if(npcIndex != 999) {
+            System.out.println("Hit NPC!");
         }
     }
 
