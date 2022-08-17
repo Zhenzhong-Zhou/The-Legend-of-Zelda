@@ -18,6 +18,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 public class Menu extends State implements StateMethods {
     private GUI gui;
     private final Button[] buttons = new Button[4];
+    private int commandNum = 0;
 
     public Menu(Scene scene) {
         super(scene);
@@ -46,8 +47,15 @@ public class Menu extends State implements StateMethods {
         drawCharacter(graphics2D);
 
         // BUTTONS
-        for(Button button : buttons) {
-            button.draw(graphics2D);
+//        for(Button button : buttons) {
+//            button.draw(graphics2D);
+//        }
+
+        for(int i=0; i< buttons.length;i++) {
+            if(commandNum == i) {
+                graphics2D.drawString(">", BUTTON_X - TILE_SIZE, BUTTON_Y - Y_OFFSET * (3-i));
+                buttons[i].draw(graphics2D);
+            }
         }
     }
 
@@ -123,8 +131,26 @@ public class Menu extends State implements StateMethods {
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_ENTER -> gameState = PLAY;
-            case KeyEvent.VK_SHIFT -> gameState = OPTIONS;
+            case KeyEvent.VK_W, KeyEvent.VK_UP -> {
+                commandNum--;
+                if(commandNum<0) {
+                    commandNum = 3;
+                }
+            }
+            case KeyEvent.VK_S, KeyEvent.VK_DOWN -> {
+                commandNum++;
+                if(commandNum>3) {
+                    commandNum = 0;
+                }
+            }
+            case KeyEvent.VK_ENTER -> {
+                if(commandNum == 0) {
+                    setGameStates(PLAY);
+                }
+                if(commandNum == 3) {
+                    System.exit(0);
+                }
+            }
         }
     }
 
