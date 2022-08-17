@@ -20,7 +20,6 @@ public class GUI {
 
     public GUI(Play play) {
         this.play = play;
-        this.
 
         initFont();
         initOverlays();

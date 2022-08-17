@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilities.Constant.DirectionConstant.*;
-import static utilities.Constant.DirectionConstant.RIGHT;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
 import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
@@ -27,11 +26,11 @@ public class EntityManager {
     }
 
     private void npcsSetter() {
-        npcs[0] = new NPC_OldMan( play);
+        npcs[0] = new NPC_OldMan(play);
         npcs[0].worldX = (MAX_WORLD_COL / 2 - 3) * TILE_SIZE;
         npcs[0].worldY = (MAX_WORLD_ROW / 2 - 3) * TILE_SIZE;
 
-        npcs[1] = new NPC_OldMan( play);
+        npcs[1] = new NPC_OldMan(play);
         npcs[1].worldX = (MAX_WORLD_COL / 2 - 5) * TILE_SIZE;
         npcs[1].worldY = (MAX_WORLD_ROW / 2 - 5) * TILE_SIZE;
     }
