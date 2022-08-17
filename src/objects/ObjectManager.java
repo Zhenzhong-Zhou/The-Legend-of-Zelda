@@ -1,7 +1,7 @@
 package objects;
 
 import entities.Player;
-import states.Play;
+import states.Start;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class ObjectManager {
-    private final Play play;
+    private final Start start;
     private ArrayList<GameObject> objects;
     private GameObject KEY, DOOR, CHEST;
     private Key key;
     private Door door;
     private Chest chest;
 
-    public ObjectManager(Play play) {
-        this.play = play;
+    public ObjectManager(Start start) {
+        this.start = start;
         loadObjects();
         objectSetter();
     }

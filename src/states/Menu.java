@@ -19,7 +19,7 @@ public class Menu extends State implements StateMethods {
     }
 
     private void initButtons() {
-        buttons[0] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET * 3, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", PLAY);
+        buttons[0] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET * 3, BUTTON_WIDTH, BUTTON_HEIGHT, "Start New Game", START);
         buttons[1] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET * 2, BUTTON_WIDTH, BUTTON_HEIGHT, "Load Game", LOAD);
         buttons[2] = new Button(BUTTON_X, BUTTON_Y - Y_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, "Options", OPTIONS);
         buttons[3] = new Button(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT, "Quit", QUIT);
@@ -85,7 +85,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_ENTER -> gameState = PLAY;
+            case KeyEvent.VK_ENTER -> gameState = START;
             case KeyEvent.VK_SHIFT -> gameState = OPTIONS;
         }
     }

@@ -23,7 +23,7 @@ public class KeyInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch(gameState) {
             case MENU -> scene.getMenu().keyPressed(e);
-            case PLAY -> scene.getPlay().keyPressed(e);
+            case START -> scene.getStart().keyPressed(e);
             case LOAD -> scene.getLoad().keyPressed(e);
             case OPTIONS -> scene.getOptions().keyPressed(e);
             default -> {
@@ -35,7 +35,7 @@ public class KeyInputs implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch(gameState) {
             case MENU -> scene.getMenu().keyReleased(e);
-            case PLAY -> scene.getPlay().keyReleased(e);
+            case START -> scene.getStart().keyReleased(e);
             case LOAD -> scene.getLoad().keyReleased(e);
             case OPTIONS -> scene.getOptions().keyReleased(e);
             default -> {

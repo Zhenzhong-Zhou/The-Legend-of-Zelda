@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 
 import static utilities.Constant.SceneConstant.*;
 
-public class Play extends State implements StateMethods {
+public class Start extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private ObjectManager objectManager;
@@ -26,7 +26,7 @@ public class Play extends State implements StateMethods {
     private boolean checkDrawDuration;
     private boolean paused;
 
-    public Play(Scene scene) {
+    public Start(Scene scene) {
         super(scene);
         initClasses();
     }

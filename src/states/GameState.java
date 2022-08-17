@@ -1,8 +1,8 @@
 package states;
 
 public enum GameState {
-    MENU, PLAY, LOAD, OPTIONS, QUIT;
+    MENU, START, LOAD, OPTIONS, QUIT;
 
     // TODO: change to MENU later
-    public static GameState gameState = PLAY;
+    public static GameState gameState = START;
 }

@@ -1,19 +1,16 @@
 package entities;
 
-import states.Play;
+import states.Start;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilities.Constant.DirectionConstant.*;
 import static utilities.Constant.DirectionConstant.RIGHT;
-import static utilities.Constant.SceneConstant.SCALE;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
-import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
-import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
 
 public class Entity {
-    protected Play play;
+    protected Start start;
     protected int worldX, worldY;
     protected float speed;
     protected int width, height;
@@ -29,8 +26,8 @@ public class Entity {
     private boolean up, left, down, right;
     protected int actionLockCounter = 0;
 
-    public Entity(Play play) {
-        this.play = play;
+    public Entity(Start start) {
+        this.start = start;
         hitbox = new Rectangle(0,0,TILE_SIZE, TILE_SIZE);
         setDefaultValues();
     }
@@ -48,9 +45,9 @@ public class Entity {
         setAction();
 
         collision = false;
-        play.getCollisionDetection().checkTile(this);
-        play.getCollisionDetection().checkObject(this, false);
-        play.getCollisionDetection().checkPlayer(this);
+        start.getCollisionDetection().checkTile(this);
+        start.getCollisionDetection().checkObject(this, false);
+        start.getCollisionDetection().checkPlayer(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(! collision) {

@@ -1,6 +1,6 @@
 package gui;
 
-import states.Play;
+import states.Start;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 import static utilities.LoadSave.*;
 
 public class GUI {
-    private final Play play;
+    private final Start start;
     private Font maruMonica, purisaB;
     private boolean notify;
     private String message = "";
@@ -17,8 +17,8 @@ public class GUI {
     private double timer;
     private PauseOverlay pauseOverlay;
 
-    public GUI(Play play) {
-        this.play = play;
+    public GUI(Start start) {
+        this.start = start;
 
         initFont();
         initOverlays();

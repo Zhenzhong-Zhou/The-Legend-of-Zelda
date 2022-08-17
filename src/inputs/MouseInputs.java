@@ -20,7 +20,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         if(e.getButton() == MouseEvent.BUTTON1) {
             switch(gameState) {
                 case MENU -> scene.getMenu().mouseClicked(e);
-                case PLAY -> scene.getPlay().mouseClicked(e);
+                case START -> scene.getStart().mouseClicked(e);
                 case LOAD -> scene.getLoad().mouseClicked(e);
                 case OPTIONS -> scene.getOptions().mouseClicked(e);
             }
@@ -31,7 +31,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e) {
         switch(gameState) {
             case MENU -> scene.getMenu().mousePressed(e);
-            case PLAY -> scene.getPlay().mousePressed(e);
+            case START -> scene.getStart().mousePressed(e);
             case LOAD -> scene.getLoad().mousePressed(e);
             case OPTIONS -> scene.getOptions().mousePressed(e);
         }
@@ -41,7 +41,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent e) {
         switch(gameState) {
             case MENU -> scene.getMenu().mouseReleased(e);
-            case PLAY -> scene.getPlay().mouseReleased(e);
+            case START -> scene.getStart().mouseReleased(e);
             case LOAD -> scene.getLoad().mouseReleased(e);
             case OPTIONS -> scene.getOptions().mouseReleased(e);
         }
@@ -66,7 +66,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         switch(gameState) {
             case MENU -> scene.getMenu().mouseMoved(e);
-            case PLAY -> scene.getPlay().mouseMoved(e);
+            case START -> scene.getStart().mouseMoved(e);
             case LOAD -> scene.getLoad().mouseMoved(e);
             case OPTIONS -> scene.getOptions().mouseMoved(e);
         }

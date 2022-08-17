@@ -1,6 +1,6 @@
 package entities;
 
-import states.Play;
+import states.Start;
 
 import java.util.Random;
 
@@ -8,8 +8,8 @@ import static utilities.Constant.DirectionConstant.*;
 import static utilities.LoadSave.*;
 
 public class NPC_OldMan extends Entity{
-    public NPC_OldMan( Play play) {
-        super(play);
+    public NPC_OldMan( Start start) {
+        super(start);
 
         getOldManImage();
     }

@@ -1,6 +1,6 @@
 package entities;
 
-import states.Play;
+import states.Start;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,8 +14,8 @@ public class Player extends Entity {
     private final int screenX, screenY;
     private boolean up, left, down, right;
 
-    public Player(Play play) {
-        super(play);
+    public Player(Start start) {
+        super(start);
         screenX = (SCENE_WIDTH / 2) - (TILE_SIZE / 2);
         screenY = (SCENE_HEIGHT / 2) - (TILE_SIZE / 2);
         hitbox = new Rectangle(8, 16, 32, 32);
@@ -65,14 +65,14 @@ public class Player extends Entity {
 
         // CHECK TILE COLLISION
         collision = false;
-        play.getCollisionDetection().checkTile(this);
+        start.getCollisionDetection().checkTile(this);
 
         // CHECK OBJECT COLLISION
-        int objectIndex = play.getCollisionDetection().checkObject(this, true);
+        int objectIndex = start.getCollisionDetection().checkObject(this, true);
         collectObject(objectIndex);
 
         // CHECK NPC COLLISION
-        int npcIndex =  play.getCollisionDetection().checkEntity(this, play.getEntityManager().getNpcs());
+        int npcIndex =  start.getCollisionDetection().checkEntity(this, start.getEntityManager().getNpcs());
         interactNPC(npcIndex);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE

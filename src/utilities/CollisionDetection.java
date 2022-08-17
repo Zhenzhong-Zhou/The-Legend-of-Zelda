@@ -3,7 +3,7 @@ package utilities;
 import entities.Entity;
 import entities.Player;
 import objects.GameObject;
-import states.Play;
+import states.Start;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,10 @@ import static utilities.Constant.DirectionConstant.*;
 import static utilities.Constant.SceneConstant.TILE_SIZE;
 
 public class CollisionDetection {
-    private final Play play;
+    private final Start start;
 
-    public CollisionDetection(Play play) {
-        this.play = play;
+    public CollisionDetection(Start start) {
+        this.start = start;
     }
 
     public void checkTile(Entity entity) {
@@ -32,10 +32,10 @@ public class CollisionDetection {
         switch(entity.getDirection()) {
             case UP -> {
                 entityTopRow = (int) ((entityTopWorldY - entity.getSpeed()) / TILE_SIZE);
-                tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
-                tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityTopRow];
-                boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
-                boolean collision2 = play.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
+                tileNum1 = start.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
+                tileNum2 = start.getLevelManager().getTileId()[entityRightCol][entityTopRow];
+                boolean collision1 = start.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
+                boolean collision2 = start.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
 
                 if(collision1 || collision2) {
                     entity.setCollision(true);
@@ -43,10 +43,10 @@ public class CollisionDetection {
             }
             case LEFT -> {
                 entityLeftCol = (int) ((entityLeftWorldX - entity.getSpeed()) / TILE_SIZE);
-                tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
-                tileNum2 = play.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
-                boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
-                boolean collision2 = play.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
+                tileNum1 = start.getLevelManager().getTileId()[entityLeftCol][entityTopRow];
+                tileNum2 = start.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
+                boolean collision1 = start.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
+                boolean collision2 = start.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
 
                 if(collision1 || collision2) {
                     entity.setCollision(true);
@@ -54,10 +54,10 @@ public class CollisionDetection {
             }
             case DOWN -> {
                 entityBottomRow = (int) ((entityBottomWorldY + entity.getSpeed()) / TILE_SIZE);
-                tileNum1 = play.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
-                tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
-                boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
-                boolean collision2 = play.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
+                tileNum1 = start.getLevelManager().getTileId()[entityLeftCol][entityBottomRow];
+                tileNum2 = start.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
+                boolean collision1 = start.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
+                boolean collision2 = start.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
 
                 if(collision1 || collision2) {
                     entity.setCollision(true);
@@ -65,10 +65,10 @@ public class CollisionDetection {
             }
             case RIGHT -> {
                 entityRightCol = (int) ((entityRightWorldX + entity.getSpeed()) / TILE_SIZE);
-                tileNum1 = play.getLevelManager().getTileId()[entityRightCol][entityTopRow];
-                tileNum2 = play.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
-                boolean collision1 = play.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
-                boolean collision2 = play.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
+                tileNum1 = start.getLevelManager().getTileId()[entityRightCol][entityTopRow];
+                tileNum2 = start.getLevelManager().getTileId()[entityRightCol][entityBottomRow];
+                boolean collision1 = start.getLevelManager().getTileManager().getTiles().get(tileNum1).isCollision();
+                boolean collision2 = start.getLevelManager().getTileManager().getTiles().get(tileNum2).isCollision();
 
                 if(collision1 || collision2) {
                     entity.setCollision(true);
@@ -82,7 +82,7 @@ public class CollisionDetection {
     public int checkObject(Entity entity, boolean player) {
         int index = 999;
 
-        ArrayList<GameObject> objects = play.getObjectManager().getObjects();
+        ArrayList<GameObject> objects = start.getObjectManager().getObjects();
         for(int i = 0; i < objects.size(); i++) {
             GameObject object = objects.get(i);
             if(object != null) {
@@ -209,7 +209,7 @@ public class CollisionDetection {
         entity.getHitbox().x = entity.getWorldX() + entity.getHitbox().x;
         entity.getHitbox().y = entity.getWorldY() + entity.getHitbox().y;
 
-        Player player = play.getPlayer();
+        Player player = start.getPlayer();
         // Get the object's hitbox position
         player.getHitbox().x = player.getWorldX() + player.getHitbox().x;
         player.getHitbox().y = player.getWorldY() + player.getHitbox().y;

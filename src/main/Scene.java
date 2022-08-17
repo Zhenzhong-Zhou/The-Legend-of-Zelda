@@ -6,13 +6,13 @@ import sounds.AudioManager;
 import states.Load;
 import states.Menu;
 import states.Options;
-import states.Play;
+import states.Start;
 
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
-import static states.GameState.PLAY;
+import static states.GameState.START;
 import static states.GameState.gameState;
 import static utilities.Constant.GameConstant.FPS_SET;
 import static utilities.Constant.GameConstant.UPS_SET;
@@ -22,7 +22,7 @@ import static utilities.Constant.SceneConstant.SCENE_WIDTH;
 public class Scene extends JPanel implements Runnable {
     private Thread thread;
     private Menu menu;
-    private Play play;
+    private Start start;
     private Load load;
     private Options options;
     private AudioManager audioManager;
@@ -51,7 +51,7 @@ public class Scene extends JPanel implements Runnable {
 
         // States Classes
         menu = new Menu(this);
-        play = new Play(this);
+        start = new Start(this);
         load = new Load(this);
         options = new Options(this);
 
@@ -62,7 +62,7 @@ public class Scene extends JPanel implements Runnable {
     public void update() {
         switch(gameState) {
             case MENU -> menu.update();
-            case PLAY -> play.update();
+            case START -> start.update();
             case LOAD -> load.update();
             case OPTIONS -> options.update();
             case QUIT -> System.exit(0);
@@ -74,7 +74,7 @@ public class Scene extends JPanel implements Runnable {
     public void draw(Graphics2D graphics2D) {
         switch(gameState) {
             case MENU -> menu.draw(graphics2D);
-            case PLAY -> play.draw(graphics2D);
+            case START -> start.draw(graphics2D);
             case LOAD -> load.draw(graphics2D);
             case OPTIONS -> options.draw(graphics2D);
             case QUIT -> System.exit(0);
@@ -89,12 +89,12 @@ public class Scene extends JPanel implements Runnable {
 
         // DEBUG
         long drawStart = 0;
-        if(play.isCheckDrawDuration()) drawStart = System.nanoTime();
+        if(start.isCheckDrawDuration()) drawStart = System.nanoTime();
 
         draw(graphics2D);
 
         // DEBUG
-        if(play.isCheckDrawDuration()) {
+        if(start.isCheckDrawDuration()) {
             long drawEnd = System.nanoTime();
             long duration = drawEnd - drawStart;
             double second = (double) duration / 1000000000.0;
@@ -156,8 +156,8 @@ public class Scene extends JPanel implements Runnable {
     }
 
     public void windowFocusLost() {
-        if(gameState == PLAY) {
-            play.getPlayer().resetDirectionBoolean();
+        if(gameState == START) {
+            start.getPlayer().resetDirectionBoolean();
         }
     }
 
@@ -165,8 +165,8 @@ public class Scene extends JPanel implements Runnable {
         return menu;
     }
 
-    public Play getPlay() {
-        return play;
+    public Start getStart() {
+        return start;
     }
 
     public Load getLoad() {
