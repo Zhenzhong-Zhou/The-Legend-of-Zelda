@@ -12,6 +12,7 @@ public class NPC_OldMan extends Entity{
         super(play);
 
         getOldManImage();
+        setDialogue();
     }
 
     private void getOldManImage() {
@@ -36,5 +37,17 @@ public class NPC_OldMan extends Entity{
             if(i>75) direction = RIGHT;
             actionLockCounter = 0;
         }
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Hello, World";
+        dialogues[1] = "This is a super long sentence for testing how to deal with second line...........\n" +
+                "This is a super long sentence for testing how to deal with second line...........";
+        dialogues[2] = "Welcome!";
+        dialogues[3] = "Good luck!";
+    }
+
+    public void speak() {
+        super.speak();
     }
 }

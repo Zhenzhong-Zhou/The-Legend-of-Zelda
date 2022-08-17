@@ -12,7 +12,7 @@ import static utilities.Constant.SceneConstant.TILE_SIZE;
 import static utilities.Constant.WorldConstant.MAX_WORLD_COL;
 import static utilities.Constant.WorldConstant.MAX_WORLD_ROW;
 
-public class Entity {
+public abstract class Entity {
     protected Play play;
     protected int worldX, worldY;
     protected float speed;
@@ -26,8 +26,9 @@ public class Entity {
     protected Rectangle hitbox;
     protected int hitboxDefaultX, hitboxDefaultY;
     protected boolean collision;
-    private boolean up, left, down, right;
     protected int actionLockCounter = 0;
+    protected String[] dialogues = new String[20];
+    protected int dialogueIndex = 0;
 
     public Entity(Play play) {
         this.play = play;
@@ -40,8 +41,21 @@ public class Entity {
         direction = DOWN;
     }
 
-    public void setAction() {
+    public void setAction() {}
 
+    public void speak() {
+        if(dialogues[dialogueIndex] == null) {
+            dialogueIndex = 0;
+        } else {
+            play.getGui().setCurrentDialogue(dialogues[dialogueIndex]);
+            dialogueIndex++;
+        }
+        switch(play.getPlayer().direction) {
+            case UP -> direction = DOWN;
+            case LEFT -> direction = RIGHT;
+            case DOWN -> direction = UP;
+            case RIGHT -> direction = LEFT;
+        }
     }
 
     public void update() {
@@ -110,5 +124,9 @@ public class Entity {
 
     public void setCollision(boolean collision) {
         this.collision = collision;
+    }
+
+    public String[] getDialogues() {
+        return dialogues;
     }
 }

@@ -24,7 +24,7 @@ public class Play extends State implements StateMethods {
     private CollisionDetection collisionDetection;
     private GUI gui;
     private boolean checkDrawDuration;
-    private boolean paused;
+    private boolean paused, dialogue;
 
     public Play(Scene scene) {
         super(scene);
@@ -61,6 +61,8 @@ public class Play extends State implements StateMethods {
             graphics2D.setColor(new Color(0, 0, 0, 150));
             graphics2D.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
             gui.getPauseOverlay().draw(graphics2D);
+        } else if(dialogue) {
+            gui.getDialogueOverlay().draw(graphics2D);
         }
     }
 
@@ -97,6 +99,7 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_S -> player.setDown(true);
             case KeyEvent.VK_D -> player.setRight(true);
             case KeyEvent.VK_ESCAPE -> paused = ! paused;
+            case KeyEvent.VK_ENTER -> dialogue =!dialogue;
         }
 
         // DEBUG
@@ -149,5 +152,13 @@ public class Play extends State implements StateMethods {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
+    }
+
+    public boolean isDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(boolean dialogue) {
+        this.dialogue = dialogue;
     }
 }

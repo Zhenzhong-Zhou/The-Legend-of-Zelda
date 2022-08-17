@@ -94,7 +94,8 @@ public class Player extends Entity {
 
     private void interactNPC(int npcIndex) {
         if(npcIndex != 999) {
-            System.out.println("Hit NPC!");
+            play.setDialogue(true);
+            play.getEntityManager().getNpcs()[npcIndex].speak();
         }
     }
 

@@ -11,14 +11,16 @@ public class GUI {
     private final Play play;
     private Font maruMonica, purisaB;
     private boolean notify;
-    private String message = "";
+    private String currentDialogue = "";
     private final int messageCounter = 0;
     private boolean gameCompleted;
     private double timer;
     private PauseOverlay pauseOverlay;
+    private DialogueOverlay dialogueOverlay;
 
     public GUI(Play play) {
         this.play = play;
+        this.
 
         initFont();
         initOverlays();
@@ -31,10 +33,11 @@ public class GUI {
 
     private void initOverlays() {
         pauseOverlay = new PauseOverlay(this);
+        dialogueOverlay = new DialogueOverlay(this);
     }
 
     public void displayMessage(String text) {
-        message = text;
+        currentDialogue = text;
         notify = true;
     }
 
@@ -45,6 +48,23 @@ public class GUI {
     public int getHorizonCenteredText(Graphics2D graphics2D, String text) {
         int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
         return SCENE_WIDTH / 2 - length / 2;
+    }
+
+    public void drawSubWindow(Graphics2D graphics2D, int x, int y, int width, int height) {
+        Color color = new Color(0,0,0, 210);
+        graphics2D.setColor(color);
+        graphics2D.fillRoundRect(x,y,width,height,35,35);
+
+        color = new Color(255,255,255);
+        graphics2D.setColor(color);
+        graphics2D.setStroke(new BasicStroke(5));
+        graphics2D.drawRoundRect(x+5,y+5,width-10, height-10, 25,25);
+    }
+
+    public void drawDialogue(Graphics2D graphics2D, String currentDialogue, int x, int y) {
+        if(currentDialogue!=null) {
+            graphics2D.drawString(currentDialogue, x, y);
+        }
     }
 
     public boolean isGameCompleted() {
@@ -63,7 +83,19 @@ public class GUI {
         return purisaB;
     }
 
+    public String getCurrentDialogue() {
+        return currentDialogue;
+    }
+
     public PauseOverlay getPauseOverlay() {
         return pauseOverlay;
+    }
+
+    public DialogueOverlay getDialogueOverlay() {
+        return dialogueOverlay;
+    }
+
+    public void setCurrentDialogue(String currentDialogue) {
+        this.currentDialogue = currentDialogue;
     }
 }
