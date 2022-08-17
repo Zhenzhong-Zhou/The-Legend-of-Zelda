@@ -13,9 +13,6 @@ public class ObjectManager {
     private final Play play;
     private ArrayList<GameObject> objects;
     private GameObject KEY, DOOR, CHEST;
-    private Key key;
-    private Door door;
-    private Chest chest;
 
     public ObjectManager(Play play) {
         this.play = play;

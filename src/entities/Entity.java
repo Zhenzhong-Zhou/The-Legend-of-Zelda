@@ -14,7 +14,6 @@ public abstract class Entity {
     protected float speed;
     protected int width, height;
     protected BufferedImage up1, up2, left1, left2, down1, down2, right1, right2;
-    // TODO: once have pathfinding may cause problem because of String not Integer
     protected String direction;
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
@@ -25,6 +24,7 @@ public abstract class Entity {
     protected int actionLockCounter = 0;
     protected String[] dialogues = new String[20];
     protected int dialogueIndex = 0;
+    protected int maxLives, life;
 
     public Entity(Play play) {
         this.play = play;

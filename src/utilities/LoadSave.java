@@ -24,6 +24,11 @@ public class LoadSave {
     public static final String RIGHT_1_IMAGE = "player/walk/boy_right_1.png";
     public static final String RIGHT_2_IMAGE = "player/walk/boy_right_2.png";
 
+    // PLAYER LIFE
+    public static final String HEART_FULL = "objects/heart_full.png";
+    public static final String HEART_HALF = "objects/heart_half.png";
+    public static final String HEART_BLANK = "objects/heart_blank.png";
+
     // NPC: Old Man
     public static final String OLD_MAN_UP_1_IMAGE = "npc/oldman_up_1.png";
     public static final String OLD_MAN_UP_2_IMAGE = "npc/oldman_up_2.png";

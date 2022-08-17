@@ -1,5 +1,6 @@
 package entities;
 
+import objects.Heart;
 import states.Play;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ import static utilities.LoadSave.*;
 public class Player extends Entity {
     private final int screenX, screenY;
     private boolean up, left, down, right;
+    private BufferedImage heart_full, heart_half, heart_blank;
 
     public Player(Play play) {
         super(play);
@@ -24,6 +26,7 @@ public class Player extends Entity {
         initClasses();
         setDefaultValues();
         getPlayerImage();
+        getPlayerLifeImage();
     }
 
     private void initClasses() {
@@ -33,8 +36,12 @@ public class Player extends Entity {
     private void setDefaultValues() {
         worldX = (MAX_WORLD_COL / 2 - 1) * TILE_SIZE;
         worldY = (MAX_WORLD_ROW / 2 - 1) * TILE_SIZE;
-        speed = (int) (0.5f * SCALE);//TODO: need to change later
+        speed = (int) (0.5f * SCALE);
         direction = DOWN;
+
+        // PLAYER STATUS
+        maxLives = 6;
+        life = maxLives;
     }
 
     private void getPlayerImage() {
@@ -46,6 +53,13 @@ public class Player extends Entity {
         down2 = GetSpriteAtlas(DOWN_2_IMAGE);
         right1 = GetSpriteAtlas(RIGHT_1_IMAGE);
         right2 = GetSpriteAtlas(RIGHT_2_IMAGE);
+    }
+
+    private void getPlayerLifeImage() {
+        Heart heart = new Heart();
+        heart_full = heart.getHeart_full();
+        heart_half = heart.getHeart_half();
+        heart_blank = heart.getHeart_blank();
     }
 
     public void update() {
@@ -175,6 +189,44 @@ public class Player extends Entity {
         // Draw hitbox
         graphics2D.setColor(Color.RED);
         graphics2D.drawRect(x + getHitbox().x, y + + getHitbox().y, getHitbox().width, getHitbox().height);
+
+        drawPlayerStatus(graphics2D);
+    }
+
+    private void drawPlayerStatus(Graphics2D graphics2D) {
+        // MAX LIVES
+        drawMaxLives(graphics2D);
+
+        // CURRENT LIFE
+        drawCurrentLife(graphics2D);
+    }
+
+    private void drawMaxLives(Graphics2D graphics2D) {
+        int x = TILE_SIZE/2;
+        int y = TILE_SIZE/2;
+        int i =0;
+
+        while(i< maxLives/2) {
+            graphics2D.drawImage(heart_blank,x, y, null);
+            i++;
+            x+=TILE_SIZE;
+        }
+    }
+
+    private void drawCurrentLife(Graphics2D graphics2D) {
+        int x = TILE_SIZE/2;
+        int y = TILE_SIZE/2;
+        int i =0;
+
+        while(i< life) {
+            graphics2D.drawImage(heart_half,x, y, null);
+            i++;
+            if(i< life) {
+                graphics2D.drawImage(heart_full,x, y, null);
+            }
+            i++;
+            x+=TILE_SIZE;
+        }
     }
 
     public void setUp(boolean up) {
