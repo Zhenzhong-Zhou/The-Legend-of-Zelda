@@ -4,6 +4,7 @@ import entities.Player;
 import states.Play;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 import static utilities.Constant.DirectionConstant.RIGHT;
 import static utilities.Constant.DirectionConstant.UP;
@@ -25,6 +26,7 @@ public class EventManager {
     public void checkEvent() {
         if(trigger(51, 31, RIGHT)) {damagePit();}
         if(trigger(48, 48, UP)) {damagePit();}
+        if(trigger(47, 47, UP)) {healingPool();}
     }
 
     private boolean trigger(int eventCol, int eventRow, String reqDirection) {
@@ -53,5 +55,10 @@ public class EventManager {
     private void damagePit() {
         play.getGui().setCurrentDialogue("You fall into a pit!");
         play.getPlayer().setLife(play.getPlayer().getMaxLives()-1);
+    }
+
+    private void healingPool() {
+        play.getGui().setCurrentDialogue("You life has been recovered!");
+        play.getPlayer().setLife(play.getPlayer().getMaxLives());
     }
 }
