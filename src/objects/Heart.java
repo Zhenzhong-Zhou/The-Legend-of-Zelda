@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import static utilities.LoadSave.*;
 
-public class Heart{
+public class Heart {
     private final BufferedImage heart_full, heart_half, heart_blank;
 
     public Heart() {

@@ -86,7 +86,7 @@ public class Player extends Entity {
         collectObject(objectIndex);
 
         // CHECK NPC COLLISION
-        int npcIndex =  play.getCollisionDetection().checkEntity(this, play.getEntityManager().getNpcs());
+        int npcIndex = play.getCollisionDetection().checkEntity(this, play.getEntityManager().getNpcs());
         interactNPC(npcIndex);
 
         // CHECK EVENT
@@ -205,30 +205,30 @@ public class Player extends Entity {
     }
 
     private void drawMaxLives(Graphics2D graphics2D) {
-        int x = TILE_SIZE/2;
-        int y = TILE_SIZE/2;
-        int i =0;
+        int x = TILE_SIZE / 2;
+        int y = TILE_SIZE / 2;
+        int i = 0;
 
-        while(i< maxLives/2) {
-            graphics2D.drawImage(heart_blank,x, y, null);
+        while(i < maxLives / 2) {
+            graphics2D.drawImage(heart_blank, x, y, null);
             i++;
-            x+=TILE_SIZE;
+            x += TILE_SIZE;
         }
     }
 
     private void drawCurrentLife(Graphics2D graphics2D) {
-        int x = TILE_SIZE/2;
-        int y = TILE_SIZE/2;
-        int i =0;
+        int x = TILE_SIZE / 2;
+        int y = TILE_SIZE / 2;
+        int i = 0;
 
-        while(i< life) {
-            graphics2D.drawImage(heart_half,x, y, null);
+        while(i < life) {
+            graphics2D.drawImage(heart_half, x, y, null);
             i++;
-            if(i< life) {
-                graphics2D.drawImage(heart_full,x, y, null);
+            if(i < life) {
+                graphics2D.drawImage(heart_full, x, y, null);
             }
             i++;
-            x+=TILE_SIZE;
+            x += TILE_SIZE;
         }
     }
 

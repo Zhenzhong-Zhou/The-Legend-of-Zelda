@@ -27,7 +27,7 @@ public abstract class Entity {
 
     public Entity(Play play) {
         this.play = play;
-        hitbox = new Rectangle(0,0,TILE_SIZE, TILE_SIZE);
+        hitbox = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
         setDefaultValues();
     }
 
@@ -36,7 +36,8 @@ public abstract class Entity {
         direction = DOWN;
     }
 
-    public void setAction() {}
+    public void setAction() {
+    }
 
     public void speak() {
         if(dialogues[dialogueIndex] == null) {

@@ -1,7 +1,6 @@
 package gui;
 
 import main.Scene;
-import states.Play;
 
 import java.awt.*;
 
@@ -10,10 +9,10 @@ import static utilities.LoadSave.*;
 
 public class GUI {
     private final Scene scene;
+    private final int messageCounter = 0;
     private Font maruMonica, purisaB;
     private boolean notify;
     private String currentDialogue = "";
-    private final int messageCounter = 0;
     private boolean gameCompleted;
     private double timer;
     private PauseOverlay pauseOverlay;
@@ -51,18 +50,18 @@ public class GUI {
     }
 
     public void drawSubWindow(Graphics2D graphics2D, int x, int y, int width, int height) {
-        Color color = new Color(0,0,0, 210);
+        Color color = new Color(0, 0, 0, 210);
         graphics2D.setColor(color);
-        graphics2D.fillRoundRect(x,y,width,height,35,35);
+        graphics2D.fillRoundRect(x, y, width, height, 35, 35);
 
-        color = new Color(255,255,255);
+        color = new Color(255, 255, 255);
         graphics2D.setColor(color);
         graphics2D.setStroke(new BasicStroke(5));
-        graphics2D.drawRoundRect(x+5,y+5,width-10, height-10, 25,25);
+        graphics2D.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
     public void drawDialogue(Graphics2D graphics2D, String currentDialogue, int x, int y) {
-        if(currentDialogue!=null) {
+        if(currentDialogue != null) {
             graphics2D.drawString(currentDialogue, x, y);
         }
     }
@@ -91,15 +90,15 @@ public class GUI {
         return currentDialogue;
     }
 
+    public void setCurrentDialogue(String currentDialogue) {
+        this.currentDialogue = currentDialogue;
+    }
+
     public PauseOverlay getPauseOverlay() {
         return pauseOverlay;
     }
 
     public DialogueOverlay getDialogueOverlay() {
         return dialogueOverlay;
-    }
-
-    public void setCurrentDialogue(String currentDialogue) {
-        this.currentDialogue = currentDialogue;
     }
 }

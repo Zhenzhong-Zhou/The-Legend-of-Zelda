@@ -1,7 +1,6 @@
 package levels;
 
 import entities.Player;
-import main.Scene;
 import states.Play;
 import tiles.TileManager;
 
@@ -12,9 +11,9 @@ import static utilities.Constant.WorldConstant.*;
 import static utilities.LoadSave.*;
 
 public class LevelManager {
-//    private final Scene scene;
-    private Play play;
     private final TileManager tileManager;
+    //    private final Scene scene;
+    private final Play play;
     private int[][] level;
 
     public LevelManager(Play play) {
